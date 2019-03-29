@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-unfetch'
+import * as opentype from 'opentype.js'
+
 
 import {
   FETCH_FONTS
@@ -16,14 +18,11 @@ import {
 export function fetchFonts() {
   return dispatch => {
     dispatch({ type: FETCH_FONTS })
-    return fetch('/static/FiraMono-Regular.otf')
-      .then(response => {
-        if (response.status === 200) {
-          dispatch(fetchFontResult(response))
-        } else {
-          dispatch(fetchFontError())
-        }
-      })
+    opentype.load('/static/AVHersheySimplexMedium.otf', (err, font) => {
+      console.log(font)
+      if (err) dispatch(fetchFontError())
+      else dispatch(fetchFontResult(font))
+    })
   }
 }
 
