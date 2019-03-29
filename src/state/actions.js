@@ -18,11 +18,18 @@ import {
 export function fetchFonts() {
   return dispatch => {
     dispatch({ type: FETCH_FONTS })
-    opentype.load('/static/AVHersheySimplexMedium.otf', (err, font) => {
-      console.log(font)
-      if (err) dispatch(fetchFontError())
-      else dispatch(fetchFontResult(font))
-    })
+    return fetch('/static/AVHersheySimplexMedium.otf')
+      .then(response => {
+        if (response.status !== 200) {
+          dispatch(fetchFontError())
+          throw new Error('Non 200 response')
+        } else {
+          return response.arrayBuffer()
+        }
+      })
+      .then(buffer => {
+        dispatch(fetchFontResult(buffer))
+      })
   }
 }
 
@@ -30,11 +37,11 @@ export function fetchFonts() {
  * Result of fetching the font
  * @returns {*} dispatchable event object
  */
-export function fetchFontResult(font) {
+export function fetchFontResult(buffer) {
   return {
     type: FETCH_FONTS,
     status: STATUS_OK,
-    font
+    buffer
   }
 }
 

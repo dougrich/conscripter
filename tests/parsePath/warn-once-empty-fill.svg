@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50 50 H 90 V 90 H 50 Z" fill="transparent"/>
+  <path d="M50 50 H 10 V 10 H 50 Z" fill="transparent"/>
+</svg>
