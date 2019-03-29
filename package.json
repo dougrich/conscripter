@@ -1,0 +1,33 @@
+{
+  "name": "@dougrich/conscripter",
+  "version": "0.1.0",
+  "description": "Static site that generates functional open type font files for conlang scripts from SVG using substitution",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha \"./src/**/?(*.)spec.js\"",
+    "dev": "next",
+    "deploy": "npm run export && echo 'Publishing...' && gh-pages -d out",
+    "export": "next export",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dougrich/conscripter.git"
+  },
+  "author": "@dougrich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dougrich/conscripter/issues"
+  },
+  "homepage": "https://github.com/dougrich/conscripter#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "gh-pages": "^2.0.1",
+    "mocha": "^6.0.2"
+  },
+  "dependencies": {
+    "next": "^8.0.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
