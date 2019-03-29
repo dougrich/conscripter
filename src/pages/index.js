@@ -1,30 +1,27 @@
 import css from './index.scss'
-import { createStore } from 'redux'
+import { createStore, actions } from '../state'
 import { connect, Provider } from 'react-redux'
-import Input from '../components/input'
+import Label from '../components/label'
 
-const store = createStore(function (state = { current: '' }, action) {
-  if (action.type === 'SET') {
-    return { ...state, current: action.value }
-  } else {
-    return state
+const store = createStore()
+
+const ConnectedLabel = connect(
+  state => ({ label: state.fonts.status }),
+)(Label)
+
+export default class Index extends React.Component {
+  componentDidMount() {
+    store.dispatch(actions.fetchFonts())
   }
-})
 
-const ConnectedInput = connect(
-  state => ({ value: state.current }),
-  dispatch => ({ onChange: (e) => dispatch({ type: 'SET', value: e.currentTarget.value }) })
-)(Input)
-
-function Home() {
-  return (
-    <Provider store={store}>
-      <div className={css.example}>
-        Welcome to Next.js!
-        <ConnectedInput className={css.text} label="Substitution" placeholder="Substitution"/>
-      </div>
-    </Provider>
-  )
+  render() {
+    return (
+      <Provider store={store}>
+        <div className={css.example}>
+          Welcome to Next.js!
+          <ConnectedLabel />
+        </div>
+      </Provider>
+    )
+  }
 }
-
-export default Home;
