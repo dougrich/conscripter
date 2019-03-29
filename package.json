@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha \"./src/**/?(*.)spec.js\"",
-    "dev": "next",
+    "dev": "next ./src",
     "deploy": "npm run export && echo 'Publishing...' && gh-pages -d out",
-    "export": "next export",
-    "start": "next start"
+    "export": "next export ./src",
+    "start": "next start ./src"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,8 @@
     "next": "^8.0.3",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
   }
 }
