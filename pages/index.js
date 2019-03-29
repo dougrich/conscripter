@@ -1,6 +1,8 @@
+import './index.scss'
+
 function Home() {
   return (
-    <div>Welcome to Next.js!</div>
+    <div className="example">Welcome to Next.js!</div>
   )
 }
 
