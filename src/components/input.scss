@@ -1,0 +1,19 @@
+@import 'colors';
+
+.input, .container, .label, .placeholder {
+  display: block;
+}
+
+.input {
+  font-size: 1em;
+  border: 0;
+  border-bottom: 1px solid gray;
+  transition-property: background-color, border-bottom-color;
+  transition-duration: 250ms;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom-color: theme-color();
+  background-color: #dedede;
+}
