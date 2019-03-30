@@ -1,5 +1,8 @@
 $theme-colors: (
-  'primary': blue
+  'primary': blue,
+  'gray-1': #dedede,
+  'gray-2': #adadad,
+  'bg-blank': white
 );
 
 @function theme-color($key: 'primary') {

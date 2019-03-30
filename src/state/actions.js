@@ -1,9 +1,12 @@
 import fetch from 'isomorphic-unfetch'
 import * as opentype from 'opentype.js'
+import * as PathParser from './reducers/fonts/parsePath'
+import MultipleError from '../multiple-error'
 
 
 import {
-  FETCH_FONTS
+  FETCH_FONTS,
+  ADD_SUBSTITUTION
 } from './actionTypes'
 
 import {
@@ -56,3 +59,20 @@ export function fetchFontError() {
   }
 }
 
+export function addSubstitution(meta, { replace, advanceWidth }, svg) {
+  const parser = new PathParser(meta)
+  const { commands, warnings } = parser.parse(svg)
+  if (warnings && warnings.length) {
+    throw new MultipleError('Warnings occured during upload', warnings)
+  }
+  return {
+    type: ADD_SUBSTITUTION,
+    substitution: {
+      replace,
+      glyph: {
+        advanceWidth,
+        commands
+      }
+    }
+  }
+}

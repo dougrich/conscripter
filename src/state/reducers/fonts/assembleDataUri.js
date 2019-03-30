@@ -81,5 +81,11 @@ export function assembleDataUri(buffer, substitutions) {
       addSubstitution(font, text, glyphId.index)
     }
   }
-  return 'data:font/otf;base64,' + arrayBufferToBase64(font.toArrayBuffer())
+  return {
+    datauri: 'data:font/otf;base64,' + arrayBufferToBase64(font.toArrayBuffer()),
+    meta: {
+      unitsPerEm: font.unitsPerEm,
+      descender: font.descender
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { FETCH_FONTS } from '../../actionTypes'
+import { FETCH_FONTS, ADD_SUBSTITUTION } from '../../actionTypes'
 import { STATUS_PENDING, STATUS_OK, STATUS_ERROR } from '../../status'
 
 import { assembleDataUri } from './assembleDataUri'
@@ -7,21 +7,7 @@ const defaultState = {
   status: STATUS_PENDING,
   buffer: null,
   datauri: null,
-  substitutions: [{ replace: ['co', 'e'], glyph: {
-    commands: [
-      { type: 'M', x: 500, y: 300 },
-      { type: 'L', x: 900, y: 300 },
-      { type: 'L', x: 900, y: -100 },
-      { type: 'L', x: 500, y: -100 },
-      { type: 'Z' },
-      { type: 'M', x: 500, y: 300 },
-      { type: 'L', x: 100, y: 300 },
-      { type: 'L', x: 100, y: 700 },
-      { type: 'L', x: 500, y: 700 },
-      { type: 'Z' }
-    ],
-    advanceWidth: 1000
-  }}]
+  substitutions: []
 }
 
 
@@ -33,7 +19,7 @@ export function fonts(state = defaultState, action) {
           ...state,
           status: STATUS_OK,
           buffer: action.buffer,
-          datauri: assembleDataUri(action.buffer, state.substitutions)
+          ...assembleDataUri(action.buffer, state.substitutions)
         }
       case STATUS_ERROR:
         return {
@@ -49,6 +35,16 @@ export function fonts(state = defaultState, action) {
           buffer: null,
           datauri: null
         }
+    }
+  }
+
+  if (action && action.type === ADD_SUBSTITUTION) {
+    const { buffer, substitutions } = state
+    const newsubs = [...substitutions, action.substitution]
+    return {
+      ...state,
+      ...assembleDataUri(buffer, newsubs),
+      substitutions: newsubs
     }
   }
   return state
