@@ -1,25 +1,12 @@
 @import 'colors';
-
-@mixin dropzone-color($border, $bg) {
-  border-color: theme-color($border);
-  color: theme-color($border);
-  background-color: theme-color($bg);
-}
+@import 'interaction';
 
 .container {
   display: block;
-  border: 0.1em dashed;
   padding: 1em;
-  border-radius: 0.5em;
   text-align: center;
-  cursor: pointer;
-  transition-property: background-color, border-color, color;
-  transition-duration: 250ms;
-  @include dropzone-color('gray-1', 'bg-blank');
-  &:hover, &:focus {
-    @include dropzone-color('gray-2', 'gray-1');
-    outline: none;
-  }
+
+  @include clickable('gray-0');
 }
 
 .input {

@@ -1,0 +1,44 @@
+@import 'colors';
+
+$border-thickness: 0.05em;
+
+@mixin clickable($initialbg: 'bg-blank') {
+  border: $border-thickness dashed;
+  border-color: theme-color('bg-blank');
+  background-color: theme-color($initialbg);
+  transition-property: background-color, border-color;
+  transition-duration: 250ms;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    background-color: theme-color('gray-1');
+  }
+
+  &:active {
+    background-color: theme-color('gray-2');
+  }
+
+  &:focus {
+    border-color: theme-color('gray-2');
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 1;
+    color: black;
+  }
+}
+
+@mixin section-tab {
+  border: $border-thickness solid theme-color('gray-2');
+  border-bottom-color: white;
+  position: relative;
+  z-index: 1;
+}
+
+@mixin section-border {
+  margin-top: -$border-thickness;
+  border-top: $border-thickness solid theme-color('gray-2');
+  border-bottom: $border-thickness solid theme-color('gray-2');
+}

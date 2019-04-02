@@ -1,0 +1,54 @@
+@import 'interaction';
+
+.container {
+  height: 4em;
+  padding: 0;
+  font: inherit;
+  width: 4em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: flex-start;
+  display: block;
+  @include clickable;
+}
+
+.inactive {
+  opacity: 0.25;
+}
+
+.activecell {
+  @include section-tab;
+}
+
+.label {
+  text-align: center;
+}
+
+.preview {
+  font-size: 2em;
+}
+
+.grid {
+  position: relative;
+  margin: 1em 0em;
+}
+
+.details {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 1em;
+  box-sizing: border-box;
+  @include section-border;
+}
+
+.detailsspacer, .details {
+  height: 12em;
+}
+
+.gridcell {
+  width: 4em;
+  display: inline-block;
+  vertical-align: top;
+}

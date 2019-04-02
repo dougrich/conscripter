@@ -7,7 +7,91 @@ const defaultState = {
   status: STATUS_PENDING,
   buffer: null,
   datauri: null,
-  substitutions: []
+  substitutions: [{
+    replace: ['m'],
+    glyph: {
+      advanceWidth: 1000,
+      commands: [
+        { type: 'M', x: 100, y: 700 },
+        { type: 'L', x: 900, y: 700 },
+        { type: 'L', x: 900, y: -100 },
+        { type: 'L', x: 100, y: -100 },
+        { type: 'Z' }
+      ]
+    }
+  },{
+    replace: ['n'],
+    glyph: {
+      advanceWidth: 1000,
+      commands: [
+        { type: 'M', x: 100, y: 700 },
+        { type: 'L', x: 900, y: 700 },
+        { type: 'L', x: 900, y: -100 },
+        { type: 'L', x: 100, y: -100 },
+        { type: 'Z' }
+      ]
+    }
+  },{
+    replace: ['o'],
+    glyph: {
+      advanceWidth: 1000,
+      commands: [
+        { type: 'M', x: 100, y: 700 },
+        { type: 'L', x: 900, y: 700 },
+        { type: 'L', x: 900, y: -100 },
+        { type: 'L', x: 100, y: -100 },
+        { type: 'Z' }
+      ]
+    }
+  },{
+    replace: ['p'],
+    glyph: {
+      advanceWidth: 1000,
+      commands: [
+        { type: 'M', x: 100, y: 700 },
+        { type: 'L', x: 900, y: 700 },
+        { type: 'L', x: 900, y: -100 },
+        { type: 'L', x: 100, y: -100 },
+        { type: 'Z' }
+      ]
+    }
+  },{
+    replace: ['q'],
+    glyph: {
+      advanceWidth: 1000,
+      commands: [
+        { type: 'M', x: 100, y: 700 },
+        { type: 'L', x: 900, y: 700 },
+        { type: 'L', x: 900, y: -100 },
+        { type: 'L', x: 100, y: -100 },
+        { type: 'Z' }
+      ]
+    }
+  },{
+    replace: ['r'],
+    glyph: {
+      advanceWidth: 1000,
+      commands: [
+        { type: 'M', x: 100, y: 700 },
+        { type: 'L', x: 900, y: 700 },
+        { type: 'L', x: 900, y: -100 },
+        { type: 'L', x: 100, y: -100 },
+        { type: 'Z' }
+      ]
+    }
+  },{
+    replace: ['s'],
+    glyph: {
+      advanceWidth: 1000,
+      commands: [
+        { type: 'M', x: 100, y: 700 },
+        { type: 'L', x: 900, y: 700 },
+        { type: 'L', x: 900, y: -100 },
+        { type: 'L', x: 100, y: -100 },
+        { type: 'Z' }
+      ]
+    }
+  }]
 }
 
 

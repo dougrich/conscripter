@@ -1,6 +1,7 @@
 import css from './glyph-preview.scss'
+import * as cx from 'classnames'
 
-export default function GlyphPreview({ commands, advanceWidth, unitsPerEm, descender,  }) {
+export default function GlyphPreview({ commands, advanceWidth, unitsPerEm, descender, className }) {
   advanceWidth = Math.max(advanceWidth, 100)
   const widthEm = advanceWidth / unitsPerEm
   const path = commands.map(c => {
@@ -17,7 +18,7 @@ export default function GlyphPreview({ commands, advanceWidth, unitsPerEm, desce
   const topline = '0.4em'
   const textCorrection = '0.12em'
   return (
-    <div className={css.container}>
+    <div className={cx(css.container, className)}>
       <div className={css.subcontainer}>
         <div className={css.rule} style={{ top: baseline + 'em', background: 'magenta' }}/>
         <div className={css.rule} style={{ top: topline, background: 'lime' }}/>

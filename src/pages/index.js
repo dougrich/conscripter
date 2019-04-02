@@ -4,6 +4,7 @@ import { connect, Provider } from 'react-redux'
 import Label from '../components/label'
 import DropZone from '../components/dropzone'
 import GlyphPreview from '../components/glyph-preview'
+import GlyphGrid from '../components/glyph-grid'
 
 const store = createStore()
 
@@ -29,6 +30,10 @@ const FontStyle = connect(
   )
 })
 
+const ConnectedGlyphGrid = connect(
+  state => ({ ...state.fonts, active: state.fonts.substitutions[3] })
+)(GlyphGrid)
+
 export default class Index extends React.Component {
   componentDidMount() {
     store.dispatch(actions.fetchFonts())
@@ -37,23 +42,12 @@ export default class Index extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <div className={css.example}>
-          <GlyphPreview commands={[
-    { type: 'M', x: 500, y: 300 },
-    { type: 'L', x: 900, y: 300 },
-    { type: 'L', x: 900, y: -100 },
-    { type: 'L', x: 500, y: -100 },
-    { type: 'Z' },
-    { type: 'M', x: 500, y: 300 },
-    { type: 'L', x: 100, y: 300 },
-    { type: 'L', x: 100, y: 700 },
-    { type: 'L', x: 500, y: 700 },
-    { type: 'Z' }]} unitsPerEm={1000} advanceWidth={0} descender={-181}/>
-          <div style={{marginBottom:'2m', textAlign: 'center'}}>
-          abcdef<span>m</span>ghijk</div>
+        <div className={css.root}>
           <ConnectedDropZone/>
           <ConnectedLabel />
+          <ConnectedGlyphGrid/>
           <FontStyle />
+          <textarea className={css.example}/>
         </div>
       </Provider>
     )
