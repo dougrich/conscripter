@@ -7,7 +7,7 @@ const defaultState = {
   status: STATUS_PENDING,
   buffer: null,
   datauri: null,
-  substitutions: [{
+  substitutions: []/*[{
     replace: ['m'],
     glyph: {
       advanceWidth: 1000,
@@ -91,7 +91,7 @@ const defaultState = {
         { type: 'Z' }
       ]
     }
-  }]
+  }]*/
 }
 
 
@@ -124,7 +124,13 @@ export function fonts(state = defaultState, action) {
 
   if (action && action.type === ADD_SUBSTITUTION) {
     const { buffer, substitutions } = state
-    const newsubs = [...substitutions, action.substitution]
+    const idx = substitutions.indexOf(action.replace)
+    let newsubs
+    if (idx >= 0) {
+      newsubs = [...substitutions.slice(0, idx), action.substitution, ...substitutions.slice(idx + 1)]
+    } else {
+      newsubs = [...substitutions, action.substitution]
+    }
     return {
       ...state,
       ...assembleDataUri(buffer, newsubs),

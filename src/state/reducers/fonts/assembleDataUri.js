@@ -30,12 +30,13 @@ function assertBadInput(truthy, message) {
 }
 
 function addSubstitution(font, characters, glyph) {
+
   assertBadInput(typeof (characters) === 'string', 'characters argument must be a string')
   assertBadInput(characters.length >= 1, 'characters argument must be a string >= 1')
   assertBadInput(typeof (glyph) === 'number', 'glyph argument must be a glyph code')
   assertBadInput(Object.getPrototypeOf(font) === fontPrototype, 'font must be an instance of opentype.Font')
 
-  const gsub = font.tables.gsub = font.tables.gsub || defaultGsub
+  const gsub = font.tables.gsub = font.tables.gsub || JSON.parse(JSON.stringify(defaultGsub))
   const subtable = gsub.lookups[0].subtables[0]
   const components = new Array(characters.length - 1)
   for (let i = 1; i < characters.length; i++) {
@@ -81,6 +82,7 @@ export function assembleDataUri(buffer, substitutions) {
       addSubstitution(font, text, glyphId.index)
     }
   }
+
   return {
     datauri: 'data:font/otf;base64,' + arrayBufferToBase64(font.toArrayBuffer()),
     meta: {

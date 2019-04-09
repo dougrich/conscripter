@@ -5,15 +5,27 @@
 import css from './glyph-grid.scss'
 import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
+import Label from './label';
 
-export default function GlyphGrid({ substitutions, meta, active, children }) {
+export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect }) {
   const symbols = []
   const gridcells = []
   let foundActive = false
+  let hasActive = active != null
 
-  function Btn({children, isActive}) {
+  if (substitutions.length === 0 && !active) {
     return (
-      <button className={cx(css.container, { [css.activecell]: isActive })} disabled={!!active}>
+      <div className={css.grid}>
+        <button className={cx(css.emptyset)} onClick={() => onSubstitutionSelect()}>
+        Click here to get started
+        </button>
+      </div>
+    )
+  }
+
+  function Btn({children, isActive, onClick}) {
+    return (
+      <button className={cx(css.container, { [css.activecell]: isActive })} disabled={hasActive} onClick={onClick}>
         {children}
       </button>
     )
@@ -24,7 +36,7 @@ export default function GlyphGrid({ substitutions, meta, active, children }) {
     const key = replace.join('/')
     const isActive = active === sub
     const button = (
-      <Btn isActive={isActive}>
+      <Btn isActive={isActive} onClick={() => onSubstitutionSelect(sub)}>
         <div className={css.label}>{key}</div>
         <GlyphPreview className={css.preview} {...glyph} {...meta}/>
       </Btn>
@@ -39,13 +51,13 @@ export default function GlyphGrid({ substitutions, meta, active, children }) {
 
   gridcells.push({
     key: 'add',
-    button: (<Btn>+</Btn>),
-    isActive: !!active && !foundActive
+    button: (<Btn onClick={() => onSubstitutionSelect()}>+</Btn>),
+    isActive: hasActive && !foundActive
   })
 
   for (const { key, button, isActive } of gridcells) {
     const className = cx(css.gridcell, {
-      [css.inactive]: !isActive || !active
+      [css.inactive]: !isActive && hasActive
     })
     symbols.push(
       <div className={className} key={key}>

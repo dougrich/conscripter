@@ -31,6 +31,8 @@
 .grid {
   position: relative;
   margin: 1em 0em;
+  height: 500px;
+  overflow: auto;
 }
 
 .details {
@@ -44,11 +46,18 @@
 }
 
 .detailsspacer, .details {
-  height: 12em;
+  height: auto;
 }
 
 .gridcell {
   width: 4em;
   display: inline-block;
   vertical-align: top;
+}
+
+.emptyset {
+  display: block;
+  width: 100%;
+  height: 100%;
+  @include clickable;
 }

@@ -3,10 +3,15 @@ import { createStore, actions } from '../state'
 import { connect, Provider } from 'react-redux'
 import Label from '../components/label'
 import DropZone from '../components/dropzone'
-import GlyphPreview from '../components/glyph-preview'
+import SubstitutionEditor from '../components/substitution-editor'
 import GlyphGrid from '../components/glyph-grid'
+import GlyphPreview from '../components/glyph-preview';
 
 const store = createStore()
+
+const PreviewPlaceholder = `up <-
+update <-
+updated <-`
 
 const ConnectedLabel = connect(
   state => ({ label: state.fonts.status }),
@@ -26,13 +31,27 @@ const FontStyle = connect(
 )(function ({ data }) {
   if (!data) return null
   return (
-    <style dangerouslySetInnerHTML={{__html:'@font-face { font-family: demofont; src: url(\'' + data + '\')}'}}></style>
+    <style id='test' dangerouslySetInnerHTML={{__html:'@font-face { font-family: demofont; src: url(\'' + data + '\')}'}}></style>
   )
 })
 
 const ConnectedGlyphGrid = connect(
-  state => ({ ...state.fonts, active: state.fonts.substitutions[3] })
+  state => ({ ...state.fonts, ...state.substitution }),
+  dispatch => ({
+    onSubstitutionSelect: (substitution) => dispatch(actions.selectSubstitution(substitution))
+  })
 )(GlyphGrid)
+
+const ConnectedSubstitutionEditor = connect(
+  state => ({ ...state.fonts, ...state.substitution }),
+  (dispatch) => ({
+    onUpload: ({ contents }) => dispatch(actions.updateSubstitutionGlyph(store.getState().fonts.meta, contents)),
+    onReplaceChange: ({ currentTarget: { value } }) => dispatch(actions.updateSubstitutionReplace(value)),
+    onAdvanceWidthChange: ({ currentTarget: { value }}) => dispatch(actions.updateSubstitutionAdvanceWidth(value)),
+    onSubmit: () => dispatch(actions.submitSubstitution(store.getState().substitution)),
+    onCancel: () => dispatch(actions.cancelSubstitution())
+  })
+)(SubstitutionEditor)
 
 export default class Index extends React.Component {
   componentDidMount() {
@@ -43,11 +62,17 @@ export default class Index extends React.Component {
     return (
       <Provider store={store}>
         <div className={css.root}>
-          <ConnectedDropZone/>
-          <ConnectedLabel />
-          <ConnectedGlyphGrid/>
           <FontStyle />
-          <textarea className={css.example}/>
+          <div>
+            <Label>Substitutions</Label>
+            <ConnectedGlyphGrid>
+              <ConnectedSubstitutionEditor/>
+            </ConnectedGlyphGrid>
+          </div>
+          <div>
+            <Label>Preview</Label>
+            <textarea className={css.example} defaultValue={PreviewPlaceholder}/>
+          </div>
         </div>
       </Provider>
     )

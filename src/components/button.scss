@@ -1,0 +1,21 @@
+@import 'interaction';
+
+.btn {
+  border: 0;
+  margin: 0.2em;
+  padding: 0.5em 0.8em;
+  width: 8em;
+  text-align: center;
+}
+
+.default {
+  @include clickable('button-default');
+}
+
+.success {
+  @include clickable('button-success');
+}
+
+.danger {
+  @include clickable('button-danger');
+}

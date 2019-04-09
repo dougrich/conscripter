@@ -1,9 +1,10 @@
 $theme-colors: (
   'primary': blue,
-  'gray-0': #f3f3f3,
-  'gray-1': #dedede,
-  'gray-2': #adadad,
-  'bg-blank': transparent
+  'button-default': #dedede,
+  'button-success': #b7ffe1,
+  'button-danger': #ffc5b7,
+  'border': #adadad,
+  'bg-blank': white
 );
 
 @function theme-color($key: 'primary') {

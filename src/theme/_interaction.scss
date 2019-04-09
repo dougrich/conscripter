@@ -2,36 +2,45 @@
 
 $border-thickness: 0.05em;
 
-@mixin clickable($initialbg: 'bg-blank') {
-  border: $border-thickness dashed;
-  border-color: theme-color('bg-blank');
-  background-color: theme-color($initialbg);
+%common-clickable {
+  border: $border-thickness solid;
   transition-property: background-color, border-color;
   transition-duration: 250ms;
   cursor: pointer;
   outline: none;
+  font-size: 0.75em;
+}
+
+@mixin clickable($initialbg: 'bg-blank') {
+  @extend %common-clickable;
+  $color: theme-color($initialbg);
+  $color-hover: darken($color, 15%);
+  $color-active: darken($color, 30%);
+
+  border-color: $color;
+  color: darken($color, 70%);
+  background-color: $color;
 
   &:hover {
-    background-color: theme-color('gray-1');
+    background-color: $color-hover;
   }
 
   &:active {
-    background-color: theme-color('gray-2');
+    background-color: $color-active;
   }
 
   &:focus {
-    border-color: theme-color('gray-2');
+    border-color: $color-active;
   }
 
   &[disabled] {
     pointer-events: none;
     opacity: 1;
-    color: black;
   }
 }
 
 @mixin section-tab {
-  border: $border-thickness solid theme-color('gray-2');
+  border: $border-thickness solid theme-color('border');
   border-bottom-color: white;
   position: relative;
   z-index: 1;
@@ -39,6 +48,6 @@ $border-thickness: 0.05em;
 
 @mixin section-border {
   margin-top: -$border-thickness;
-  border-top: $border-thickness solid theme-color('gray-2');
-  border-bottom: $border-thickness solid theme-color('gray-2');
+  border-top: $border-thickness solid theme-color('border');
+  border-bottom: $border-thickness solid theme-color('border');
 }

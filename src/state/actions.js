@@ -6,7 +6,10 @@ import MultipleError from '../multiple-error'
 
 import {
   FETCH_FONTS,
-  ADD_SUBSTITUTION
+  ADD_SUBSTITUTION,
+  SELECT_SUBSTITUTION,
+  UPDATE_SUBSTITUTION,
+  CANCEL_SUBSTITUTION
 } from './actionTypes'
 
 import {
@@ -59,19 +62,61 @@ export function fetchFontError() {
   }
 }
 
-export function addSubstitution(meta, { replace, advanceWidth }, svg) {
+export function updateSubstitutionGlyph(meta,svg) {
   const parser = new PathParser(meta)
   const { commands, warnings } = parser.parse(svg)
   if (warnings && warnings.length) {
     throw new MultipleError('Warnings occured during upload', warnings)
   }
   return {
-    type: ADD_SUBSTITUTION,
-    substitution: {
-      replace,
+    type: UPDATE_SUBSTITUTION,
+    field: 'glyph/commands',
+    value: commands
+  }
+}
+
+export function updateSubstitutionReplace(value) {
+  return {
+    type: UPDATE_SUBSTITUTION,
+    field: 'replace',
+    value
+  }
+}
+
+export function updateSubstitutionAdvanceWidth(value) {
+  return {
+    type: UPDATE_SUBSTITUTION,
+    field: 'glyph/advanceWidth',
+    value
+  }
+}
+
+export function cancelSubstitution() {
+  return { type: CANCEL_SUBSTITUTION }
+}
+
+export function submitSubstitution({ active, currentGlyph, currentReplace }) {
+  return dispatch => {
+    dispatch({
+      type: ADD_SUBSTITUTION,
+      substitution: {
+        replace: [currentReplace],
+        glyph: currentGlyph
+      },
+      replace: active
+    })
+    dispatch(cancelSubstitution())
+  }
+}
+
+export function selectSubstitution(substitution) {
+  return {
+    type: SELECT_SUBSTITUTION,
+    substitution: substitution || {
+      replace: [''],
       glyph: {
-        advanceWidth,
-        commands
+        advanceWidth: 1000,
+        commands: []
       }
     }
   }

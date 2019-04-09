@@ -1,5 +1,12 @@
+import css from './label.scss'
+
 export default function Label(props) {
+  const {
+    children
+  } = props
   return (
-    <div>{props.label}</div>
+    <label className={css.root} {...props}>
+      {children}
+    </label>
   )
 }

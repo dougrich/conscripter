@@ -3,20 +3,26 @@
   width: 100%;
   white-space: nowrap;
   margin: auto;
-  height: 1em;
+  height: 1.5em;
   text-align: center;
   max-width: 2em;
   overflow: hidden;
 }
 
 .subcontainer {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1000px;
   box-sizing: border-box;
 }
 
 .textcontainer {
-  display: flex;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .glyph {
@@ -24,8 +30,9 @@
   overflow: visible;
   vertical-align: bottom;
   z-index: 1;
-  position: relative;
   flex-basis: 0;
+  top: -0.12em;
+  position: relative;
 }
 
 .rule {
@@ -38,11 +45,9 @@
 
 .faded {
   opacity: 0.3;
-  width: 100%;
+  width: 3em;
   display: inline-block;
-  flex-shrink: 1;
   text-overflow: clip;
-  overflow: hidden;
   white-space: nowrap;
   vertical-align: baseline;
 }
