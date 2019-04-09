@@ -9,7 +9,8 @@ import {
   ADD_SUBSTITUTION,
   SELECT_SUBSTITUTION,
   UPDATE_SUBSTITUTION,
-  CANCEL_SUBSTITUTION
+  CANCEL_SUBSTITUTION,
+  REMOVE_SUBSTITUTION
 } from './actionTypes'
 
 import {
@@ -88,6 +89,16 @@ export function updateSubstitutionAdvanceWidth(value) {
     type: UPDATE_SUBSTITUTION,
     field: 'glyph/advanceWidth',
     value
+  }
+}
+
+export function removeSubstitution({ active }) {
+  return dispatch => {
+    dispatch({
+      type: REMOVE_SUBSTITUTION,
+      substitution: active
+    })
+    dispatch(cancelSubstitution())
   }
 }
 

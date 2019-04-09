@@ -43,11 +43,20 @@ const ConnectedGlyphGrid = connect(
 )(GlyphGrid)
 
 const ConnectedSubstitutionEditor = connect(
-  state => ({ ...state.fonts, ...state.substitution }),
+  state => {
+    const {
+      fonts,
+      substitution
+    } = state
+
+    const canRemove = fonts.substitutions.indexOf(substitution.active) >= 0
+    return ({ ...fonts, ...substitution, canRemove })
+  },
   (dispatch) => ({
     onUpload: ({ contents }) => dispatch(actions.updateSubstitutionGlyph(store.getState().fonts.meta, contents)),
     onReplaceChange: ({ currentTarget: { value } }) => dispatch(actions.updateSubstitutionReplace(value)),
     onAdvanceWidthChange: ({ currentTarget: { value }}) => dispatch(actions.updateSubstitutionAdvanceWidth(value)),
+    onRemove: () => dispatch(actions.removeSubstitution(store.getState().substitution)),
     onSubmit: () => dispatch(actions.submitSubstitution(store.getState().substitution)),
     onCancel: () => dispatch(actions.cancelSubstitution())
   })

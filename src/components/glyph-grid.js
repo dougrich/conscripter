@@ -5,7 +5,6 @@
 import css from './glyph-grid.scss'
 import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
-import Label from './label';
 
 export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect }) {
   const symbols = []

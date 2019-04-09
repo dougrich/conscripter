@@ -1,5 +1,6 @@
 $theme-colors: (
   'primary': blue,
+  'alert-default': #f8f8f8,
   'button-default': #dedede,
   'button-success': #b7ffe1,
   'button-danger': #ffc5b7,
@@ -9,4 +10,9 @@ $theme-colors: (
 
 @function theme-color($key: 'primary') {
   @return map-get($theme-colors, $key)
+}
+
+@mixin text-color($color) {
+  background-color: $color;
+  color: darken($color, 70%);
 }

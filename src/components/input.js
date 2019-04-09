@@ -8,16 +8,19 @@ export default class Input extends React.PureComponent {
     const {
       className,
       label,
+      children,
       value,
       type,
       min,
       max,
-      onChange,
-      placeholder
+      onChange
     } = this.props
+
     return (
       <div className={cx(css.container, className)}>
-        <Label>{label}</Label>
+        <Label>
+          {label}
+        </Label>
         <input
           className={css.input}
           value={value}
@@ -26,7 +29,11 @@ export default class Input extends React.PureComponent {
           min={min}
           max={max}
         />
-        <span className={css.placeholder}>{placeholder}</span>
+        {children && (
+          <div className={css.description}>
+            {children}
+          </div>
+        )}
       </div>
     )
   }

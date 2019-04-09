@@ -18,8 +18,7 @@ $border-thickness: 0.05em;
   $color-active: darken($color, 30%);
 
   border-color: $color;
-  color: darken($color, 70%);
-  background-color: $color;
+  @include text-color($color);
 
   &:hover {
     background-color: $color-hover;
