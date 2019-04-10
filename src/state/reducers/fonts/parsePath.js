@@ -159,6 +159,24 @@ class PathParser {
       commands.push(...subCommands.map(cmd => this.applyTransforms(transforms, cmd)))
     }
 
+    if (node.nodeName === 'circle') {
+      const { cx, cy, r } = attributes
+      const cxF = parseFloat(cx)
+      const cyF = parseFloat(cy)
+      const rF = parseFloat(r)
+      const subCommands = [
+        { type: 'M', x: cxF + rF, y: cyF }
+      ]
+      const incr = 0.076 * Math.PI
+      for (let i = incr; i < Math.PI * 2; i += incr) {
+        subCommands.push({
+          type: 'L', x: cxF + Math.cos(i) * rF, y: cyF + Math.sin(i) * rF
+        })
+      }
+      subCommands.push({ type: 'Z' })
+      commands.push(...subCommands.map(cmd => this.applyTransforms(transforms, cmd)))
+    }
+
     if (node.nodeName === 'g') {
       for (const childNode of node.childNodes) {
         this.parseChild(childNode, commands, warnings, transforms)
