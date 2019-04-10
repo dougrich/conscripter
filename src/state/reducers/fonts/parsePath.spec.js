@@ -92,6 +92,12 @@ describe('PathParser#parse', () => {
     expect(commands).to.eql(transformedTwoSquareCommands)
   })
 
+  it('parses viewbox', () => {
+    const { commands, warnings } = parse('viewbox.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql(twoSquareCommands)
+  })
+
   it('includes one WarnEmptyFill warning if two empty fill present', () => {
     const { commands, warnings } = parse('warn-once-empty-fill.svg')
     expect(warnings).to.include(PathParser.Codes.WarnEmptyFill)

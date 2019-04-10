@@ -43,13 +43,18 @@ class PathParser {
     return node
   }
 
-  parseChild(node, commands, warnings, transforms = []) {
+  attributes(node) {
     const attributes = {}
     if (node.attrs) {
       for (const attr of node.attrs) {
         attributes[attr.name] = attr.value
       }
     }
+    return attributes
+  }
+
+  parseChild(node, commands, warnings, transforms = []) {
+    const attributes = this.attributes(node)
 
     if (attributes.transform) {
       transforms = [...transforms, this.parseTransform(attributes.transform)]
@@ -125,12 +130,14 @@ class PathParser {
 
     // scale commands
     let scale = 1.0
-    for (const attr of svgNode.attrs) {
-      switch (attr.name) {
-        case 'height':
-          scale = unitsPerEm / parseFloat(attr.value)
-          break;
-      }
+    const attributes = this.attributes(svgNode)
+
+    if (attributes.height) {
+      scale = unitsPerEm / parseFloat(attributes.height)
+    }
+
+    if (attributes.viewBox) {
+      scale = unitsPerEm / parseFloat(attributes.viewBox.split(' ')[3])
     }
 
     for (const cmd of commands) {
