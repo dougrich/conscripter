@@ -83,10 +83,6 @@ class PathParser {
       })
 
       return commands
-
-
-
-      console.log(x0, x1, x2, x3, y0, y1, y2, y3)
     }
     return {
       type: {
@@ -184,6 +180,23 @@ class PathParser {
     }
   }
 
+  findSvgNode(tree) {
+    if (tree.nodeName === 'svg') {
+      return tree
+    }
+    
+    if (!tree.childNodes) {
+      return null
+    }
+
+    for (let i = 0; i < tree.childNodes.length; i++) {
+      const svg = this.findSvgNode(tree.childNodes[i])
+      if (svg) return svg
+    }
+
+    return null
+  }
+
   /**
    * Parses a SVG document into a series of path commands
    * @param {string} svg contents to be parse
@@ -191,7 +204,11 @@ class PathParser {
    */
   parse(svg) {
     const tree = this.parse5.parse(svg)
-    const svgNode = tree.childNodes[1].childNodes[1].childNodes[0]
+    const svgNode = this.findSvgNode(tree)
+
+    if (!svgNode) {
+      throw new PathParser.Codes.ErrorNoSVGNode()
+    }
 
     let commands = []
     let warnings = []
@@ -229,6 +246,12 @@ class PathParser {
 }
 
 PathParser.Codes = {
+  ErrorNoSVGNode: class extends Error {
+    constructor() {
+      super('Could not find the root SVG node - is this a well-formated SVG document?')
+      this.code === 'ErrorNoSVGNode'
+    }
+  },
   WarnEmptyFill: {
     code: 'WarnEmptyFill',
     message: 'One or more paths have an empty fill, which can have unexpected results. Ensure all shapes have a solid fill and no stroke.'

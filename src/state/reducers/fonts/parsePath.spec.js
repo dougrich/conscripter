@@ -67,6 +67,12 @@ describe('PathParser#parse', () => {
     expect(commands).to.eql(simpleCommands)
   })
 
+  it('parses around a simple comment', () => {
+    const { commands, warnings } = parse('comments.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql(simpleCommands)
+  })
+
   it('parses rectangle', () => {
     const { commands, warnings } = parse('rectangle.svg')
     expect(warnings).to.be.empty
@@ -190,20 +196,8 @@ describe('PathParser#parse', () => {
     expect(warnings).to.include(PathParser.Codes.WarnNonEmptyStroke)
     expect(commands).to.eql(simpleCommands)
   })
-})
 
-xdescribe('test', () => {
-  function parse(file) {
-    const filename = path.resolve(__dirname, '../../../../tests', file)
-    const data = fs.readFileSync(filename, 'utf8')
-    const parser = new PathParser({
-      unitsPerEm: 1000,
-      ascender: 800,
-      descender: -200
-    })
-    return parser.parse(data)
-  }
-  it('tests e2e/korean-han-combined.svg', () => {
-    console.log(parse('e2e/inkscape/korean-han-combined.svg'))
+  it('errors on missing SVG', () => {
+    expect(() => parse('error-no-root.svg')).to.throw(PathParser.Codes.ErrorNoSVGNode)
   })
 })
