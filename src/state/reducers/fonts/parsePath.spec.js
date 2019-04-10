@@ -37,10 +37,35 @@ describe('PathParser#parse', () => {
     { type: 'Z' }
   ]
 
-  it('includes two paths', () => {
+  const transformedTwoSquareCommands = [
+    { type: 'M', x: 400, y: 200 },
+    { type: 'L', x: 800, y: 200 },
+    { type: 'L', x: 800, y: 0 },
+    { type: 'L', x: 400, y: 0 },
+    { type: 'Z' },
+    { type: 'M', x: 600, y: 200 },
+    { type: 'L', x: 200, y: 200 },
+    { type: 'L', x: 200, y: 600 },
+    { type: 'L', x: 600, y: 600 },
+    { type: 'Z' }
+  ]
+
+  it('parses two paths', () => {
     const { commands, warnings } = parse('two-parts.svg')
     expect(warnings).to.be.empty
     expect(commands).to.eql(twoSquareCommands)
+  })
+
+  it('parses nested paths', () => {
+    const { commands, warnings } = parse('nested.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql(twoSquareCommands)
+  })
+
+  it('parses transform', () => {
+    const { commands, warnings } = parse('transform.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql(transformedTwoSquareCommands)
   })
 
   it('includes one WarnEmptyFill warning if two empty fill present', () => {
@@ -64,5 +89,21 @@ describe('PathParser#parse', () => {
     const { commands, warnings } = parse('warn-non-empty-stroke.svg')
     expect(warnings).to.include(PathParser.Codes.WarnNonEmptyStroke)
     expect(commands).to.eql(warnCaseCommands)
+  })
+})
+
+xdescribe('test', () => {
+  function parse(file) {
+    const filename = path.resolve(__dirname, '../../../../tests', file)
+    const data = fs.readFileSync(filename, 'utf8')
+    const parser = new PathParser({
+      unitsPerEm: 1000,
+      ascender: 800,
+      descender: -200
+    })
+    return parser.parse(data)
+  }
+  it('tests e2e/korean-han-combined.svg', () => {
+    console.log(parse('e2e/inkscape/korean-han-combined.svg'))
   })
 })

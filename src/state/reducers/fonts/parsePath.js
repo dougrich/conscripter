@@ -9,6 +9,54 @@ class PathParser {
     this.svgPathParser = svgPathParser
   }
 
+  parseChild(node, commands, warnings) {
+    if (node.nodeName === 'path') {
+      // it is a path: pull out the critical attribute
+      for (const attr of node.attrs) {
+        switch (attr.name) {
+          case 'd':
+            // path declaration: parse it!
+            const subCommands = this.svgPathParser.makeAbsolute(this.svgPathParser.parseSVG(attr.value))
+            commands.push(...subCommands.map((cmd, i, arr) => {
+              const newcmd = {
+                type: {
+                  'H': 'L',
+                  'V': 'L'
+                }[cmd.code] || cmd.code,
+                x: cmd.x,
+                y: cmd.y
+              }
+
+              if (newcmd.x === arr[0].x && newcmd.y === arr[0].y && i === arr.length - 1) {
+                return { type: 'Z' }
+              } else {
+                return newcmd
+              }
+            }))
+            break;
+          case 'fill':
+            if (attr.value === 'transparent') {
+              warnings.push(PathParser.Codes.WarnEmptyFill)
+            } else if (!/^#([0-9a-fA-F]){3,6}$/gi.test(attr.value)) {
+              warnings.push(PathParser.Codes.WarnComplexFill)
+            }
+            break;
+          case 'stroke':
+            if (attr.value !== 'transparent') {
+              warnings.push(PathParser.Codes.WarnNonEmptyStroke)
+            }
+            break;
+        }
+      }
+    }
+
+    if (node.nodeName === 'g') {
+      for (const childNode of node.childNodes) {
+        this.parseChild(childNode, commands, warnings)
+      }
+    }
+  }
+
   /**
    * Parses a SVG document into a series of path commands
    * @param {string} svg contents to be parse
@@ -22,45 +70,7 @@ class PathParser {
     let warnings = []
 
     for (const childNode of svgNode.childNodes) {
-      if (childNode.nodeName === 'path') {
-        // it is a path: pull out the critical attribute
-        for (const attr of childNode.attrs) {
-          switch (attr.name) {
-            case 'd':
-              // path declaration: parse it!
-              const subCommands = this.svgPathParser.makeAbsolute(this.svgPathParser.parseSVG(attr.value))
-              commands.push(...subCommands.map((cmd, i, arr) => {
-                const newcmd = {
-                  type: {
-                    'H': 'L',
-                    'V': 'L'
-                  }[cmd.code] || cmd.code,
-                  x: cmd.x,
-                  y: cmd.y
-                }
-
-                if (newcmd.x === arr[0].x && newcmd.y === arr[0].y && i === arr.length - 1) {
-                  return { type: 'Z' }
-                } else {
-                  return newcmd
-                }
-              }))
-              break;
-            case 'fill':
-              if (attr.value === 'transparent') {
-                warnings.push(PathParser.Codes.WarnEmptyFill)
-              } else if (!/^#([0-9a-fA-F]){3,6}$/gi.test(attr.value)) {
-                warnings.push(PathParser.Codes.WarnComplexFill)
-              }
-              break;
-            case 'stroke':
-              if (attr.value !== 'transparent') {
-                warnings.push(PathParser.Codes.WarnNonEmptyStroke)
-              }
-              break;
-          }
-        }
-      }
+      this.parseChild(childNode, commands, warnings)
     }
 
     const {
