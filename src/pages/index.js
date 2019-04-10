@@ -50,7 +50,12 @@ const ConnectedSubstitutionEditor = connect(
     } = state
 
     const canRemove = fonts.substitutions.indexOf(substitution.active) >= 0
-    return ({ ...fonts, ...substitution, canRemove })
+    
+    return ({
+      ...fonts,
+      ...substitution,
+      canRemove
+    })
   },
   (dispatch) => ({
     onUpload: ({ contents }) => dispatch(actions.updateSubstitutionGlyph(store.getState().fonts.meta, contents)),

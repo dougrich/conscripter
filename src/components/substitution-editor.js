@@ -12,55 +12,62 @@ function surpress(handler) {
   }
 }
 
-export default function SubstitutionEditor({
-  active,
-  currentGlyph,
-  currentReplace,
-  meta,
-  canRemove,
-  onUpload,
-  onReplaceChange,
-  onAdvanceWidthChange,
-  onSubmit,
-  onRemove,
-  onCancel
-}) {
-  if (!active) {
-    return null
-  }
+export default class SubstitutionEditor extends React.PureComponent {
+  render() {
+    const {
+      active,
+      currentGlyph,
+      currentReplace,
+      meta,
+      canRemove,
+      onUpload,
+      onReplaceChange,
+      onAdvanceWidthChange,
+      onSubmit,
+      onRemove,
+      onCancel
+    } = this.props
 
-  return (
-    <form onSubmit={surpress(onSubmit)}>
-      <div>
+    if (!active) {
+      return null
+    }
+  
+    return (
+      <form ref={this.formRef} onSubmit={surpress(onSubmit)}>
         <div>
-          <DropZone onUpload={onUpload}/>
-          <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
+          <div>
+            <DropZone onUpload={onUpload}/>
+            <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
+          </div>
+          <div>
+            <Input
+              label='Replace'
+              required
+              pattern='^[a-zA-Z0-9]+$'
+              value={currentReplace}
+              onChange={onReplaceChange}
+            >
+              <div>This is case sensitive string that will be replaced with this symbol.</div>
+              <div>It must be alphanumeric (A-Z, 0-9).</div>
+            </Input>
+            <Input
+              label='Advance Width'
+              type='range'
+              min={0}
+              max={2000}
+              value={currentGlyph.advanceWidth}
+              onChange={onAdvanceWidthChange}
+            >
+              <div>This is how far the substituted glyph will advance the cursor.</div>
+            </Input>
+          </div>
         </div>
-        <div>
-          <Input
-            label='Replace'
-            value={currentReplace}
-            onChange={onReplaceChange}
-          >
-            <div>This is case sensitive string that will be replaced with this symbol.</div>
-          </Input>
-          <Input
-            label='Advance Width'
-            type='range'
-            min={0}
-            max={2000}
-            value={currentGlyph.advanceWidth}
-            onChange={onAdvanceWidthChange}
-          >
-            <div>This is how far the substituted glyph will advance the cursor.</div>
-          </Input>
+        <div className={css.actions}>
+          {canRemove && <Button variant='danger' onClick={surpress(onRemove)}>Remove</Button>}
+          <Button type='submit' variant='success'>Submit</Button>
+          <Button type='cancel' onClick={surpress(onCancel)}>Cancel</Button>
         </div>
-      </div>
-      <div className={css.actions}>
-        {canRemove && <Button variant='danger' onClick={surpress(onRemove)}>Remove</Button>}
-        <Button type='submit' variant='success'>Submit</Button>
-        <Button type='cancel' onClick={surpress(onCancel)}>Cancel</Button>
-      </div>
-    </form>
-  )
+      </form>
+    )
+  }
 }

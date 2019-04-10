@@ -8,7 +8,9 @@ export default class Input extends React.PureComponent {
     const {
       className,
       label,
+      required,
       children,
+      pattern,
       value,
       type,
       min,
@@ -22,6 +24,8 @@ export default class Input extends React.PureComponent {
           {label}
         </Label>
         <input
+          required={required}
+          pattern={pattern}
           className={css.input}
           value={value}
           onChange={onChange}
