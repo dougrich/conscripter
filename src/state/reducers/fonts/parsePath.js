@@ -100,6 +100,22 @@ class PathParser {
       }
     }
 
+    if (node.nodeName === 'rect') {
+      const { width, height, x = '0', y = '0' } = attributes
+      const widthF = parseFloat(width)
+      const heightF = parseFloat(height)
+      const xF = parseFloat(x)
+      const yF = parseFloat(y)
+      const subCommands = [
+        { type: 'M', x: xF, y: yF },
+        { type: 'L', x: xF + widthF, y: yF },
+        { type: 'L', x: xF + widthF, y: yF + heightF },
+        { type: 'L', x: xF, y: yF + heightF },
+        { type: 'Z' }
+      ]
+      commands.push(...subCommands.map(cmd => this.applyTransforms(transforms, cmd)))
+    }
+
     if (node.nodeName === 'g') {
       for (const childNode of node.childNodes) {
         this.parseChild(childNode, commands, warnings, transforms)

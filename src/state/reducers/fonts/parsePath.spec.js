@@ -40,7 +40,7 @@ describe('PathParser#parse', () => {
     return parser.parse(data)
   }
 
-  const warnCaseCommands = [
+  const simpleCommands = [
     { type: 'M', x: 100, y: 700 },
     { type: 'L', x: 900, y: 700 },
     { type: 'L', x: 900, y: -100 },
@@ -73,6 +73,18 @@ describe('PathParser#parse', () => {
     { type: 'L', x: 600, y: 600 },
     { type: 'Z' }
   ]
+
+  it('parses simple path', () => {
+    const { commands, warnings } = parse('simple.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql(simpleCommands)
+  })
+
+  it('parses rectangle', () => {
+    const { commands, warnings } = parse('rectangle.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql(simpleCommands)
+  })
 
   it('parses two paths', () => {
     const { commands, warnings } = parse('two-parts.svg')
@@ -108,17 +120,17 @@ describe('PathParser#parse', () => {
   it('includes a WarnEmptyFill warning if there is a fill present', () => {
     const { commands, warnings } = parse('warn-empty-fill.svg')
     expect(warnings).to.include(PathParser.Codes.WarnEmptyFill)
-    expect(commands).to.eql(warnCaseCommands)
+    expect(commands).to.eql(simpleCommands)
   })
   it('includes a WarnComplexFill warning if there is a complex fill present', () => {
     const { commands, warnings } = parse('warn-complex-fill.svg')
     expect(warnings).to.include(PathParser.Codes.WarnComplexFill)
-    expect(commands).to.eql(warnCaseCommands)
+    expect(commands).to.eql(simpleCommands)
   })
   it('includes a WarnNonEmptyStroke warning if there is a non-empty stroke present', () => {
     const { commands, warnings } = parse('warn-non-empty-stroke.svg')
     expect(warnings).to.include(PathParser.Codes.WarnNonEmptyStroke)
-    expect(commands).to.eql(warnCaseCommands)
+    expect(commands).to.eql(simpleCommands)
   })
 })
 
