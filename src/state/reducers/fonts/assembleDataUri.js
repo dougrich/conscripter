@@ -1,6 +1,8 @@
 const opentype = require('opentype.js')
 const slugify = require('slugify')
 
+const defaultFontName = 'conscripter-custom-font'
+
 const fontPrototype = Object.getPrototypeOf(new opentype.Font({
   familyName: 'test',
   styleName: 'test',
@@ -149,19 +151,39 @@ function addGlyph(font, { advanceWidth, commands }) {
   return g
 }
 
-function applySubstitutions(font, substitutions) {
+function applySubstitutions(font, substitutions, fontname = defaultFontName) {
   for (const { replace, glyph } of substitutions) {
     const glyphId = addGlyph(font, glyph)
     for (const text of replace) {
       addSubstitution(font, text, glyphId.index)
     }
   }
-  console.log(JSON.stringify(font.tables.gsub, null, '  '))
+
+  font.names = {
+    copyright: {
+      en: 'Made by Conscripter, a tool for building conlang scripts\n\nLicence: CC0 1.0\n\nBase glyphs are derived from AVHershey Simplex, created in 2016 by Stewart C. Russel (scruss.com), which is in turn dervied from the character stroke coordinates publshed by Allen V. Hershey in \"Calligraphy for Computers\". Additional glyphs included through use of the app may have a different licence.'
+    },
+    fontFamily: {
+      en: fontname
+    },
+    fontSubfamily: {
+      en: 'Medium'
+    },
+    fullName: {
+      en: fontname + 'Medium'
+    },
+    version: {
+      en: 'Version 000.001'
+    },
+    postScriptName: {
+      en: (fontname + 'Medium').replace(/\s/gi, '')
+    }
+  }
 }
 
-function assembleDataUri(buffer, substitutions) {
+function assembleDataUri(buffer, substitutions, fontname) {
   const font = opentype.parse(buffer)
-  applySubstitutions(font, substitutions)
+  applySubstitutions(font, substitutions, fontname)
 
   return {
     datauri: 'data:font/otf;base64,' + arrayBufferToBase64(font.toArrayBuffer()),
@@ -172,10 +194,10 @@ function assembleDataUri(buffer, substitutions) {
   }
 }
 
-function download(buffer, substitutions, fontname) {
+function download(buffer, substitutions, fontname = defaultFontName) {
   const font = opentype.parse(buffer)
-  applySubstitutions(font, substitutions)
-  const downloadname = slugify(fontname || 'conscripter-custom-font') + '.otf'
+  applySubstitutions(font, substitutions, fontname)
+  const downloadname = slugify(fontname) + '.otf'
   font.download(downloadname)
 }
 

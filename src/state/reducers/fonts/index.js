@@ -19,7 +19,7 @@ export function fonts(state = defaultState, action) {
           ...state,
           status: STATUS_OK,
           buffer: action.buffer,
-          ...assembleDataUri(action.buffer, state.substitutions)
+          ...assembleDataUri(action.buffer, state.substitutions, state.fontname)
         }
       case STATUS_ERROR:
         return {
@@ -39,7 +39,7 @@ export function fonts(state = defaultState, action) {
   }
 
   if (action && action.type === ADD_SUBSTITUTION) {
-    const { buffer, substitutions } = state
+    const { fontname, buffer, substitutions } = state
     const idx = substitutions.indexOf(action.replace)
     let newsubs
     if (idx >= 0) {
@@ -49,13 +49,13 @@ export function fonts(state = defaultState, action) {
     }
     return {
       ...state,
-      ...assembleDataUri(buffer, newsubs),
+      ...assembleDataUri(buffer, newsubs, fontname),
       substitutions: newsubs
     }
   }
 
   if (action && action.type === REMOVE_SUBSTITUTION) {
-    const { buffer, substitutions } = state
+    const { fontname, buffer, substitutions } = state
     const idx = substitutions.indexOf(action.substitution)
     let newsubs = substitutions
     if (idx >= 0) {
@@ -64,7 +64,7 @@ export function fonts(state = defaultState, action) {
 
     return {
       ...state,
-      ...assembleDataUri(buffer, newsubs),
+      ...assembleDataUri(buffer, newsubs, fontname),
       substitutions: newsubs
     }
   }
