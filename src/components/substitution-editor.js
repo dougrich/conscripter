@@ -43,12 +43,12 @@ export default class SubstitutionEditor extends React.PureComponent {
             <Input
               label='Replace'
               required
-              pattern='^[a-zA-Z0-9]+$'
+              pattern='^[a-zA-Z0-9\.\-_]+$'
               value={currentReplace}
               onChange={onReplaceChange}
             >
               <div>This is case sensitive string that will be replaced with this symbol.</div>
-              <div>It must be alphanumeric (A-Z, 0-9).</div>
+              <div>It must be alphanumeric (A-Z, 0-9) or '.', '-', or '_'.</div>
             </Input>
             <Input
               label='Advance Width'

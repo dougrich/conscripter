@@ -9,22 +9,7 @@ import GlyphPreview from '../components/glyph-preview';
 
 const store = createStore()
 
-const PreviewPlaceholder = `up <-
-update <-
-updated <-`
-
-const ConnectedLabel = connect(
-  state => ({ label: state.fonts.status }),
-)(Label)
-
-const ConnectedDropZone = connect(
-  state => ({}),
-  (dispatch) => ({
-    onUpload: ({ contents }) => {
-      dispatch(actions.addSubstitution(store.getState().fonts.meta, { replace: ['m'], advanceWidth: 1000 }, contents))
-    }
-  })
-)(DropZone)
+const PreviewPlaceholder = `han.gul`
 
 const FontStyle = connect(
   state => ({ data: state.fonts.datauri })
