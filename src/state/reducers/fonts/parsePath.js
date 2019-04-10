@@ -1,3 +1,11 @@
+function basis(t) {
+  const w0 = Math.pow((1 - t), 3) * Math.pow(t, 0),
+        w1 = 3 * Math.pow((1 - t), 2) * Math.pow(t, 1),
+        w2 = 3 * Math.pow((1 - t), 1) * Math.pow(t, 2),
+        w3 = Math.pow((1 - t), 0) * Math.pow(t, 3)
+  return (v0, v1, v2, v3) => w0 * v0 + w1 * v1 + w2 * v2 + w3 * v3
+}
+
 class PathParser {
   constructor (
     config,
@@ -14,8 +22,8 @@ class PathParser {
   parseTransform(transform) {
     const detail = this.svgTransformParser.parse(transform)
 
-    return ({ type, x, y }) => {
-      if (type === 'Z') return { type, x, y }
+    return (node) => {
+      const { type, x, y } = node
       if (detail.translate) {
         const { tx = 0, ty = 0} = detail.translate
         return {
@@ -53,6 +61,43 @@ class PathParser {
     return attributes
   }
 
+  createCommand(cmd, i, arr) {
+    if (cmd.code === 'C') {
+      const { x: x0, y: y0 } = arr[i - 1]
+      const { x: x3, y: y3, x1, x2, y1, y2 } = cmd
+      // interpolate - note we skip the start as it should be drawn from the previous node
+      const commands = []
+      for (let t = 0.1; t < 1; t += 0.06) {
+        const apply = basis(t)
+        commands.push({
+          type: 'L',
+          x: apply(x0, x1, x2, x3),
+          y: apply(y0, y1, y2, y3)
+        })
+      }
+      // this ensures we end at the exact end point
+      commands.push({
+        type: 'L',
+        x: x3,
+        y: y3
+      })
+
+      return commands
+
+
+
+      console.log(x0, x1, x2, x3, y0, y1, y2, y3)
+    }
+    return {
+      type: {
+        'H': 'L',
+        'V': 'L'
+      }[cmd.code] || cmd.code,
+      x: cmd.x,
+      y: cmd.y
+    }
+  }
+
   parseChild(node, commands, warnings, transforms = []) {
     const attributes = this.attributes(node)
 
@@ -65,22 +110,20 @@ class PathParser {
       if (attributes.d) {
         const d = attributes.d
         const subCommands = this.svgPathParser.makeAbsolute(this.svgPathParser.parseSVG(d))
-        commands.push(...subCommands.map((cmd, i, arr) => {
-          const newcmd = this.applyTransforms(transforms, {
-            type: {
-              'H': 'L',
-              'V': 'L'
-            }[cmd.code] || cmd.code,
-            x: cmd.x,
-            y: cmd.y
-          })
-
-          if (newcmd.x === arr[0].x && newcmd.y === arr[0].y && i === arr.length - 1) {
-            return { type: 'Z' }
-          } else {
-            return newcmd
-          }
-        }))
+        commands.push(...subCommands
+          .map((cmd, i, arr) => this.createCommand(cmd, i, arr))
+          .reduce((set, v) => Array.isArray(v) ? [...set, ...v] : [...set, v], [])
+          .map(cmd => this.applyTransforms(transforms, cmd))
+          .map((cmd, i, arr) => {
+            if (cmd.x === arr[0].x && cmd.y === arr[0].y && i === arr.length - 1) {
+              return { type: 'Z' }
+            } else {
+              return cmd
+            }
+          }))
+        if (commands[commands.length - 1].type !== 'Z') {
+          commands.push({ type: 'Z' })
+        }
       }
 
       if (attributes.fill) {
