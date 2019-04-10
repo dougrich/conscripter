@@ -1,0 +1,25 @@
+.background {
+  width: 100%;
+  background-color: #fdf0f0;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+}
+
+.previewText {
+  display: block;
+  width: 100%!important;
+  padding: 0.25em;
+  box-sizing: border-box;
+  background-color: transparent;
+  min-height: 6em;
+  height: 12em;
+  max-height: 18em;
+  border: 2px solid transparent;
+  font-size: 2em;
+  font-family: demofont;
+}

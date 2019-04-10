@@ -2,10 +2,9 @@ import css from './index.scss'
 import { createStore, actions } from '../state'
 import { connect, Provider } from 'react-redux'
 import Label from '../components/label'
-import DropZone from '../components/dropzone'
 import SubstitutionEditor from '../components/substitution-editor'
 import GlyphGrid from '../components/glyph-grid'
-import GlyphPreview from '../components/glyph-preview';
+import Preview from '../components/preview';
 
 const store = createStore()
 
@@ -70,7 +69,7 @@ export default class Index extends React.Component {
           </div>
           <div>
             <Label>Preview</Label>
-            <textarea className={css.example} defaultValue={PreviewPlaceholder}/>
+            <Preview defaultValue={PreviewPlaceholder}/>
           </div>
         </div>
       </Provider>

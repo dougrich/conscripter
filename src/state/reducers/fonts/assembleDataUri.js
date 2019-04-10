@@ -103,7 +103,7 @@ function makeMultiSubstitutionLookup(font, characters, glyph) {
       format: 1,
       glyphs: [leadingGlyph]
     },
-    ligatureSets: [{ ligGlyph: glyph, components }]
+    ligatureSets: [[{ ligGlyph: glyph, components }]]
   }
 
   return {
@@ -155,6 +155,7 @@ function applySubstitutions(font, substitutions) {
       addSubstitution(font, text, glyphId.index)
     }
   }
+  console.log(JSON.stringify(font.tables.gsub, null, '  '))
 }
 
 function assembleDataUri(buffer, substitutions) {
