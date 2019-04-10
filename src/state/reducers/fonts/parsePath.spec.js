@@ -4,6 +4,30 @@ const path = require('path')
 
 const PathParser = require('./parsePath')
 
+describe('PathParser#parseTransform', () => {
+  const scenarios = [
+    [
+      'simple translate',
+      'translate(-100, 0)',
+      { type: 'L', x: 5, y: 10 },
+      { type: 'L', x: -95, y: 10 }
+    ]
+  ]
+
+  const createScenario = ([ name, transform, initial, expected ]) => {
+    it(name, () => {
+      const parser = new PathParser()
+
+      const fn = parser.parseTransform(transform)
+      expect(fn(initial)).to.eql(expected)
+    })
+  }
+
+  for (const scenario of scenarios) {
+    createScenario(scenario)
+  }
+})
+
 describe('PathParser#parse', () => {
   function parse(file) {
     const filename = path.resolve(__dirname, '../../../../tests/parsePath', file)
@@ -38,10 +62,10 @@ describe('PathParser#parse', () => {
   ]
 
   const transformedTwoSquareCommands = [
-    { type: 'M', x: 400, y: 200 },
-    { type: 'L', x: 800, y: 200 },
-    { type: 'L', x: 800, y: 0 },
-    { type: 'L', x: 400, y: 0 },
+    { type: 'M', x: 400, y: 300 },
+    { type: 'L', x: 800, y: 300 },
+    { type: 'L', x: 800, y: -100 },
+    { type: 'L', x: 400, y: -100 },
     { type: 'Z' },
     { type: 'M', x: 600, y: 200 },
     { type: 'L', x: 200, y: 200 },

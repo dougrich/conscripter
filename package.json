@@ -23,7 +23,8 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "gh-pages": "^2.0.1",
-    "mocha": "^6.0.2"
+    "mocha": "^6.0.2",
+    "svg-transform-parser": "0.0.1"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",

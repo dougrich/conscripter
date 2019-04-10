@@ -2,57 +2,102 @@ class PathParser {
   constructor (
     config,
     parse5 = require('parse5'),
-    svgPathParser = require('svg-path-parser')
+    svgPathParser = require('svg-path-parser'),
+    svgTransformParser = require('svg-transform-parser')
   ) {
     this.config = config
     this.parse5 = parse5
     this.svgPathParser = svgPathParser
+    this.svgTransformParser = svgTransformParser
   }
 
-  parseChild(node, commands, warnings) {
+  parseTransform(transform) {
+    const detail = this.svgTransformParser.parse(transform)
+
+    return ({ type, x, y }) => {
+      if (type === 'Z') return { type, x, y }
+      if (detail.translate) {
+        const { tx = 0, ty = 0} = detail.translate
+        return {
+          type,
+          x: tx + x,
+          y: ty + y
+        }
+      }
+
+      if (detail.matrix) {
+        const { a, b, c, d, e, f } = detail.matrix
+        return {
+          type,
+          x: a * x + c * y + e,
+          y: b * x + d * y + f
+        }
+      }
+    }
+  }
+
+  applyTransforms(transforms = [], node) {
+    for (const t of transforms) {
+      node = t(node)
+    }
+    return node
+  }
+
+  parseChild(node, commands, warnings, transforms = []) {
+    const attributes = {}
+    if (node.attrs) {
+      for (const attr of node.attrs) {
+        attributes[attr.name] = attr.value
+      }
+    }
+
+    if (attributes.transform) {
+      transforms = [...transforms, this.parseTransform(attributes.transform)]
+    }
+
     if (node.nodeName === 'path') {
       // it is a path: pull out the critical attribute
-      for (const attr of node.attrs) {
-        switch (attr.name) {
-          case 'd':
-            // path declaration: parse it!
-            const subCommands = this.svgPathParser.makeAbsolute(this.svgPathParser.parseSVG(attr.value))
-            commands.push(...subCommands.map((cmd, i, arr) => {
-              const newcmd = {
-                type: {
-                  'H': 'L',
-                  'V': 'L'
-                }[cmd.code] || cmd.code,
-                x: cmd.x,
-                y: cmd.y
-              }
+      if (attributes.d) {
+        const d = attributes.d
+        const subCommands = this.svgPathParser.makeAbsolute(this.svgPathParser.parseSVG(d))
+        commands.push(...subCommands.map((cmd, i, arr) => {
+          const newcmd = this.applyTransforms(transforms, {
+            type: {
+              'H': 'L',
+              'V': 'L'
+            }[cmd.code] || cmd.code,
+            x: cmd.x,
+            y: cmd.y
+          })
 
-              if (newcmd.x === arr[0].x && newcmd.y === arr[0].y && i === arr.length - 1) {
-                return { type: 'Z' }
-              } else {
-                return newcmd
-              }
-            }))
-            break;
-          case 'fill':
-            if (attr.value === 'transparent') {
-              warnings.push(PathParser.Codes.WarnEmptyFill)
-            } else if (!/^#([0-9a-fA-F]){3,6}$/gi.test(attr.value)) {
-              warnings.push(PathParser.Codes.WarnComplexFill)
-            }
-            break;
-          case 'stroke':
-            if (attr.value !== 'transparent') {
-              warnings.push(PathParser.Codes.WarnNonEmptyStroke)
-            }
-            break;
+          if (newcmd.x === arr[0].x && newcmd.y === arr[0].y && i === arr.length - 1) {
+            return { type: 'Z' }
+          } else {
+            return newcmd
+          }
+        }))
+      }
+
+      if (attributes.fill) {
+        const fill = attributes.fill
+        if (fill === 'transparent') {
+          warnings.push(PathParser.Codes.WarnEmptyFill)
+        } else if (!/^#([0-9a-fA-F]){3,6}$/gi.test(fill)) {
+          warnings.push(PathParser.Codes.WarnComplexFill)
+        }
+      }
+
+      if (attributes.stroke) {
+        const stroke = attributes.stroke
+        if (stroke !== 'transparent') {
+          warnings.push(PathParser.Codes.WarnNonEmptyStroke)
         }
       }
     }
 
     if (node.nodeName === 'g') {
       for (const childNode of node.childNodes) {
-        this.parseChild(childNode, commands, warnings)
+        this.parseChild(childNode, commands, warnings, transforms)
       }
     }
   }
