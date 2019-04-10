@@ -11,7 +11,8 @@ import {
   UPDATE_SUBSTITUTION,
   CANCEL_SUBSTITUTION,
   REMOVE_SUBSTITUTION,
-  DOWNLOAD
+  DOWNLOAD,
+  SET_FONTNAME
 } from './actionTypes'
 
 import {
@@ -136,4 +137,11 @@ export function selectSubstitution(substitution) {
 
 export function download() {
   return { type: DOWNLOAD }
+}
+
+export function setFontName(value) {
+  return {
+    type: SET_FONTNAME,
+    value
+  }
 }

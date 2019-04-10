@@ -1,4 +1,4 @@
-import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD } from '../../actionTypes'
+import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD, SET_FONTNAME } from '../../actionTypes'
 import { STATUS_PENDING, STATUS_OK, STATUS_ERROR } from '../../status'
 
 import { assembleDataUri, download } from './assembleDataUri'
@@ -7,7 +7,8 @@ const defaultState = {
   status: STATUS_PENDING,
   buffer: null,
   datauri: null,
-  substitutions: []
+  substitutions: [],
+  fontname: 'My Custom Font'
 }
 
 export function fonts(state = defaultState, action) {
@@ -69,9 +70,16 @@ export function fonts(state = defaultState, action) {
   }
 
   if (action && action.type === DOWNLOAD) {
-    const { buffer, substitutions } = state
-    download(buffer, substitutions)
+    const { buffer, substitutions, fontname } = state
+    download(buffer, substitutions, fontname)
     return state
+  }
+
+  if (action && action.type === SET_FONTNAME) {
+    return {
+      ...state,
+      fontname: action.value
+    }
   }
 
   return state

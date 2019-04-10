@@ -6,6 +6,7 @@ import SubstitutionEditor from '../components/substitution-editor'
 import GlyphGrid from '../components/glyph-grid'
 import Preview from '../components/preview';
 import Button from '../components/button';
+import Input from '../components/input';
 
 const store = createStore()
 
@@ -67,6 +68,13 @@ const ConnectedActionSet = connect(
   )
 })
 
+const ConnectedFontName = connect(
+  state => ({ value: state.fonts.fontname }),
+  dispatch => ({
+    onChange: ({ currentTarget: { value }}) => dispatch(actions.setFontName(value))
+  })
+)(Input)
+
 export default class Index extends React.Component {
   componentDidMount() {
     store.dispatch(actions.fetchFonts())
@@ -77,6 +85,9 @@ export default class Index extends React.Component {
       <Provider store={store}>
         <div className={css.root}>
           <FontStyle />
+          <div>
+            <ConnectedFontName label='Font Name'/>
+          </div>
           <div>
             <Label>Substitutions</Label>
             <ConnectedGlyphGrid>

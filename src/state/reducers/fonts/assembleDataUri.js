@@ -1,4 +1,5 @@
 const opentype = require('opentype.js')
+const slugify = require('slugify')
 
 const fontPrototype = Object.getPrototypeOf(new opentype.Font({
   familyName: 'test',
@@ -171,10 +172,11 @@ function assembleDataUri(buffer, substitutions) {
   }
 }
 
-function download(buffer, substitutions) {
+function download(buffer, substitutions, fontname) {
   const font = opentype.parse(buffer)
   applySubstitutions(font, substitutions)
-  font.download('my-custom-font.otf')
+  const downloadname = slugify(fontname || 'conscripter-custom-font') + '.otf'
+  font.download(downloadname)
 }
 
 module.exports = {
