@@ -1,4 +1,4 @@
-import * as opentype from 'opentype.js'
+const opentype = require('opentype.js')
 
 const fontPrototype = Object.getPrototypeOf(new opentype.Font({
   familyName: 'test',
@@ -9,7 +9,47 @@ const fontPrototype = Object.getPrototypeOf(new opentype.Font({
   glyphs: {}
 }))
 
-const defaultGsub = {"version":1,"scripts":[{"tag":"DFLT","script":{"defaultLangSys":{"reserved":0,"reqFeatureIndex":65535,"featureIndexes":[0]},"langSysRecords":[]}}],"features":[{"tag":"calt","feature":{"featureParams":0,"lookupListIndexes":[0]}}],"lookups":[{"lookupType":4,"lookupFlag":0,"subtables":[{"substFormat":1,"coverage":{"format":1,"glyphs":[]},"ligatureSets":[]}]}]}
+const defaultGsub = {
+  "version": 1,
+  "scripts": [
+    {
+      "tag": "DFLT",
+      "script": {
+        "defaultLangSys": {
+          "reserved": 0,
+          "reqFeatureIndex": 65535,
+          "featureIndexes": [
+            0
+          ]
+        },
+        "langSysRecords": []
+      }
+    },
+    {
+      "tag": "latn",
+      "script": {
+        "defaultLangSys": {
+          "reserved": 0,
+          "reqFeatureIndex": 65535,
+          "featureIndexes": [
+            0
+          ]
+        },
+        "langSysRecords": []
+      }
+    }
+  ],
+  "features": [
+    {
+      "tag": "calt",
+      "feature": {
+        "featureParams": 0,
+        "lookupListIndexes": []
+      }
+    }
+  ],
+  lookups: []
+}
 
 function arrayBufferToBase64( buffer ) {
   var binary = '';
@@ -29,6 +69,50 @@ function assertBadInput(truthy, message) {
   }
 }
 
+function makeSingleSubstitutionLookup(font, character, glyph) {
+
+  let leadingGlyph = font.charToGlyphIndex(character)
+    
+  const subtable = {
+    substFormat: 1,
+    coverage: {
+      format: 1,
+      glyphs: [leadingGlyph]
+    },
+    deltaGlyphId: glyph - leadingGlyph
+  }
+
+  return {
+    lookupType: 1,
+    lookupFlag: 0,
+    subtables: [subtable]
+  }
+}
+
+function makeMultiSubstitutionLookup(font, characters, glyph) {
+
+  const components = new Array(characters.length - 1)
+  for (let i = 1; i < characters.length; i++) {
+    components[i - 1] = font.charToGlyphIndex(characters[i])
+  }
+  let leadingGlyph = font.charToGlyphIndex(characters[0])
+    
+  const subtable = {
+    substFormat: 1,
+    coverage: {
+      format: 1,
+      glyphs: [leadingGlyph]
+    },
+    ligatureSets: [{ ligGlyph: glyph, components }]
+  }
+
+  return {
+    lookupType: 4,
+    lookupFlag: 0,
+    subtables: [subtable]
+  }
+}
+
 function addSubstitution(font, characters, glyph) {
 
   assertBadInput(typeof (characters) === 'string', 'characters argument must be a string')
@@ -37,24 +121,14 @@ function addSubstitution(font, characters, glyph) {
   assertBadInput(Object.getPrototypeOf(font) === fontPrototype, 'font must be an instance of opentype.Font')
 
   const gsub = font.tables.gsub = font.tables.gsub || JSON.parse(JSON.stringify(defaultGsub))
-  const subtable = gsub.lookups[0].subtables[0]
-  const components = new Array(characters.length - 1)
-  for (let i = 1; i < characters.length; i++) {
-    components[i - 1] = font.charToGlyphIndex(characters[i])
+
+  if (characters.length > 1) {
+    gsub.lookups.push(makeMultiSubstitutionLookup(font, characters, glyph))
+  } else {
+    gsub.lookups.push(makeSingleSubstitutionLookup(font, characters, glyph))
   }
-  let ligatureSets = []
-  let leadingGlyph = font.charToGlyphIndex(characters[0])
-  for (let i = 0; i < subtable.coverage.glyphs.length; i++) {
-    const glyph = subtable.coverage.glyphs[i]
-    if (glyph === leadingGlyph) {
-      ligatureSets = subtable.ligatureSets[i]
-    }
-  }
-  if (ligatureSets.length === 0) {
-    subtable.coverage.glyphs.push(leadingGlyph)
-    subtable.ligatureSets.push(ligatureSets)
-  }
-  ligatureSets.push({ ligGlyph: glyph, components })
+
+  gsub.features[0].feature.lookupListIndexes.push(gsub.lookups.length - 1)
 }
 
 function addGlyph(font, { advanceWidth, commands }) {
@@ -74,14 +148,18 @@ function addGlyph(font, { advanceWidth, commands }) {
   return g
 }
 
-export function assembleDataUri(buffer, substitutions) {
-  const font = opentype.parse(buffer)
+function applySubstitutions(font, substitutions) {
   for (const { replace, glyph } of substitutions) {
     const glyphId = addGlyph(font, glyph)
     for (const text of replace) {
       addSubstitution(font, text, glyphId.index)
     }
   }
+}
+
+function assembleDataUri(buffer, substitutions) {
+  const font = opentype.parse(buffer)
+  applySubstitutions(font, substitutions)
 
   return {
     datauri: 'data:font/otf;base64,' + arrayBufferToBase64(font.toArrayBuffer()),
@@ -90,4 +168,9 @@ export function assembleDataUri(buffer, substitutions) {
       descender: font.descender
     }
   }
+}
+
+module.exports = {
+  applySubstitutions,
+  assembleDataUri
 }
