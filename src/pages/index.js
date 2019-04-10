@@ -5,6 +5,7 @@ import Label from '../components/label'
 import SubstitutionEditor from '../components/substitution-editor'
 import GlyphGrid from '../components/glyph-grid'
 import Preview from '../components/preview';
+import Button from '../components/button';
 
 const store = createStore()
 
@@ -51,6 +52,21 @@ const ConnectedSubstitutionEditor = connect(
   })
 )(SubstitutionEditor)
 
+const ConnectedActionSet = connect(
+  () => ({}),
+  dispatch => ({
+    onDownload: () => dispatch(actions.download())
+  })
+)(function ({
+  onDownload
+}) {
+  return (
+    <div>
+      <Button variant='success' onClick={onDownload}>Download</Button>
+    </div>
+  )
+})
+
 export default class Index extends React.Component {
   componentDidMount() {
     store.dispatch(actions.fetchFonts())
@@ -71,6 +87,7 @@ export default class Index extends React.Component {
             <Label>Preview</Label>
             <Preview defaultValue={PreviewPlaceholder}/>
           </div>
+          <ConnectedActionSet/>
         </div>
       </Provider>
     )

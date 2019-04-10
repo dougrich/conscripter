@@ -10,7 +10,8 @@ import {
   SELECT_SUBSTITUTION,
   UPDATE_SUBSTITUTION,
   CANCEL_SUBSTITUTION,
-  REMOVE_SUBSTITUTION
+  REMOVE_SUBSTITUTION,
+  DOWNLOAD
 } from './actionTypes'
 
 import {
@@ -131,4 +132,8 @@ export function selectSubstitution(substitution) {
       }
     }
   }
+}
+
+export function download() {
+  return { type: DOWNLOAD }
 }

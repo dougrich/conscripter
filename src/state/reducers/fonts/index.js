@@ -1,99 +1,14 @@
-import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION } from '../../actionTypes'
+import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD } from '../../actionTypes'
 import { STATUS_PENDING, STATUS_OK, STATUS_ERROR } from '../../status'
 
-import { assembleDataUri } from './assembleDataUri'
+import { assembleDataUri, download } from './assembleDataUri'
 
 const defaultState = {
   status: STATUS_PENDING,
   buffer: null,
   datauri: null,
-  substitutions: []/*[{
-    replace: ['m'],
-    glyph: {
-      advanceWidth: 1000,
-      commands: [
-        { type: 'M', x: 100, y: 700 },
-        { type: 'L', x: 900, y: 700 },
-        { type: 'L', x: 900, y: -100 },
-        { type: 'L', x: 100, y: -100 },
-        { type: 'Z' }
-      ]
-    }
-  },{
-    replace: ['n'],
-    glyph: {
-      advanceWidth: 1000,
-      commands: [
-        { type: 'M', x: 100, y: 700 },
-        { type: 'L', x: 900, y: 700 },
-        { type: 'L', x: 900, y: -100 },
-        { type: 'L', x: 100, y: -100 },
-        { type: 'Z' }
-      ]
-    }
-  },{
-    replace: ['o'],
-    glyph: {
-      advanceWidth: 1000,
-      commands: [
-        { type: 'M', x: 100, y: 700 },
-        { type: 'L', x: 900, y: 700 },
-        { type: 'L', x: 900, y: -100 },
-        { type: 'L', x: 100, y: -100 },
-        { type: 'Z' }
-      ]
-    }
-  },{
-    replace: ['p'],
-    glyph: {
-      advanceWidth: 1000,
-      commands: [
-        { type: 'M', x: 100, y: 700 },
-        { type: 'L', x: 900, y: 700 },
-        { type: 'L', x: 900, y: -100 },
-        { type: 'L', x: 100, y: -100 },
-        { type: 'Z' }
-      ]
-    }
-  },{
-    replace: ['q'],
-    glyph: {
-      advanceWidth: 1000,
-      commands: [
-        { type: 'M', x: 100, y: 700 },
-        { type: 'L', x: 900, y: 700 },
-        { type: 'L', x: 900, y: -100 },
-        { type: 'L', x: 100, y: -100 },
-        { type: 'Z' }
-      ]
-    }
-  },{
-    replace: ['r'],
-    glyph: {
-      advanceWidth: 1000,
-      commands: [
-        { type: 'M', x: 100, y: 700 },
-        { type: 'L', x: 900, y: 700 },
-        { type: 'L', x: 900, y: -100 },
-        { type: 'L', x: 100, y: -100 },
-        { type: 'Z' }
-      ]
-    }
-  },{
-    replace: ['s'],
-    glyph: {
-      advanceWidth: 1000,
-      commands: [
-        { type: 'M', x: 100, y: 700 },
-        { type: 'L', x: 900, y: 700 },
-        { type: 'L', x: 900, y: -100 },
-        { type: 'L', x: 100, y: -100 },
-        { type: 'Z' }
-      ]
-    }
-  }]*/
+  substitutions: []
 }
-
 
 export function fonts(state = defaultState, action) {
   if (action && action.type === FETCH_FONTS) {
@@ -152,5 +67,12 @@ export function fonts(state = defaultState, action) {
       substitutions: newsubs
     }
   }
+
+  if (action && action.type === DOWNLOAD) {
+    const { buffer, substitutions } = state
+    download(buffer, substitutions)
+    return state
+  }
+
   return state
 }

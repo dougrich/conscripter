@@ -171,7 +171,14 @@ function assembleDataUri(buffer, substitutions) {
   }
 }
 
+function download(buffer, substitutions) {
+  const font = opentype.parse(buffer)
+  applySubstitutions(font, substitutions)
+  font.download('my-custom-font.otf')
+}
+
 module.exports = {
   applySubstitutions,
-  assembleDataUri
+  assembleDataUri,
+  download
 }
