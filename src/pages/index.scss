@@ -44,14 +44,6 @@ $font-size: 52pt;
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-
 .topaction {
   max-width: 500px;
   padding: 1em;
@@ -77,4 +69,11 @@ html, body {
     max-width: 100%;
     box-sizing: border-box;
   }
+}
+
+html, body {
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }

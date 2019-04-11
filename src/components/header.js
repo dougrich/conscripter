@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import x from '../pages/index.scss' // this is done to avoid a nasty ordering issue in mini-css-extract
 import css from './header.scss'
 const { version } = require('../../package.json')
 

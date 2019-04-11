@@ -8,6 +8,7 @@
     "dev": "next ./src",
     "deploy": "npm run export && echo 'Publishing...' && gh-pages -d out",
     "export": "next build ./src && next export ./src",
+    "build": "next build ./src",
     "start": "next start ./src"
   },
   "repository": {
