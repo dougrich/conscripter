@@ -67,6 +67,9 @@ export default class SubstitutionEditor extends React.PureComponent {
               type='range'
               min={0}
               max={2000}
+              format={v => {
+                return (v / meta.unitsPerEm).toFixed(3) + ' em'
+              }}
               value={currentGlyph.advanceWidth}
               onChange={onAdvanceWidthChange}
             >

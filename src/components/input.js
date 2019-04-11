@@ -16,13 +16,16 @@ export default class Input extends React.PureComponent {
       type,
       min,
       max,
+      format,
       onChange
     } = this.props
 
     return (
       <div className={cx(css.container, className)}>
         <Label>
-          {label}
+          {label} {type === 'range' && (
+            <span className={css.subtext}>{format ? format(value) : value}</span>
+          )}
         </Label>
         <input
           required={required}

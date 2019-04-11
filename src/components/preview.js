@@ -15,6 +15,9 @@ export default class Preview extends React.PureComponent {
 
     this.setFontSize = ({ currentTarget: { value }}) => this.setState({ fontSize: value })
     this.setOptions = options => this.setState({ options })
+    this.format = v => {
+      return ((v / 100) * 16).toFixed(1) + ' pt'
+    }
   }
   render() {
     const {
@@ -27,7 +30,7 @@ export default class Preview extends React.PureComponent {
     return (
       <div className={css.background}>
         <div className={css.container}>
-          <Input label='Font Size' type='range' min={100} max={300} value={fontSize} onChange={this.setFontSize}/>
+          <Input label='Font Size' type='range' min={100} max={300} format={this.format} value={fontSize} onChange={this.setFontSize}/>
           <Options label='Font Options' value={options} onChange={this.setOptions}/>
           <textarea
             className={css.previewText}
