@@ -1,0 +1,45 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/about.js": 0,
+      "multi private-next-pages/index.js": 1,
+      "multi private-next-pages/privacy.js": 2,
+      "multi next/dist/pages/_app": 3,
+      "multi next/dist/pages/_error": 4,
+      "multi next/dist/pages/_document": 5
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5
+    }
+  },
+  "chunks": {
+    "byName": {
+      "static/BApsNuj4Hhc8ZNMql7nV2/pages/_app.js": 0,
+      "static/BApsNuj4Hhc8ZNMql7nV2/pages/_document.js": 1,
+      "static/BApsNuj4Hhc8ZNMql7nV2/pages/_error.js": 2,
+      "static/BApsNuj4Hhc8ZNMql7nV2/pages/about.js": 3,
+      "static/BApsNuj4Hhc8ZNMql7nV2/pages/index.js": 4,
+      "static/BApsNuj4Hhc8ZNMql7nV2/pages/privacy.js": 5,
+      "static/3VLycB5vt~cCmuPQPx~dD/pages/_app.js": 6,
+      "static/3VLycB5vt~cCmuPQPx~dD/pages/_document.js": 7,
+      "static/3VLycB5vt~cCmuPQPx~dD/pages/_error.js": 8,
+      "static/3VLycB5vt~cCmuPQPx~dD/pages/about.js": 9,
+      "static/3VLycB5vt~cCmuPQPx~dD/pages/index.js": 10,
+      "static/3VLycB5vt~cCmuPQPx~dD/pages/privacy.js": 11
+    },
+    "bySource": {},
+    "usedIds": [
+      10,
+      11,
+      6,
+      7,
+      8,
+      9
+    ]
+  }
+}
