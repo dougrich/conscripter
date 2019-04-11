@@ -3,6 +3,7 @@ import GlyphPreview from "./glyph-preview";
 import DropZone from "./dropzone";
 import Input from './input';
 import Button from './button';
+import Description from './description';
 
 function surpress(handler) {
   return e => {
@@ -38,6 +39,9 @@ export default class SubstitutionEditor extends React.PureComponent {
           <div>
             <DropZone onUpload={onUpload}/>
             <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
+            <Description>
+              Doesn't look like what you expected? Raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to help improve this app.
+            </Description>
           </div>
           <div>
             <Input

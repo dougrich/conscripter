@@ -7,6 +7,7 @@ import GlyphGrid from '../components/glyph-grid'
 import Preview from '../components/preview';
 import Button from '../components/button';
 import Input from '../components/input';
+import GithubCorner from '../components/github-corner'
 
 const store = createStore()
 
@@ -84,6 +85,7 @@ export default class Index extends React.Component {
     return (
       <Provider store={store}>
         <div className={css.root}>
+          <GithubCorner url='https://github.com/dougrich/conscripter'/>
           <FontStyle />
           <div>
             <ConnectedFontName label='Font Name'/>

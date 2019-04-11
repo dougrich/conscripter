@@ -2,6 +2,7 @@ import css from './input.scss'
 import * as cx from 'classnames'
 import React from 'react'
 import Label from './label';
+import Description from './description';
 
 export default class Input extends React.PureComponent {
   render() {
@@ -34,9 +35,9 @@ export default class Input extends React.PureComponent {
           max={max}
         />
         {children && (
-          <div className={css.description}>
+          <Description>
             {children}
-          </div>
+          </Description>
         )}
       </div>
     )
