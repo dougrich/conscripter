@@ -2,7 +2,7 @@ const { applySubstitutions } = require('../src/state/reducers/fonts/assembleData
 const fs = require('fs')
 const opentype = require('opentype.js')
 
-const font = opentype.loadSync('./src/static/AVHersheySimplexMedium.otf')
+const font = opentype.loadSync('./static/AVHersheySimplexMedium.otf')
 
 const subs = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'))
 

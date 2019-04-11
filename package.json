@@ -4,12 +4,13 @@
   "description": "Static site that generates functional open type font files for conlang scripts from SVG using substitution",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"./src/**/?(*.)spec.js\"",
-    "dev": "next ./src",
-    "deploy": "npm run export && echo 'Publishing...' && gh-pages -d out",
-    "export": "next build ./src && next export ./src",
-    "build": "next build ./src",
-    "start": "next start ./src"
+    "test": "mocha \"./state/**/?(*.)spec.js\"",
+    "dev": "next",
+    "deploy": "npm run export && touch out/.nojekyll && echo 'Publishing...' && gh-pages -d out -t",
+    "export": "next build && next export",
+    "build": "next build",
+    "start": "next start",
+    "help": "gh-pages --help"
   },
   "repository": {
     "type": "git",

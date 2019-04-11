@@ -30,7 +30,7 @@ describe('PathParser#parseTransform', () => {
 
 describe('PathParser#parse', () => {
   function parse(file) {
-    const filename = path.resolve(__dirname, '../../../../tests/parsePath', file)
+    const filename = path.resolve(__dirname, '../../../tests/parsePath', file)
     const data = fs.readFileSync(filename, 'utf8')
     const parser = new PathParser({
       unitsPerEm: 1000,
