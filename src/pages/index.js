@@ -10,6 +10,7 @@ import Input from '../components/input';
 import GithubCorner from '../components/github-corner'
 import Description from '../components/description';
 import Helmet from 'react-helmet'
+import Header from '../components/header';
 
 const store = createStore()
 
@@ -114,6 +115,7 @@ export default class Index extends React.Component {
           <ConnectedHelmet/>
           <GithubCorner url='https://github.com/dougrich/conscripter'/>
           <FontStyle />
+          <Header/>
           <div>
             <ConnectedFontName label='Font Name'/>
           </div>
