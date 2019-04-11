@@ -27,7 +27,8 @@ const FontStyle = connect(
 const ConnectedGlyphGrid = connect(
   state => ({ ...state.fonts, ...state.substitution }),
   dispatch => ({
-    onSubstitutionSelect: (substitution) => dispatch(actions.selectSubstitution(substitution))
+    onSubstitutionSelect: (substitution) => dispatch(actions.selectSubstitution(substitution)),
+    onSubstitutionSwap: (a, b) => dispatch(actions.swapSubstitution(a, b))
   })
 )(GlyphGrid)
 
@@ -38,12 +39,18 @@ const ConnectedSubstitutionEditor = connect(
       substitution
     } = state
 
-    const canRemove = fonts.substitutions.indexOf(substitution.active) >= 0
+    const idx = fonts.substitutions.indexOf(substitution.active)
+    const canRemove = idx >= 0
+    const canMoveLeft = idx > 0
+    const canMoveRight = idx < fonts.substitutions.length - 1 && idx >= 0
     
     return ({
       ...fonts,
       ...substitution,
-      canRemove
+      idx,
+      canRemove,
+      canMoveLeft,
+      canMoveRight
     })
   },
   (dispatch) => ({
@@ -52,7 +59,8 @@ const ConnectedSubstitutionEditor = connect(
     onAdvanceWidthChange: ({ currentTarget: { value }}) => dispatch(actions.updateSubstitutionAdvanceWidth(value)),
     onRemove: () => dispatch(actions.removeSubstitution(store.getState().substitution)),
     onSubmit: () => dispatch(actions.submitSubstitution(store.getState().substitution)),
-    onCancel: () => dispatch(actions.cancelSubstitution())
+    onCancel: () => dispatch(actions.cancelSubstitution()),
+    onSwap: (a, b) => dispatch(actions.swapSubstitution(a, b))
   })
 )(SubstitutionEditor)
 

@@ -3,6 +3,7 @@ export const
   DOWNLOAD = 'download',
   SET_FONTNAME = 'set_fontname',
   ADD_SUBSTITUTION = 'add_substitution',
+  SWAP_SUBSTITUTION = 'swap_substitution',
   REMOVE_SUBSTITUTION = 'remove_substitution',
   SELECT_SUBSTITUTION = 'select_substitution',
   UPDATE_SUBSTITUTION = 'update_substitution',

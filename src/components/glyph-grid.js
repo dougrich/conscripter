@@ -6,7 +6,7 @@ import css from './glyph-grid.scss'
 import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
 
-export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect }) {
+export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect, onSubstitutionSwap }) {
   const symbols = []
   const gridcells = []
   let foundActive = false
@@ -30,7 +30,26 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     )
   }
 
-  for (const sub of substitutions) {
+  function onDragStart(e) {
+    e.dataTransfer.setData('number', parseInt(e.currentTarget.attributes['data-index'].value))
+  }
+
+  function onDragOver(e) {
+    if (e.currentTarget.attributes['data-index'].value) {
+      e.preventDefault()
+    }
+  }
+
+  function onDrop(e) {
+    const self = parseInt(e.currentTarget.attributes['data-index'].value)
+    const other = e.dataTransfer.getData('number')
+    if (self !== other) {
+      onSubstitutionSwap(self, other)
+    }
+  }
+
+  for (let i = 0; i < substitutions.length; i++) {
+    const sub = substitutions[i]
     const { replace, glyph } = sub
     const key = replace.join('/')
     const isActive = active === sub
@@ -43,6 +62,7 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     foundActive = foundActive || isActive
     gridcells.push({
       key,
+      index: i,
       button,
       isActive
     })
@@ -54,12 +74,20 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     isActive: hasActive && !foundActive
   })
 
-  for (const { key, button, isActive } of gridcells) {
+  for (const { key, index, button, isActive } of gridcells) {
     const className = cx(css.gridcell, {
       [css.inactive]: !isActive && hasActive
     })
     symbols.push(
-      <div className={className} key={key}>
+      <div
+        className={className}
+        key={key}
+        data-index={index}
+        draggable={!hasActive && index != null}
+        onDragStart={onDragStart}
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+      >
         {button}
         {isActive && (
           <div className={css.detailsspacer}>

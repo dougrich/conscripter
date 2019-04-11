@@ -21,12 +21,16 @@ export default class SubstitutionEditor extends React.PureComponent {
       currentReplace,
       meta,
       canRemove,
+      canMoveLeft,
+      canMoveRight,
+      idx,
       onUpload,
       onReplaceChange,
       onAdvanceWidthChange,
       onSubmit,
       onRemove,
-      onCancel
+      onCancel,
+      onSwap
     } = this.props
 
     if (!active) {
@@ -36,6 +40,10 @@ export default class SubstitutionEditor extends React.PureComponent {
     return (
       <form ref={this.formRef} onSubmit={surpress(onSubmit)}>
         <div>
+          <div className={css.movement}>
+            {canMoveLeft ? <Button title='Move up in priority' variant='action-left' onClick={surpress(() => onSwap(idx, idx - 1))}>{'<<'}</Button> : <div/>}
+            {canMoveRight ? <Button title='Move down in priority' variant='action-right' onClick={surpress(() => onSwap(idx, idx + 1))}>{'>>'}</Button> : <div/>}
+          </div>
           <div>
             <DropZone onUpload={onUpload}/>
             <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>

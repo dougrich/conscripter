@@ -18,3 +18,21 @@
 .danger {
   @include clickable('button-danger');
 }
+
+.action-left {
+  border-radius: 100%;
+  align-self: flex-start;
+  width: 3em;
+  height: 3em;
+  box-sizing: border-box;
+  @include clickable('button-default');
+}
+
+.action-right {
+  border-radius: 100%;
+  align-self: flex-end;
+  width: 3em;
+  height: 3em;
+  box-sizing: border-box;
+  @include clickable('button-default');
+}

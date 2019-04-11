@@ -12,7 +12,8 @@ import {
   CANCEL_SUBSTITUTION,
   REMOVE_SUBSTITUTION,
   DOWNLOAD,
-  SET_FONTNAME
+  SET_FONTNAME,
+  SWAP_SUBSTITUTION
 } from './actionTypes'
 
 import {
@@ -143,5 +144,13 @@ export function setFontName(value) {
   return {
     type: SET_FONTNAME,
     value
+  }
+}
+
+export function swapSubstitution(a, b) {
+  return {
+    type: SWAP_SUBSTITUTION,
+    a,
+    b
   }
 }
