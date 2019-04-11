@@ -1,6 +1,6 @@
-# Contextual Vowel Symbols
+## Contextual Vowel Symbols
 
-## Specific Case
+### Specific Case
 
 Contaxia, the example language, is an abugida where exach consonant has a symbol, and the vowel that follows it is placed either above or below the consonant symbol.
 
@@ -8,7 +8,7 @@ For example, `ha` is written as `ħ`, and `na` is written `ꞥ`.
 
 Consonants are broken into three `classes`: 'diagonal bar', 'low bar' and 'high bar'. The class determines the position that the vowel symbol appears.
 
-## Current way to accomplish this
+### Current way to accomplish this
 
 1. Create the `h` symbol, devoid of any vowel
 2. Create the `n` symbol, devoid of any vowel
@@ -18,7 +18,7 @@ Consonants are broken into three `classes`: 'diagonal bar', 'low bar' and 'high 
 
 Notably this creates a bad combinatorics problem - with the english alphabet alone there would be over a hundred symbols.
 
-## How to ideally do this
+### How to ideally do this
 
 1. Create the `h` symbol, devoid of any vowel
 2. Create the `n` symbol, devoid of any vowel

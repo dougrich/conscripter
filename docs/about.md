@@ -1,4 +1,4 @@
-# What is Conscripter?
+## What is Conscripter?
 
 Conscripter is a tool that helps _conlang scripts_ come to reality using _substitution_.
 
@@ -10,11 +10,11 @@ Unfortunately, creating a custom font is a significant undertaking, especially i
 
 Conscripter is intended to simplify that process. Upload your glyph as an SVG and specify what text it replaces. Download font.
 
-## Who is this for?
+### Who is this for?
 
 Anybody trying to make a font for their conlang that they can use in tools like Word, Illustrator, Photoshop, their website, or Inkscape.
 
-## Who is this not for?
+### Who is this not for?
 
 Are you a hardcore typography nerd who fully understands contextual alternates, chaining, and how the substitution stuff works?
 
