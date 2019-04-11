@@ -72,12 +72,10 @@ export function fetchFontError() {
 export function updateSubstitutionGlyph(meta,svg) {
   const parser = new PathParser(meta)
   const { commands, warnings } = parser.parse(svg)
-  if (warnings && warnings.length) {
-    throw new MultipleError('Warnings occured during upload', warnings)
-  }
   return {
     type: UPDATE_SUBSTITUTION,
     field: 'glyph/commands',
+    warnings,
     value: commands
   }
 }
@@ -182,16 +180,21 @@ export function load() {
           const { substitutions = [], fontname = 'My Custom Font' } = JSON.parse(reader.result)
           dispatch({
             type: LOAD,
+            error: null,
             substitutions,
             fontname
           })
         } catch (e) {
-          console.error(e)
+          dispatch({
+            type: LOAD,
+            error: new Error('Unable to parse selected JSON: did it come from Conscripter?'),
+            substitutions: [],
+            fontname: 'My Custom Font'
+          })
         }
       }
       reader.readAsText(file)
     }
-    console.log('HERE')
     loader.click()
   }
 }

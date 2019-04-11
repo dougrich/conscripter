@@ -67,19 +67,25 @@ const ConnectedSubstitutionEditor = connect(
 
 
 const ConnectedTopActionSet = connect(
-  () => ({}),
+  state => ({ loadError: state.fonts.error }),
   dispatch => ({
     onSave: () => dispatch(actions.save(store.getState())),
     onLoad: () => dispatch(actions.load())
   })
 )(function ({
+  loadError,
   onSave,
   onLoad
 }) {
   return (
-    <div className={css.actions}>
-    <Button title='Save to File' variant='default' onClick={onSave}>Save</Button>
-    <Button title='Load from File' variant='default' onClick={onLoad}>Load</Button>
+    <div>
+      <div className={css.actions}>
+        <Button title='Save to File' variant='default' onClick={onSave}>Save</Button>
+        <Button title='Load from File' variant='default' onClick={onLoad}>Load</Button>
+      </div>
+      {loadError && (
+        <Description variant='danger'>{loadError.message}</Description>
+      )}
     </div>
   )
 })

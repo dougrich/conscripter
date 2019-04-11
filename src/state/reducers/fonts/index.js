@@ -96,11 +96,12 @@ export function fonts(state = defaultState, action) {
   }
 
   if (action && action.type === LOAD) {
-    const { substitutions, fontname } = action
+    const { substitutions, fontname, error } = action
     const { buffer } = state
     return {
       ...state,
       ...assembleDataUri(buffer, substitutions, fontname),
+      error,
       substitutions,
       fontname,
     }

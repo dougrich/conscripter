@@ -22,7 +22,8 @@ export function substitution(state = defaultState, action) {
           currentGlyph: {
             ...state.currentGlyph,
             commands: action.value
-          }
+          },
+          warnings: action.warnings
         }
       case 'replace':
         return {

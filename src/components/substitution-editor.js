@@ -17,6 +17,7 @@ export default class SubstitutionEditor extends React.PureComponent {
   render() {
     const {
       active,
+      warnings,
       currentGlyph,
       currentReplace,
       meta,
@@ -47,6 +48,16 @@ export default class SubstitutionEditor extends React.PureComponent {
           <div>
             <DropZone onUpload={onUpload}/>
             <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
+            {warnings && warnings.length && (
+              <Description variant='danger'>
+                <div>Warning!</div>
+                <ul>
+                  {warnings.map((x, i) => (
+                    <li key={i}>{x.message}</li>
+                  ))}
+                </ul>
+              </Description>
+            )}
             <Description>
               Doesn't look like what you expected? Raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to help improve this app.
             </Description>
