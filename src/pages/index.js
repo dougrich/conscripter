@@ -65,6 +65,25 @@ const ConnectedSubstitutionEditor = connect(
   })
 )(SubstitutionEditor)
 
+
+const ConnectedTopActionSet = connect(
+  () => ({}),
+  dispatch => ({
+    onSave: () => dispatch(actions.save(store.getState())),
+    onLoad: () => dispatch(actions.load())
+  })
+)(function ({
+  onSave,
+  onLoad
+}) {
+  return (
+    <div className={css.actions}>
+    <Button title='Save to File' variant='default' onClick={onSave}>Save</Button>
+    <Button title='Load from File' variant='default' onClick={onLoad}>Load</Button>
+    </div>
+  )
+})
+
 const ConnectedActionSet = connect(
   () => ({}),
   dispatch => ({
@@ -74,7 +93,7 @@ const ConnectedActionSet = connect(
   onDownload
 }) {
   return (
-    <div>
+    <div className={css.actions}>
       <Button variant='success' onClick={onDownload}>Download</Button>
     </div>
   )
@@ -117,6 +136,7 @@ export default class Index extends React.Component {
           <FontStyle />
           <Header/>
           <div>
+            <ConnectedTopActionSet/>
             <ConnectedFontName label='Font Name'/>
           </div>
           <div>

@@ -16,3 +16,9 @@ $font-size: 52pt;
   margin: auto;
   max-width: 400px;
 }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+}

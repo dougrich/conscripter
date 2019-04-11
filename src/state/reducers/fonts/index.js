@@ -1,4 +1,4 @@
-import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD, SET_FONTNAME, SWAP_SUBSTITUTION } from '../../actionTypes'
+import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD, SET_FONTNAME, SWAP_SUBSTITUTION, SAVE, LOAD } from '../../actionTypes'
 import { STATUS_PENDING, STATUS_OK, STATUS_ERROR } from '../../status'
 
 import { assembleDataUri, download } from './assembleDataUri'
@@ -92,6 +92,17 @@ export function fonts(state = defaultState, action) {
     return {
       ...state,
       substitutions: newsubs
+    }
+  }
+
+  if (action && action.type === LOAD) {
+    const { substitutions, fontname } = action
+    const { buffer } = state
+    return {
+      ...state,
+      ...assembleDataUri(buffer, substitutions, fontname),
+      substitutions,
+      fontname,
     }
   }
 

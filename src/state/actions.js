@@ -13,13 +13,16 @@ import {
   REMOVE_SUBSTITUTION,
   DOWNLOAD,
   SET_FONTNAME,
-  SWAP_SUBSTITUTION
+  SWAP_SUBSTITUTION,
+  SAVE,
+  LOAD
 } from './actionTypes'
 
 import {
   STATUS_OK,
   STATUS_ERROR
 } from './status'
+import slugify from 'slugify';
 
 /**
  * Fetches and parses the base font
@@ -152,5 +155,43 @@ export function swapSubstitution(a, b) {
     type: SWAP_SUBSTITUTION,
     a,
     b
+  }
+}
+
+export function save({ fonts: { substitutions, fontname }}) {
+  const data = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ substitutions, fontname }))
+  const container = document.createElement('a')
+  container.setAttribute('href', data)
+  container.setAttribute('download', slugify(fontname) + '.json')
+  container.click()
+  return {
+    type: SAVE
+  }
+}
+
+export function load() {
+  return dispatch => {
+    const loader = document.createElement('input')
+    loader.setAttribute('type', 'file')
+    loader.setAttribute('accept', 'text/json')
+    loader.onchange = e => {
+      const file = e.target.files[0]
+      const reader = new FileReader()
+      reader.onload = () => {
+        try {
+          const { substitutions = [], fontname = 'My Custom Font' } = JSON.parse(reader.result)
+          dispatch({
+            type: LOAD,
+            substitutions,
+            fontname
+          })
+        } catch (e) {
+          console.error(e)
+        }
+      }
+      reader.readAsText(file)
+    }
+    console.log('HERE')
+    loader.click()
   }
 }

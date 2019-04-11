@@ -7,4 +7,6 @@ export const
   REMOVE_SUBSTITUTION = 'remove_substitution',
   SELECT_SUBSTITUTION = 'select_substitution',
   UPDATE_SUBSTITUTION = 'update_substitution',
-  CANCEL_SUBSTITUTION = 'cancel_substitution'
+  CANCEL_SUBSTITUTION = 'cancel_substitution',
+  SAVE = 'save',
+  LOAD = 'load'
