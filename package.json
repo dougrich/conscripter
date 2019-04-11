@@ -7,7 +7,7 @@
     "test": "mocha \"./src/**/?(*.)spec.js\"",
     "dev": "next ./src",
     "deploy": "npm run export && echo 'Publishing...' && gh-pages -d out",
-    "export": "next export ./src",
+    "export": "next build ./src && next export ./src",
     "start": "next start ./src"
   },
   "repository": {
