@@ -9,7 +9,7 @@ import Button from '../components/button';
 import Input from '../components/input';
 import GithubCorner from '../components/github-corner'
 import Description from '../components/description';
-import Helmet from 'react-helmet'
+import Head from 'next/head'
 import Header from '../components/header';
 
 const store = createStore()
@@ -110,12 +110,12 @@ const ConnectedHelmet = connect(
   fontname
 }) {
   return (
-    <Helmet>
+    <Head>
       <title>{fontname} | Conscripter</title>
       <meta charSet="utf-8"/>
       <meta name="description" content="Conscripter is a tool for creating conlang script fonts from SVG using contextual alternates and ligatures."/>
       <meta name="viewport" content="width=device-width, user-scalable=no" />
-    </Helmet>
+    </Head>
   )
 })
 
