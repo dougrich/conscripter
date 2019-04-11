@@ -8,6 +8,7 @@ import Preview from '../components/preview';
 import Button from '../components/button';
 import Input from '../components/input';
 import GithubCorner from '../components/github-corner'
+import Description from '../components/description';
 
 const store = createStore()
 
@@ -92,6 +93,10 @@ export default class Index extends React.Component {
           </div>
           <div>
             <Label>Substitutions</Label>
+            <Description>
+              <div>The glyphs that you want to substitute for text. Add in the order of most specific to least specific, as the first eligible substitution is used.</div>
+              <div>i.e., if you add `x` and then `xx`, you will see two `x` glyphs. If you add `xx` and then `x`, you will see one `xx` glyph.</div>
+            </Description>
             <ConnectedGlyphGrid>
               <ConnectedSubstitutionEditor/>
             </ConnectedGlyphGrid>
