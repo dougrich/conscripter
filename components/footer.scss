@@ -1,0 +1,22 @@
+@import 'colors';
+
+.link {
+  margin: 0em 2em;
+  display: inline-block;
+}
+
+.footer {
+  @include text-color(theme-color('alert-default'));
+}
+
+.container {
+  margin: auto;
+  max-width: 500px;
+  padding: 1em;
+  text-align: center;
+  font-size: 0.7em;
+}
+
+.copyright {
+  margin-bottom: 1em;
+}

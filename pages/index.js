@@ -11,6 +11,7 @@ import GithubCorner from '../components/github-corner'
 import Description from '../components/description';
 import Header from '../components/header';
 import Head from '../components/head';
+import Footer from '../components/footer';
 
 const store = createStore()
 
@@ -120,8 +121,8 @@ export default class Index extends React.Component {
           <ConnectedHelmet/>
           <GithubCorner url='https://github.com/dougrich/conscripter'/>
           <FontStyle />
-          <div className={css.container}>
-            <Header/>
+          <Header/>
+          <div className={css.container} role="main">
             <div className={css.topaction}>
               <ConnectedTopActionSet/>
               <ConnectedFontName label='Font Name'/>
@@ -146,6 +147,7 @@ export default class Index extends React.Component {
               </div>
             </div>
           </div>
+          <Footer/>
         </div>
       </Provider>
     )
