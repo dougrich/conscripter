@@ -15,3 +15,4 @@
 - [ ] Support for project workspaces, keeping multiple fonts active for a single user.
 - [ ] Support for scanning a JPG or PNG and pulling the symbol out of it.
 - [ ] Good 404 page design
+- [ ] Proper keyboard shortcuts - specifically ctrl+z, ctrl+y, ctrl+s
