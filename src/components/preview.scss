@@ -1,6 +1,5 @@
 .background {
   width: 100%;
-  background-color: #fdf0f0;
 }
 
 .container {
@@ -22,4 +21,10 @@
   border: 2px solid transparent;
   font-size: 2em;
   font-family: demofont;
+  color: inherit;
+}
+
+.inverted {
+  background-color: #222;
+  color: white;
 }

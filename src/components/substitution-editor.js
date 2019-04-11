@@ -39,54 +39,52 @@ export default class SubstitutionEditor extends React.PureComponent {
     }
   
     return (
-      <form ref={this.formRef} onSubmit={surpress(onSubmit)}>
+      <form ref={this.formRef} className={css.container} onSubmit={surpress(onSubmit)}>
+        <div className={css.movement}>
+          {canMoveLeft ? <Button title='Move up in priority' variant='action-left' onClick={surpress(() => onSwap(idx, idx - 1))}>{'<<'}</Button> : <div/>}
+          {canMoveRight ? <Button title='Move down in priority' variant='action-right' onClick={surpress(() => onSwap(idx, idx + 1))}>{'>>'}</Button> : <div/>}
+        </div>
         <div>
-          <div className={css.movement}>
-            {canMoveLeft ? <Button title='Move up in priority' variant='action-left' onClick={surpress(() => onSwap(idx, idx - 1))}>{'<<'}</Button> : <div/>}
-            {canMoveRight ? <Button title='Move down in priority' variant='action-right' onClick={surpress(() => onSwap(idx, idx + 1))}>{'>>'}</Button> : <div/>}
-          </div>
-          <div>
-            <DropZone onUpload={onUpload}/>
-            <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
-            {warnings && warnings.length && (
-              <Description variant='danger'>
-                <div>Warning!</div>
-                <ul>
-                  {warnings.map((x, i) => (
-                    <li key={i}>{x.message}</li>
-                  ))}
-                </ul>
-              </Description>
-            )}
-            <Description>
-              Doesn't look like what you expected? Raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to help improve this app.
+          <DropZone onUpload={onUpload}/>
+          <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
+          {warnings && warnings.length ? (
+            <Description variant='danger'>
+              <div>Warning!</div>
+              <ul>
+                {warnings.map((x, i) => (
+                  <li key={i}>{x.message}</li>
+                ))}
+              </ul>
             </Description>
-          </div>
-          <div>
-            <Input
-              label='Replace'
-              required
-              pattern='^[a-zA-Z0-9\.\-_]+$'
-              value={currentReplace}
-              onChange={onReplaceChange}
-            >
-              <div>This is case sensitive string that will be replaced with this symbol.</div>
-              <div>It must be alphanumeric (A-Z, 0-9) or '.', '-', or '_'.</div>
-            </Input>
-            <Input
-              label='Advance Width'
-              type='range'
-              min={0}
-              max={2000}
-              format={v => {
-                return (v / meta.unitsPerEm).toFixed(3) + ' em'
-              }}
-              value={currentGlyph.advanceWidth}
-              onChange={onAdvanceWidthChange}
-            >
-              <div>This is how far the substituted glyph will advance the cursor.</div>
-            </Input>
-          </div>
+          ) : null}
+          <Description>
+            Doesn't look like what you expected? Raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to help improve this app.
+          </Description>
+        </div>
+        <div>
+          <Input
+            label='Replace'
+            required
+            pattern='^[a-zA-Z0-9\.\-_]+$'
+            value={currentReplace}
+            onChange={onReplaceChange}
+          >
+            <div>This is case sensitive string that will be replaced with this symbol.</div>
+            <div>It must be alphanumeric (A-Z, 0-9) or '.', '-', or '_'.</div>
+          </Input>
+          <Input
+            label='Advance Width'
+            type='range'
+            min={0}
+            max={2000}
+            format={v => {
+              return (v / meta.unitsPerEm).toFixed(3) + ' em'
+            }}
+            value={currentGlyph.advanceWidth}
+            onChange={onAdvanceWidthChange}
+          >
+            <div>This is how far the substituted glyph will advance the cursor.</div>
+          </Input>
         </div>
         <div className={css.actions}>
           {canRemove && <Button variant='danger' onClick={surpress(onRemove)}>Remove</Button>}

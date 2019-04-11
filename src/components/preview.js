@@ -1,4 +1,5 @@
 import css from './preview.scss'
+import * as cx from 'classnames'
 import Input from './input';
 import Options from './options';
 
@@ -9,7 +10,8 @@ export default class Preview extends React.PureComponent {
       fontSize: 200,
       options: {
         italic: false,
-        bold: false
+        bold: false,
+        invert: false
       }
     }
 
@@ -28,7 +30,7 @@ export default class Preview extends React.PureComponent {
       options
     } = this.state
     return (
-      <div className={css.background}>
+      <div className={cx(css.background, { [css.inverted]: options.invert })}>
         <div className={css.container}>
           <Input label='Font Size' type='range' min={100} max={300} format={this.format} value={fontSize} onChange={this.setFontSize}/>
           <Options label='Font Options' value={options} onChange={this.setOptions}/>

@@ -14,7 +14,9 @@ import Header from '../components/header';
 
 const store = createStore()
 
-const PreviewPlaceholder = `han.gul`
+const PreviewPlaceholder = `the quick brown fox jumps over the lazy red dog
+
+123456789`
 
 const FontStyle = connect(
   state => ({ data: state.fonts.datauri })
@@ -69,38 +71,26 @@ const ConnectedSubstitutionEditor = connect(
 const ConnectedTopActionSet = connect(
   state => ({ loadError: state.fonts.error }),
   dispatch => ({
+    onDownload: () => dispatch(actions.download()),
     onSave: () => dispatch(actions.save(store.getState())),
     onLoad: () => dispatch(actions.load())
   })
 )(function ({
   loadError,
+  onDownload,
   onSave,
   onLoad
 }) {
   return (
     <div>
       <div className={css.actions}>
+        <Button variant='success' onClick={onDownload}>Download</Button>
         <Button title='Save to File' variant='default' onClick={onSave}>Save</Button>
         <Button title='Load from File' variant='default' onClick={onLoad}>Load</Button>
       </div>
       {loadError && (
         <Description variant='danger'>{loadError.message}</Description>
       )}
-    </div>
-  )
-})
-
-const ConnectedActionSet = connect(
-  () => ({}),
-  dispatch => ({
-    onDownload: () => dispatch(actions.download())
-  })
-)(function ({
-  onDownload
-}) {
-  return (
-    <div className={css.actions}>
-      <Button variant='success' onClick={onDownload}>Download</Button>
     </div>
   )
 })
@@ -124,6 +114,7 @@ const ConnectedHelmet = connect(
       <title>{fontname} | Conscripter</title>
       <meta charSet="utf-8"/>
       <meta name="description" content="Conscripter is a tool for creating conlang script fonts from SVG using contextual alternates and ligatures."/>
+      <meta name="viewport" content="width=device-width, user-scalable=no" />
     </Helmet>
   )
 })
@@ -140,27 +131,32 @@ export default class Index extends React.Component {
           <ConnectedHelmet/>
           <GithubCorner url='https://github.com/dougrich/conscripter'/>
           <FontStyle />
-          <Header/>
-          <div>
-            <ConnectedTopActionSet/>
-            <ConnectedFontName label='Font Name'/>
+          <div className={css.container}>
+            <Header/>
+            <div className={css.topaction}>
+              <ConnectedTopActionSet/>
+              <ConnectedFontName label='Font Name'/>
+            </div>
+            <div className={css.workspace}>
+              <div className={css.panel}>
+                <div className={css.internalpanel}>
+                  <Label>Substitutions</Label>
+                  <Description>
+                    <p>The glyphs that you want to substitute for text. Add in the order of most specific to least specific, as the first eligible substitution is used.</p>
+                    <p>i.e., if you add `x` and then `xx`, you will see two `x` glyphs. If you add `xx` and then `x`, you will see one `xx` glyph.</p>
+                    <p>If something doesn't make sense, raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to improve the app.</p>
+                  </Description>
+                  <ConnectedGlyphGrid>
+                    <ConnectedSubstitutionEditor/>
+                  </ConnectedGlyphGrid>
+                </div>
+              </div>
+              <div className={css.panel}>
+                <Label>Preview</Label>
+                <Preview defaultValue={PreviewPlaceholder}/>
+              </div>
+            </div>
           </div>
-          <div>
-            <Label>Substitutions</Label>
-            <Description>
-              <p>The glyphs that you want to substitute for text. Add in the order of most specific to least specific, as the first eligible substitution is used.</p>
-              <p>i.e., if you add `x` and then `xx`, you will see two `x` glyphs. If you add `xx` and then `x`, you will see one `xx` glyph.</p>
-              <p>If something doesn't make sense, raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to improve the app.</p>
-            </Description>
-            <ConnectedGlyphGrid>
-              <ConnectedSubstitutionEditor/>
-            </ConnectedGlyphGrid>
-          </div>
-          <div>
-            <Label>Preview</Label>
-            <Preview defaultValue={PreviewPlaceholder}/>
-          </div>
-          <ConnectedActionSet/>
         </div>
       </Provider>
     )
