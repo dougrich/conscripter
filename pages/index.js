@@ -9,8 +9,8 @@ import Button from '../components/button';
 import Input from '../components/input';
 import GithubCorner from '../components/github-corner'
 import Description from '../components/description';
-import Head from 'next/head'
 import Header from '../components/header';
+import Head from '../components/head';
 
 const store = createStore()
 
@@ -104,20 +104,9 @@ const ConnectedFontName = connect(
 
 const ConnectedHelmet = connect(
   state => ({
-    fontname: state.fonts.fontname
+    title: state.fonts.fontname
   })
-)(function ({
-  fontname
-}) {
-  return (
-    <Head>
-      <title>{fontname} | Conscripter</title>
-      <meta charSet="utf-8"/>
-      <meta name="description" content="Conscripter is a tool for creating conlang script fonts from SVG using contextual alternates and ligatures."/>
-      <meta name="viewport" content="width=device-width, user-scalable=no" />
-    </Head>
-  )
-})
+)(Head)
 
 export default class Index extends React.Component {
   componentDidMount() {
