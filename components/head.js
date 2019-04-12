@@ -28,6 +28,7 @@ export default function Head({
       <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon-180.png"/>
       <meta name="msapplication-TileColor" content="#FFFFFF"/>
       <meta name="msapplication-TileImage" content="/static/favicon-144.png"/>
+      <link rel="stylesheet" href="https://use.typekit.net/dup3znt.css"/>
     </NativeHead>
   )
 }

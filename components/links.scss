@@ -1,0 +1,13 @@
+@import 'interaction';
+
+.block {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+
+  @extend %clickable-text;  
+}

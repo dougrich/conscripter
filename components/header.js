@@ -1,6 +1,7 @@
 import x from '../pages/index.scss' // this is done to avoid a nasty ordering issue in mini-css-extract
 import css from './header.scss'
 import Links from './links'
+import Typography from './typography';
 
 export default function Header({
 
@@ -9,11 +10,11 @@ export default function Header({
     <header role="banner">
       <div className={css.container}>
         <Links.Home variant='header'/>
-        <div className={css.links} role="navigation">
+        <Typography.Links>
           <Links.About/>
           <Links.Privacy/>
           <Links.Changelog variant='versioned'/>
-        </div>
+        </Typography.Links>
       </div>
     </header>
   )

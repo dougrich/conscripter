@@ -3,12 +3,10 @@
 $border-thickness: 0.05em;
 
 %common-clickable {
-  border: $border-thickness solid;
-  transition-property: background-color, border-color;
+  transition-property: background-color, border-color, color;
   transition-duration: 250ms;
   cursor: pointer;
   outline: none;
-  font-size: 0.75em;
 }
 
 @mixin clickable($initialbg: 'bg-blank') {
@@ -17,7 +15,9 @@ $border-thickness: 0.05em;
   $color-hover: darken($color, 15%);
   $color-active: darken($color, 30%);
 
+  border: $border-thickness solid;
   border-color: $color;
+  font-size: 0.75em;
   @include text-color($color);
 
   &:hover {
@@ -49,4 +49,17 @@ $border-thickness: 0.05em;
   margin-top: -$border-thickness;
   border-top: $border-thickness solid theme-color('border');
   border-bottom: $border-thickness solid theme-color('border');
+}
+
+%clickable-text {
+  @extend %common-clickable;
+  @include colors('link', 'default');
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    @include colors('link', 'focus');
+  }
 }

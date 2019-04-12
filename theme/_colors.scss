@@ -1,3 +1,9 @@
+$color-red: #dd1c1a;
+$color-blue: #4392F1;
+$color-yellow: #F0c808;
+$color-black: #2b303a;
+$color-white: #e0ddcf;
+
 $theme-colors: (
   'primary': blue,
   'alert-default': #f8f8f8,
@@ -6,11 +12,32 @@ $theme-colors: (
   'button-success': #b7ffe1,
   'button-danger': #ffc5b7,
   'border': #adadad,
-  'bg-blank': white
+  'bg-blank': white,
+  'link': (
+    'focus': (
+      'bg': $color-yellow,
+      'color': $color-black
+    ),
+    'default': (
+      'bg': transparent,
+      'color': $color-blue
+    )
+  )
 );
 
 @function theme-color($key: 'primary') {
-  @return map-get($theme-colors, $key)
+  @return map-get($theme-colors, $key);
+}
+
+@function colorset($key: 'primary', $field: 'color') {
+  @return map-get(map-get($theme-colors, $key), $field);
+}
+
+@mixin colors($key, $field) {
+  $set: colorset($key, $field);
+
+  background-color: map-get($set, 'bg');
+  color: map-get($set, 'color');
 }
 
 @mixin text-color($color) {
