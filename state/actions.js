@@ -31,7 +31,7 @@ import slugify from 'slugify';
 export function fetchFonts() {
   return dispatch => {
     dispatch({ type: FETCH_FONTS })
-    return fetch('/conscripter/static/AVHersheySimplexMedium.otf')
+    return fetch(BASE_LINK + '/static/AVHersheySimplexMedium.otf')
       .then(response => {
         if (response.status !== 200) {
           dispatch(fetchFontError())

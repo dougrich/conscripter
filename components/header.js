@@ -1,7 +1,6 @@
-import Link from 'next/link'
 import x from '../pages/index.scss' // this is done to avoid a nasty ordering issue in mini-css-extract
 import css from './header.scss'
-const { version } = require('../package.json')
+import Links from './links'
 
 export default function Header({
 
@@ -9,11 +8,11 @@ export default function Header({
   return (
     <header role="banner">
       <div className={css.container}>
-        <Link href="/"><a><h1>Conscripter</h1></a></Link>
+        <Links.Home variant='header'/>
         <div className={css.links} role="navigation">
-          <Link href="/about" as="/conscripter/about"><a className={css.link}>About</a></Link>
-          <Link href="/privacy" as="/conscripter/privacy"><a className={css.link}>Privacy</a></Link>
-          <Link href="https://github.com/dougrich/conscripter/blob/master/CHANGELOG.md"><a className={css.link}>New in {version}</a></Link>
+          <Links.About/>
+          <Links.Privacy/>
+          <Links.Changelog variant='versioned'/>
         </div>
       </div>
     </header>

@@ -1,5 +1,6 @@
 const path = require('path')
 const withSass = require('@zeit/next-sass')
+const webpack = require('webpack')
 
 module.exports = withSass({
   cssModules: true,
@@ -16,6 +17,9 @@ module.exports = withSass({
       test: /\.md$/,
       use: 'raw-loader'
     })
+    config.plugins.push(new webpack.DefinePlugin({
+      BASE_LINK: process.env.PRODUCTION ? '"/conscripter"' : '""'
+    }))
     return config
   }
 })

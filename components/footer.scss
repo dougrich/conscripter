@@ -1,8 +1,8 @@
 @import 'colors';
 
-.link {
-  margin: 0em 2em;
-  display: inline-block;
+.links {
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer {
