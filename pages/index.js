@@ -5,7 +5,7 @@ import Label from '../components/label'
 import SubstitutionEditor from '../components/substitution-editor'
 import GlyphGrid from '../components/glyph-grid'
 import Preview from '../components/preview';
-import Button from '../components/button';
+import Button, { ButtonBar } from '../components/button';
 import Input from '../components/input';
 import GithubCorner from '../components/github-corner'
 import Description from '../components/description';
@@ -84,11 +84,11 @@ const ConnectedTopActionSet = connect(
 }) {
   return (
     <div>
-      <div className={css.actions}>
+      <ButtonBar>
         <Button variant='success' onClick={onDownload}>Download</Button>
         <Button title='Save to File' variant='default' onClick={onSave}>Save</Button>
         <Button title='Load from File' variant='default' onClick={onLoad}>Load</Button>
-      </div>
+      </ButtonBar>
       {loadError && (
         <Description variant='danger'>{loadError.message}</Description>
       )}

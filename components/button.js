@@ -1,5 +1,6 @@
 import css from './button.scss'
 import * as cx from 'classnames'
+import Typography from './typography';
 
 export default function Button(props) {
   const {
@@ -9,7 +10,15 @@ export default function Button(props) {
 
   return (
     <button className={cx(css.btn, css[variant])} {...props}>
-      {children}
+      <Typography.Button>{children}</Typography.Button>
     </button>
+  )
+}
+
+export function ButtonBar({ children }){
+  return (
+    <div className={cx(css.bar)}>
+      {children}
+    </div>
   )
 }

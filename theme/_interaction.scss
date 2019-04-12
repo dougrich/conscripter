@@ -3,7 +3,7 @@
 $border-thickness: 0.05em;
 
 %common-clickable {
-  transition-property: background-color, border-color, color;
+  transition-property: background-color, border-color, color, transform;
   transition-duration: 250ms;
   cursor: pointer;
   outline: none;
@@ -61,5 +61,23 @@ $border-thickness: 0.05em;
 
   &:focus {
     @include colors('link', 'focus');
+  }
+}
+
+@mixin clickable-area($color: 'btn-default') {
+  @extend %common-clickable;
+  @include colors($color, 'default');
+  &:hover, &:focus {
+    transform: translate(0, -0.1rem);
+  }
+  &:active {
+    transition-duration: 100ms;
+    transform: translate(0, 0.1rem);
+  }
+  &:hover {
+    @include colors($color, 'hover');
+  }
+  &:focus {
+    @include colors($color, 'focus');
   }
 }

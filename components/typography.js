@@ -19,6 +19,13 @@ const Typography = {
     >
       {children}
     </div>
+  ),
+  Button: ({ children }) => (
+    <span
+      className={css.btn}
+    >
+      {children}
+    </span>
   )
 }
 

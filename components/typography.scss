@@ -22,3 +22,9 @@
   font-size: 0.9rem;
   letter-spacing: 0.02rem;
 }
+
+.btn {
+  @extend %menco-light;
+  font-size: 0.9rem;
+  letter-spacing: 0.02rem;
+}

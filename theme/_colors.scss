@@ -2,7 +2,8 @@ $color-red: #dd1c1a;
 $color-blue: #4392F1;
 $color-yellow: #F0c808;
 $color-black: #2b303a;
-$color-white: #e0ddcf;
+$color-white: white;
+$color-offwhite: #e0ddcf;
 
 $theme-colors: (
   'primary': blue,
@@ -16,11 +17,64 @@ $theme-colors: (
   'link': (
     'focus': (
       'bg': $color-yellow,
-      'color': $color-black
+      'color': $color-black,
+      'border': transparent
     ),
     'default': (
       'bg': transparent,
-      'color': $color-blue
+      'color': $color-blue,
+      'border': transparent
+    )
+  ),
+  'btn-default': (
+    'focus': (
+      'bg': $color-yellow,
+      'color': $color-black,
+      'border': $color-black
+    ),
+    'default': (
+      'bg': lighten($color-black, 15%),
+      'color': $color-white,
+      'border': transparent
+    ),
+    'hover': (
+      'bg': $color-black,
+      'color': $color-white,
+      'border': transparent
+    )
+  ),
+  'btn-success': (
+    'focus': (
+      'bg': $color-yellow,
+      'color': $color-black,
+      'border': $color-black
+    ),
+    'default': (
+      'bg': $color-blue,
+      'color': $color-white,
+      'border': transparent
+    ),
+    'hover': (
+      'bg': darken($color-blue, 15%),
+      'color': $color-white,
+      'border': transparent
+    )
+  ),
+  'btn-danger': (
+    'focus': (
+      'bg': $color-yellow,
+      'color': $color-black,
+      'border': $color-black
+    ),
+    'default': (
+      'bg': $color-red,
+      'color': $color-white,
+      'border': transparent
+    ),
+    'hover': (
+      'bg': darken($color-red, 15%),
+      'color': $color-white,
+      'border': transparent
     )
   )
 );
@@ -38,6 +92,7 @@ $theme-colors: (
 
   background-color: map-get($set, 'bg');
   color: map-get($set, 'color');
+  border-color: map-get($set, 'border');
 }
 
 @mixin text-color($color) {

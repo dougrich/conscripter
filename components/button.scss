@@ -1,22 +1,22 @@
 @import 'interaction';
 
 .btn {  
-  margin: 0.2em;
-  padding: 0.5em 0.8em;
-  width: 8em;
+  margin: 0.2rem;
+  padding: 0.5rem 0.8rem;
+  width: 12rem;
   text-align: center;
 }
 
 .default {
-  @include clickable('button-default');
+  @include clickable-area('btn-default');
 }
 
 .success {
-  @include clickable('button-success');
+  @include clickable-area('btn-success');
 }
 
 .danger {
-  @include clickable('button-danger');
+  @include clickable-area('btn-danger');
 }
 
 .action-left {
@@ -25,7 +25,7 @@
   width: 3em;
   height: 3em;
   box-sizing: border-box;
-  @include clickable('button-default');
+  @include clickable-area('btn-default');
 }
 
 .action-right {
@@ -34,5 +34,10 @@
   width: 3em;
   height: 3em;
   box-sizing: border-box;
-  @include clickable('button-default');
+  @include clickable-area('btn-default');
+}
+
+.bar {
+  display: flex;
+  margin: -0.2rem;
 }
