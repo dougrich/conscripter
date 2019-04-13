@@ -19,6 +19,10 @@ $transition-timing: 150ms;
   transition: width $transition-timing ease-in-out;
 }
 
+.runneractive {
+  transition: none;
+}
+
 .trackcontainer {
   height: $track-width;
   padding: #{$thumb-width / 2} 0;
@@ -55,6 +59,10 @@ $transition-timing: 150ms;
 
   &:hover:after {
     transform: translate(-50%, -50%) scale(2.0);
+  }
+
+  &.thumbactive {
+    transition: none;
   }
 
   &.thumbactive:after {

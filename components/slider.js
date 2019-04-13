@@ -89,7 +89,7 @@ export default class Slider extends React.PureComponent {
         >
           <div className={css.track} ref={this.track}>
             <div
-              className={css.runner}
+              className={cx(css.runner, { [css.runneractive]: isActive })}
               style={this.computeRunnerStyle(pct)}
             />
             <div
@@ -131,7 +131,8 @@ export class Toggle extends Slider {
               style={this.computeRunnerStyle(pct)}
             />
             <div
-              className={cx(css.thumb)}
+              className={css.thumb}
+              onClick={this.toggle}
               style={this.computeThumbStyle(pct)}
             />
           </div>
