@@ -808,25 +808,30 @@ __webpack_require__.r(__webpack_exports__);
 var _jsxFileName = "/git/fonts/conscripter/components/head.js";
 
 
+
+function favicon(v) {
+  return "" + "/static/favicon".concat(v);
+}
+
 function Head(_ref) {
   var title = _ref.title;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_server_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 11
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 12
     },
     __self: this
   }, title, " | Conscripter"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
     charSet: "utf-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 13
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
@@ -834,7 +839,7 @@ function Head(_ref) {
     content: "Conscripter is a tool for creating conlang script fonts from SVG using contextual alternates and ligatures.",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 14
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
@@ -842,51 +847,12 @@ function Head(_ref) {
     content: "width=device-width, user-scalable=no",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "shortcut icon",
-    href: "/static/favicon.ico",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "icon",
-    sizes: "16x16 32x32 64x64",
-    href: "/static/favicon.ico",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "icon",
-    type: "image/png",
-    sizes: "196x196",
-    href: "/static/favicon-192.png",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "icon",
-    type: "image/png",
-    sizes: "160x160",
-    href: "/static/favicon-160.png",
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 15
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "icon",
-    type: "image/png",
-    sizes: "96x96",
-    href: "/static/favicon-96.png",
+    rel: "shortcut icon",
+    href: favicon('.ico'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
@@ -894,9 +860,8 @@ function Head(_ref) {
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "icon",
-    type: "image/png",
-    sizes: "64x64",
-    href: "/static/favicon-64.png",
+    sizes: "16x16 32x32 64x64",
+    href: favicon('.ico'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 17
@@ -905,8 +870,8 @@ function Head(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "icon",
     type: "image/png",
-    sizes: "32x32",
-    href: "/static/favicon-32.png",
+    sizes: "196x196",
+    href: favicon('-192.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 18
@@ -915,43 +880,48 @@ function Head(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "icon",
     type: "image/png",
-    sizes: "16x16",
-    href: "/static/favicon-16.png",
+    sizes: "160x160",
+    href: favicon('-160.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 19
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "apple-touch-icon",
-    href: "/static/favicon-57.png",
+    rel: "icon",
+    type: "image/png",
+    sizes: "96x96",
+    href: favicon('-96.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 20
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "apple-touch-icon",
-    sizes: "114x114",
-    href: "/static/favicon-114.png",
+    rel: "icon",
+    type: "image/png",
+    sizes: "64x64",
+    href: favicon('-64.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 21
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "apple-touch-icon",
-    sizes: "72x72",
-    href: "/static/favicon-72.png",
+    rel: "icon",
+    type: "image/png",
+    sizes: "32x32",
+    href: favicon('-32.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 22
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
-    rel: "apple-touch-icon",
-    sizes: "144x144",
-    href: "/static/favicon-144.png",
+    rel: "icon",
+    type: "image/png",
+    sizes: "16x16",
+    href: favicon('-16.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 23
@@ -959,8 +929,7 @@ function Head(_ref) {
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "apple-touch-icon",
-    sizes: "60x60",
-    href: "/static/favicon-60.png",
+    href: favicon('-57.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 24
@@ -968,8 +937,8 @@ function Head(_ref) {
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "apple-touch-icon",
-    sizes: "120x120",
-    href: "/static/favicon-120.png",
+    sizes: "114x114",
+    href: favicon('-114.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 25
@@ -977,8 +946,8 @@ function Head(_ref) {
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "apple-touch-icon",
-    sizes: "76x76",
-    href: "/static/favicon-76.png",
+    sizes: "72x72",
+    href: favicon('-72.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 26
@@ -986,8 +955,8 @@ function Head(_ref) {
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "apple-touch-icon",
-    sizes: "152x152",
-    href: "/static/favicon-152.png",
+    sizes: "144x144",
+    href: favicon('-144.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 27
@@ -995,11 +964,47 @@ function Head(_ref) {
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "apple-touch-icon",
-    sizes: "180x180",
-    href: "/static/favicon-180.png",
+    sizes: "60x60",
+    href: favicon('-60.png'),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 28
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
+    rel: "apple-touch-icon",
+    sizes: "120x120",
+    href: favicon('-120.png'),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
+    rel: "apple-touch-icon",
+    sizes: "76x76",
+    href: favicon('-76.png'),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
+    rel: "apple-touch-icon",
+    sizes: "152x152",
+    href: favicon('-152.png'),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
+    rel: "apple-touch-icon",
+    sizes: "180x180",
+    href: favicon('-180.png'),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
@@ -1007,15 +1012,15 @@ function Head(_ref) {
     content: "#FFFFFF",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 33
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
     name: "msapplication-TileImage",
-    content: "/static/favicon-144.png",
+    content: favicon('-144.png'),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 34
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
@@ -1023,7 +1028,7 @@ function Head(_ref) {
     href: "https://use.typekit.net/dup3znt.css",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 35
     },
     __self: this
   }));
@@ -2085,7 +2090,7 @@ function (_React$PureComponent) {
         },
         __self: this
       }, "Doesn't look like what you expected? Raise an issue on ", react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("a", {
-        href: "https://github.com/dougrich/conscripter/issues/new",
+        href: "https://github.com/dougrich/conscripter/issues/new/choose",
         target: "_blank",
         __source: {
           fileName: _jsxFileName,
@@ -47131,6 +47136,7 @@ var ConnectedTopActionSet = Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["con
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    title: "Export OTF for use as font",
     variant: "success",
     onClick: onDownload,
     __source: {
@@ -47138,8 +47144,14 @@ var ConnectedTopActionSet = Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["con
       lineNumber: 93
     },
     __self: this
-  }, "Download"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    title: "Save to File",
+  }, "Export", react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_typography__WEBPACK_IMPORTED_MODULE_19__["default"].Small, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
+    },
+    __self: this
+  }, "(.otf)")), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    title: "Save workspace to JSON to use later",
     variant: "default",
     onClick: onSave,
     __source: {
@@ -47147,8 +47159,14 @@ var ConnectedTopActionSet = Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["con
       lineNumber: 94
     },
     __self: this
-  }, "Save"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    title: "Load from File",
+  }, "Save", react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_typography__WEBPACK_IMPORTED_MODULE_19__["default"].Small, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94
+    },
+    __self: this
+  }, "(.json)")), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    title: "Load workspace from JSON",
     variant: "default",
     onClick: onLoad,
     __source: {
@@ -47156,7 +47174,13 @@ var ConnectedTopActionSet = Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["con
       lineNumber: 95
     },
     __self: this
-  }, "Load")), loadError && react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_description__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, "Load", react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_typography__WEBPACK_IMPORTED_MODULE_19__["default"].Small, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: this
+  }, "(.json)"))), loadError && react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_components_description__WEBPACK_IMPORTED_MODULE_15__["default"], {
     variant: "danger",
     __source: {
       fileName: _jsxFileName,
