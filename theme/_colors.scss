@@ -4,18 +4,15 @@ $color-yellow: #F0c808;
 $color-black: #2b303a;
 $color-white: white;
 $color-offwhite: #e0ddcf;
+$color-coolgrey: #f3f3f3;
 
 $theme-colors: (
   'primary': $color-blue,
   'dark-primary': darken($color-blue, 15%),
   'offwhite': $color-offwhite,
-  'alert-default': #f8f8f8,
-  'alert-danger': #ffc5b7,
-  'button-default': #dedede,
-  'button-success': #b7ffe1,
-  'button-danger': #ffc5b7,
-  'border': #adadad,
-  'bg-blank': white,
+  'alert-default': $color-coolgrey,
+  'alert-danger': lighten($color-red, 40%),
+  'border': $color-offwhite,
   'link': (
     'focus': (
       'bg': $color-yellow,

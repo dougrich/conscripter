@@ -1,13 +1,16 @@
 import css from './description.scss'
 import * as cx from 'classnames'
+import Typography from './typography'
 
 export default function Description({
   variant,
   children
 }) {
   return (
-    <div className={cx(css.description, css[variant || 'default'])}>
+    <Typography.Description
+      className={cx(css.description, css[variant || 'default'])}
+    >
       {children}
-    </div>
+    </Typography.Description>
   )
 }

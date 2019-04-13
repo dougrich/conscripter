@@ -9,35 +9,6 @@ $border-thickness: 0.05em;
   outline: none;
 }
 
-@mixin clickable($initialbg: 'bg-blank') {
-  @extend %common-clickable;
-  $color: theme-color($initialbg);
-  $color-hover: darken($color, 15%);
-  $color-active: darken($color, 30%);
-
-  border: $border-thickness solid;
-  border-color: $color;
-  font-size: 0.75em;
-  @include text-color($color);
-
-  &:hover {
-    background-color: $color-hover;
-  }
-
-  &:active {
-    background-color: $color-active;
-  }
-
-  &:focus {
-    border-color: $color-active;
-  }
-
-  &[disabled] {
-    pointer-events: none;
-    opacity: 1;
-  }
-}
-
 @mixin section-tab {
   border: $border-thickness solid theme-color('border');
   border-bottom-color: white;

@@ -62,3 +62,8 @@
   @extend %menco-bold;
   font-size: 1em;
 }
+
+.description {
+  @extend %menco-light;
+  font-size: 0.8em;
+}

@@ -1,5 +1,6 @@
 import css from './typography.scss'
 import Images from './images';
+import * as cx from 'classnames'
 
 const Typography = {
   Header: {
@@ -49,6 +50,11 @@ const Typography = {
     <label className={css.label}>
       {children}
     </label>
+  ),
+  Description: ({ children, className }) => (
+    <div className={cx(className, css.description)}>
+      {children}
+    </div>
   )
 }
 
