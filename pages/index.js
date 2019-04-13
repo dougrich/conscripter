@@ -12,6 +12,7 @@ import Description from '../components/description';
 import Header from '../components/header';
 import Head from '../components/head';
 import Footer from '../components/footer';
+import Typography from '../components/typography';
 
 const store = createStore()
 
@@ -130,14 +131,14 @@ export default class Index extends React.Component {
             <div className={css.workspace}>
               <div className={css.panel}>
                 <div className={css.internalpanel}>
-                  <Label>Substitutions</Label>
+                  <Typography.Header.Section>Substitutions</Typography.Header.Section>
                   <ConnectedGlyphGrid>
                     <ConnectedSubstitutionEditor/>
                   </ConnectedGlyphGrid>
                 </div>
               </div>
               <div className={css.panel}>
-                <Label>Preview</Label>
+              <Typography.Header.Section>Preview</Typography.Header.Section>
                 <Preview defaultValue={PreviewPlaceholder}/>
               </div>
             </div>

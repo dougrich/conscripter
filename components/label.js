@@ -1,12 +1,12 @@
-import css from './label.scss'
+import Typography from "./typography";
 
 export default function Label(props) {
   const {
     children
   } = props
   return (
-    <label className={css.root} {...props}>
+    <Typography.Label>
       {children}
-    </label>
+    </Typography.Label>
   )
 }

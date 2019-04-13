@@ -36,6 +36,8 @@ $font-size: 52pt;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .textpanel {

@@ -5,6 +5,7 @@
 import css from './glyph-grid.scss'
 import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
+import Button from './button';
 
 export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect, onSubstitutionSwap }) {
   const symbols = []
@@ -15,9 +16,11 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
   if (substitutions.length === 0 && !active) {
     return (
       <div className={css.grid}>
-        <button className={cx(css.emptyset)} onClick={() => onSubstitutionSelect()}>
-        Click here to get started
-        </button>
+        <div className={css.emptyset}>
+          <Button onClick={() => onSubstitutionSelect()}>
+          Click here to get started
+          </Button>
+        </div>
       </div>
     )
   }

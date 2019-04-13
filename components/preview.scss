@@ -1,5 +1,11 @@
 .background {
   width: 100%;
+  margin: -1em;
+  padding: 1em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0em;
 }
 
 .previewText {
@@ -9,8 +15,7 @@
   box-sizing: border-box;
   background-color: transparent;
   min-height: 6em;
-  height: 12em;
-  max-height: 18em;
+  height: 100%!important;
   border: 2px solid transparent;
   font-size: 2em;
   font-family: demofont;
@@ -20,4 +25,8 @@
 .inverted {
   background-color: #222;
   color: white;
+}
+
+.formcontainer {
+  margin-bottom: 2em;
 }

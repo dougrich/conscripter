@@ -5,6 +5,7 @@ import Typography from './typography';
 export default function Button(props) {
   const {
     variant = 'default',
+    className,
     children
   } = props
 
@@ -19,7 +20,7 @@ export default function Button(props) {
   }
 
   return (
-    <button className={cx(css.btn, css[variant])} {...props}>
+    <button  {...props} className={cx(css.btn, className, css[variant])}>
       {child}
     </button>
   )

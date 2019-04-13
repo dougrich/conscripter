@@ -8,6 +8,11 @@ const Typography = {
         <Images.Logo/>
         Conscripter
       </h1>
+    ),
+    Section: ({ children }) => (
+      <h2 className={css.sectionheader}>
+        {children}
+      </h2>
     )
   },
   Links: ({ children }) => (
@@ -39,6 +44,11 @@ const Typography = {
   ),
   Small: ({ children }) => (
     <span className={css.small}>{' '}{children}</span>
+  ),
+  Label: ({ children }) => (
+    <label className={css.label}>
+      {children}
+    </label>
   )
 }
 

@@ -50,3 +50,15 @@
   font-size: 0.9em;
   opacity: 0.6;
 }
+
+.label {
+  @extend %menco-light;
+  font-size: 0.8em;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.sectionheader {
+  @extend %menco-bold;
+  font-size: 1em;
+}

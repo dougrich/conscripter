@@ -32,7 +32,7 @@ export default class Preview extends React.PureComponent {
     } = this.state
     return (
       <div className={cx(css.background, { [css.inverted]: options.invert })}>
-        <div className={css.container}>
+        <div className={css.formcontainer}>
           <Slider
             label='Font Size'
             min={100}
@@ -41,18 +41,18 @@ export default class Preview extends React.PureComponent {
             onChange={this.setFontSize}
             format={this.format}
           />
-          
           <Options label='Font Options' value={options} onChange={this.setOptions}/>
-          <textarea
-            className={css.previewText}
-            style={{
-              fontSize: (fontSize / 100) + 'em',
-              fontStyle: options.italic ? 'italic': 'initial',
-              fontWeight: options.bold ? 'bold' : 'normal'
-            }}
-            defaultValue={defaultValue}
-          />
         </div>
+        <textarea
+          className={css.previewText}
+          style={{
+            fontSize: (fontSize / 100) + 'em',
+            fontStyle: options.italic ? 'italic': 'initial',
+            fontWeight: options.bold ? 'bold' : 'normal',
+            height: '100%'
+          }}
+          defaultValue={defaultValue}
+        />
       </div>
     )
   }
