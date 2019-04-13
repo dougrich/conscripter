@@ -20,3 +20,5 @@
 - [ ] Slider keyboard shortcuts
 - [ ] Support for quick positioning corrections
 - [ ] Snap points on the slider
+- [ ] Vertical orthographies
+- [ ] Right to left orthographies
