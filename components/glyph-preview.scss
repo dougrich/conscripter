@@ -31,7 +31,7 @@
   vertical-align: bottom;
   z-index: 1;
   flex-basis: 0;
-  top: -0.12em;
+  top: -0.1em;
   position: relative;
 }
 
@@ -49,8 +49,9 @@
   display: inline-block;
   text-overflow: clip;
   white-space: nowrap;
-  vertical-align: baseline;
+  vertical-align: top;
 }
+
 .edges {
   position: absolute;
   top: 0;

@@ -3,6 +3,7 @@ import * as cx from 'classnames'
 import Text from './text'
 import Options from './options';
 import Slider from './slider';
+import Typography from './typography';
 
 export default class Preview extends React.PureComponent {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class Preview extends React.PureComponent {
       fontSize,
       options
     } = this.state
+    console.log(Typography.Demofont)
     return (
       <div className={cx(css.background, { [css.inverted]: options.invert })}>
         <div className={css.formcontainer}>
@@ -44,7 +46,7 @@ export default class Preview extends React.PureComponent {
           <Options label='Font Options' value={options} onChange={this.setOptions}/>
         </div>
         <Text.Area
-          className={css.previewText}
+          className={cx(css.previewText, Typography.Demofont)}
           style={{
             fontSize: (fontSize / 100) + 'em',
             fontStyle: options.italic ? 'italic': 'initial',

@@ -24,7 +24,7 @@ const FontStyle = connect(
 )(function ({ data }) {
   if (!data) return null
   return (
-    <style id='test' dangerouslySetInnerHTML={{__html:'@font-face { font-family: demofont; src: url(\'' + data + '\')}'}}></style>
+    <style id='test' dangerouslySetInnerHTML={{__html:'@font-face { font-family: demofont; src: url(\'' + data + '\');} @font-face { font-family: base-demofont; src: url(' + BASE_LINK + '/static/AVHersheySimplexMedium.otf' + ');}'}}></style>
   )
 })
 

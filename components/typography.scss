@@ -10,6 +10,14 @@
   font-style: normal;
 }
 
+.basedemofont {
+  font-family: base-demofont, sans-serif;
+}
+
+.demofont {
+  font-family: demofont, sans-serif;
+}
+
 .display {
   @extend %menco-bold;
   text-align: center;

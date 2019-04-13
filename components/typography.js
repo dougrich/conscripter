@@ -61,7 +61,9 @@ const Typography = {
       {children}
     </div>
   ),
-  Input: css.input
+  Input: css.input,
+  Demofont: css.demofont,
+  BaseDemofont: css.basedemofont
 }
 
 export default Typography
