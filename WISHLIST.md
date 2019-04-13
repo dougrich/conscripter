@@ -18,3 +18,4 @@
 - [ ] Explicit support for syllabry, abugidas
 - [ ] UX support for case insensitivity, multiple replacements for a single glyph
 - [ ] Slider keyboard shortcuts
+- [ ] Support for quick positioning corrections
