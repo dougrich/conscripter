@@ -1,4 +1,8 @@
-import x from '../pages/index.scss' // this is done to avoid a nasty ordering issue in mini-css-extract
+import '../pages/index.scss' // these are done to avoid a nasty ordering issue in mini-css-extract
+import './typography.scss'
+import './images.scss'
+import './print.scss'
+
 import css from './header.scss'
 import Links from './links'
 import Typography from './typography';
