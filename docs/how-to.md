@@ -60,5 +60,5 @@ Install the font on your computer (this is operating system dependent, but most 
 
 ---
 
-Made it this far? Have feedback on how to improve this tutorial? [Create an issue on Github](https://github.com/dougrich/conscripter/issues/new) to help improve the app!
+Made it this far? Have feedback on how to improve this tutorial? [Create an issue on Github](https://github.com/dougrich/conscripter/issues/new/choose) to help improve the app!
 

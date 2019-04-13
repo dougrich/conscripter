@@ -50,7 +50,7 @@ export default class SubstitutionEditor extends React.PureComponent {
           <DropZone onUpload={onUpload}/>
           <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
           <Description>
-            Doesn't look like what you expected? Raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to help improve this app.
+            Doesn't look like what you expected? Raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new/choose" target="_blank">Github</a> with your SVG to help improve this app.
           </Description>
           {warnings && warnings.length ? (
             <Description variant='danger'>
