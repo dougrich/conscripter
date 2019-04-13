@@ -4,6 +4,7 @@ import Markdown from 'react-markdown'
 import css from '../pages/index.scss'
 import Footer from '../components/footer';
 import GithubCorner from '../components/github-corner';
+import Typography from '../components/typography';
 
 export default function MarkdownPage({
   title,
@@ -14,9 +15,9 @@ export default function MarkdownPage({
       <Head title={title}/>
       <GithubCorner url='https://github.com/dougrich/conscripter'/>
       <Header/>
-      <div className={css.textpanel} role="main">
+      <Typography.Markdown className={css.textpanel} role="main">
         <Markdown source={source}/>
-      </div>
+      </Typography.Markdown>
       <Footer/>
     </div>
   )

@@ -56,6 +56,14 @@ const Typography = {
       {children}
     </div>
   ),
+  Markdown: (props) => {
+    const { children, className } = props
+    return (
+      <div {...props} className={cx(className, css.markdown)}>
+        {children}
+      </div>
+    )
+  },
   Descriptor: ({ className, children }) => (
     <div className={cx(className, css.descriptor)}>
       {children}

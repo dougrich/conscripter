@@ -87,3 +87,14 @@
   font-size: 0.8em;
   opacity: 0.6;
 }
+
+.markdown {
+  h2, h3, h4, h5, h6 {
+    @extend %menco-bold;
+  }
+
+  p {
+    @extend %menco-light;
+    line-height: 1.5em;
+  }
+}
