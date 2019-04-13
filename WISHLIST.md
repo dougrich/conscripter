@@ -15,3 +15,6 @@
 - [ ] Support for project workspaces, keeping multiple fonts active for a single user.
 - [ ] Support for scanning a JPG or PNG and pulling the symbol out of it.
 - [ ] Proper keyboard shortcuts - specifically ctrl+z, ctrl+y, ctrl+s
+- [ ] Explicit support for syllabry, abugidas
+- [ ] UX support for case insensitivity, multiple replacements for a single glyph
+- [ ] Slider keyboard shortcuts
