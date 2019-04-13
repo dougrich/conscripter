@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 0em;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
 }
 
 .previewText {

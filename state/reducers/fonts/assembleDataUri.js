@@ -197,7 +197,7 @@ function assembleDataUri(buffer, substitutions, fontname) {
 function download(buffer, substitutions, fontname = defaultFontName) {
   const font = opentype.parse(buffer)
   applySubstitutions(font, substitutions, fontname)
-  const downloadname = slugify(fontname) + '.otf'
+  const downloadname = slugify(fontname || defaultFontName) + '.otf'
   font.download(downloadname)
 }
 

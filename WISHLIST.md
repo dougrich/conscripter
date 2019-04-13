@@ -19,3 +19,4 @@
 - [ ] UX support for case insensitivity, multiple replacements for a single glyph
 - [ ] Slider keyboard shortcuts
 - [ ] Support for quick positioning corrections
+- [ ] Snap points on the slider

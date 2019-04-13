@@ -31,7 +31,6 @@ export default class Preview extends React.PureComponent {
       fontSize,
       options
     } = this.state
-    console.log(Typography.Demofont)
     return (
       <div className={cx(css.background, { [css.inverted]: options.invert })}>
         <div className={css.formcontainer}>

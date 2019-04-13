@@ -108,6 +108,7 @@ export default class Slider extends React.PureComponent {
 export class Toggle extends Slider {
   constructor(props) {
     super(props)
+    this.defaultId = 't' + Math.random().toString(16).slice(2)
     this.toggle = () => {
       const { onChange } = this.props
       onChange(!this.props.value)
@@ -116,12 +117,13 @@ export class Toggle extends Slider {
   render() {
     const {
       label,
+      id = this.defaultId,
       value
     } = this.props
     const pct = value ? 1 : 0
     return (
       <div className={css.togglecontainer}>
-        <input type='checkbox' value={value} className={css.togglecheckbox} onChange={this.toggle}/>
+        <input type='checkbox' id={id} value={value} className={css.togglecheckbox} onChange={this.toggle}/>
         <div
           className={cx(css.trackcontainer, css.toggle)}
           onClick={this.toggle}
@@ -138,7 +140,7 @@ export class Toggle extends Slider {
             />
           </div>
         </div>
-        <Label>
+        <Label htmlFor={id}>
           {label}
         </Label>
       </div>

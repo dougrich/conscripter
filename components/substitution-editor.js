@@ -72,6 +72,7 @@ export default class SubstitutionEditor extends React.PureComponent {
             value={currentReplace}
             onChange={onReplaceChange}
           />
+          <Description>May only contain letters, numbers, peroids, dashes, and underscores</Description>
           <Slider
             label='Advance Width'
             min={0}

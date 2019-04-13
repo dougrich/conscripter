@@ -2,10 +2,11 @@ import Typography from "./typography";
 
 export default function Label(props) {
   const {
-    children
+    children,
+    htmlFor
   } = props
   return (
-    <Typography.Label>
+    <Typography.Label htmlFor={htmlFor}>
       {children}
     </Typography.Label>
   )

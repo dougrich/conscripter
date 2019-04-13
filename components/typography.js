@@ -46,8 +46,8 @@ const Typography = {
   Small: ({ children }) => (
     <span className={css.small}>{' '}{children}</span>
   ),
-  Label: ({ children }) => (
-    <label className={css.label}>
+  Label: ({ children, htmlFor }) => (
+    <label className={css.label} htmlFor={htmlFor}>
       {children}
     </label>
   ),

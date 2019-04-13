@@ -160,7 +160,7 @@ export function save({ fonts: { substitutions, fontname }}) {
   const data = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ substitutions, fontname }))
   const container = document.createElement('a')
   container.setAttribute('href', data)
-  container.setAttribute('download', slugify(fontname) + '.json')
+  container.setAttribute('download', slugify(fontname || 'conscripter-custom-font') + '.json')
   container.click()
   return {
     type: SAVE
