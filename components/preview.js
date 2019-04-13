@@ -1,6 +1,6 @@
 import css from './preview.scss'
 import * as cx from 'classnames'
-import Input from './input';
+import Text from './text'
 import Options from './options';
 import Slider from './slider';
 
@@ -43,13 +43,12 @@ export default class Preview extends React.PureComponent {
           />
           <Options label='Font Options' value={options} onChange={this.setOptions}/>
         </div>
-        <textarea
+        <Text.Area
           className={css.previewText}
           style={{
             fontSize: (fontSize / 100) + 'em',
             fontStyle: options.italic ? 'italic': 'initial',
-            fontWeight: options.bold ? 'bold' : 'normal',
-            height: '100%'
+            fontWeight: options.bold ? 'bold' : 'normal'
           }}
           defaultValue={defaultValue}
         />

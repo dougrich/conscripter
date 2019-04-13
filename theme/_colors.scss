@@ -9,6 +9,7 @@ $color-coolgrey: #f3f3f3;
 $theme-colors: (
   'primary': $color-blue,
   'dark-primary': darken($color-blue, 15%),
+  'dark': $color-black,
   'offwhite': $color-offwhite,
   'alert-default': $color-coolgrey,
   'alert-danger': lighten($color-red, 40%),

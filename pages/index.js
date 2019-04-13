@@ -1,18 +1,17 @@
 import css from './index.scss'
 import { createStore, actions } from '../state'
 import { connect, Provider } from 'react-redux'
-import Label from '../components/label'
 import SubstitutionEditor from '../components/substitution-editor'
 import GlyphGrid from '../components/glyph-grid'
 import Preview from '../components/preview';
 import Button, { ButtonBar } from '../components/button';
-import Input from '../components/input';
 import GithubCorner from '../components/github-corner'
 import Description from '../components/description';
 import Header from '../components/header';
 import Head from '../components/head';
 import Footer from '../components/footer';
 import Typography from '../components/typography';
+import Text from '../components/text';
 
 const store = createStore()
 
@@ -60,7 +59,7 @@ const ConnectedSubstitutionEditor = connect(
   },
   (dispatch) => ({
     onUpload: ({ contents }) => dispatch(actions.updateSubstitutionGlyph(store.getState().fonts.meta, contents)),
-    onReplaceChange: ({ currentTarget: { value } }) => dispatch(actions.updateSubstitutionReplace(value)),
+    onReplaceChange: (value) => dispatch(actions.updateSubstitutionReplace(value)),
     onAdvanceWidthChange: (value) => dispatch(actions.updateSubstitutionAdvanceWidth(value)),
     onRemove: () => dispatch(actions.removeSubstitution(store.getState().substitution)),
     onSubmit: () => dispatch(actions.submitSubstitution(store.getState().substitution)),
@@ -100,9 +99,9 @@ const ConnectedTopActionSet = connect(
 const ConnectedFontName = connect(
   state => ({ value: state.fonts.fontname }),
   dispatch => ({
-    onChange: ({ currentTarget: { value }}) => dispatch(actions.setFontName(value))
+    onChange: (value) => dispatch(actions.setFontName(value))
   })
-)(Input)
+)(Text.Field)
 
 const ConnectedHelmet = connect(
   state => ({
@@ -126,7 +125,7 @@ export default class Index extends React.Component {
           <div className={css.container} role="main">
             <div className={css.topaction}>
               <ConnectedTopActionSet/>
-              <ConnectedFontName label='Font Name'/>
+              <ConnectedFontName label='Font Name' placeholder='Display name for your font'/>
             </div>
             <div className={css.workspace}>
               <div className={css.panel}>

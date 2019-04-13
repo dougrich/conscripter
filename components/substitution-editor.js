@@ -1,11 +1,11 @@
 import css from './substitution-editor.scss'
 import GlyphPreview from "./glyph-preview";
 import DropZone from "./dropzone";
-import Input from './input';
 import Button, { ButtonBar } from './button';
 import Description from './description';
 import Typography from './typography';
 import Slider from './slider';
+import Text from './text'
 
 function surpress(handler) {
   return e => {
@@ -64,16 +64,14 @@ export default class SubstitutionEditor extends React.PureComponent {
           ) : null}
         </div>
         <div>
-          <Input
+          <Text.Field
             label='Replace'
             required
             pattern='^[a-zA-Z0-9\.\-_]+$'
+            placeholder='Characters the glyph replaces'
             value={currentReplace}
             onChange={onReplaceChange}
-          >
-            <div>This is case sensitive string that will be replaced with this symbol.</div>
-            <div>It must be alphanumeric (A-Z, 0-9) or '.', '-', or '_'.</div>
-          </Input>
+          />
           <Slider
             label='Advance Width'
             min={0}

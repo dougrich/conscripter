@@ -55,7 +55,8 @@ const Typography = {
     <div className={cx(className, css.description)}>
       {children}
     </div>
-  )
+  ),
+  Input: css.input
 }
 
 export default Typography

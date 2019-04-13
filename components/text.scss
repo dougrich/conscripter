@@ -1,0 +1,67 @@
+@import 'colors';
+
+.textarea {
+  border: 0;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  margin-top: -3px;
+  margin-bottom: -3px;
+  height: calc(100% + 6px)!important;
+
+  &:focus {
+    border-top: 3px solid theme-color('primary');
+    border-bottom: 3px solid theme-color('primary');
+  }
+}
+
+.textfield {
+  width: 100%;
+  display: block;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  background: transparent;
+  outline: none;
+  font-size: 1.2em;
+  &:focus {
+    border-bottom: 3px solid theme-color('primary');
+  }
+}
+
+%common-border {
+  border: 0;
+  transition: border 150ms ease-in-out, padding 150ms ease-in-out;
+}
+
+%border-bottom {
+  border-bottom: 1px solid theme-color('offwhite');
+  padding-bottom: 1px;
+  &:hover {
+    border-bottom-width: 2px;
+    padding-bottom: 0px;
+    border-bottom-color: theme-color('dark');
+  }
+}
+
+%border-top {
+  border-top: 1px solid theme-color('offwhite');
+  padding-top: 1px;
+  &:hover {
+    border-top-width: 2px;
+    padding-top: 0px;
+    border-top-color: theme-color('dark');
+  }
+}
+
+.textareacontainer {
+  height: 100%;
+  @extend %common-border;
+  @extend %border-bottom;
+  @extend %border-top;
+}
+
+.textfieldcontainer {
+  @extend %common-border;
+  @extend %border-bottom;
+  margin-bottom: 1em;
+}
