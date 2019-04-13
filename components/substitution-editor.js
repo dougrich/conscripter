@@ -44,7 +44,7 @@ export default class SubstitutionEditor extends React.PureComponent {
       <form ref={this.formRef} className={css.container} onSubmit={surpress(onSubmit)}>
         <div className={css.movement}>
           {canMoveLeft ? <Button title='Move up in priority' variant='action' onClick={surpress(() => onSwap(idx, idx - 1))}><Typography.Icon>{'<<'}</Typography.Icon></Button> : <div/>}
-          {canMoveRight ? <Button title='Move down in priority' variant='action' onClick={surpress(() => onSwap(idx, idx + 1))}><Typography.Icon>{'<<'}</Typography.Icon></Button> : <div/>}
+          {canMoveRight ? <Button title='Move down in priority' variant='action' onClick={surpress(() => onSwap(idx, idx + 1))}><Typography.Icon>{'>>'}</Typography.Icon></Button> : <div/>}
         </div>
         <div>
           <DropZone onUpload={onUpload}/>
