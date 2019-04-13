@@ -14,7 +14,7 @@
    viewBox="0 0 352.77777 352.77777"
    version="1.1"
    id="svg8"
-   sodipodi:docname="all.svg"
+   sodipodi:docname="d.svg"
    inkscape:version="0.92.3 (2405546, 2018-03-11)">
   <defs
      id="defs2" />
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="366.22286"
-     inkscape:cy="815.01942"
+     inkscape:cx="-3.94753"
+     inkscape:cy="447.3239"
      inkscape:document-units="pt"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,9 +59,9 @@
      id="layer1"
      transform="translate(0,55.777752)">
     <path
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:93.33332825;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-       d="M 0 326.66406 L 0 420.00195 L 483.33594 420.00195 L 483.33594 776.66406 L 380.66016 776.66406 C 362.08385 705.48399 302.21068 649.65975 226.66602 638.75586 L 213.33398 731.13086 C 259.53355 737.79916 293.24859 776.66748 293.33203 823.33984 C 293.25965 870.02087 259.54214 908.90077 213.33398 915.57031 L 226.66602 1007.9453 C 302.2242 997.03949 362.10427 941.19757 380.66992 870.00195 L 483.33594 870.00195 L 483.33594 1263.3301 L 576.66602 1263.3301 L 576.66602 420.00195 L 690 420.00195 L 690 326.66406 L 0 326.66406 z "
-       transform="matrix(0.26458332,0,0,0.26458332,0,-55.777752)"
-       id="path4705" />
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:24.69444275;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 0,57.110442 v 24.695654 h 127.88263 v 11.464932 26.458322 29.98525 h -27.1663 C 95.801342,130.88154 79.959905,116.11138 59.972048,113.22639 l -3.527435,24.44088 c 12.223635,1.76433 21.144073,12.04823 21.166149,24.39696 -0.01915,12.35102 -8.940241,22.63801 -21.166149,24.40265 l 3.527435,24.44088 c 19.991434,-2.8855 35.834707,-17.66033 40.746862,-36.49751 h 27.16372 v 56.4441 h 24.69358 V 119.72935 93.271028 81.806096 h 29.98628 V 57.110442 Z"
+       id="path831"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
