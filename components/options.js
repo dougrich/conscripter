@@ -1,6 +1,7 @@
 import css from './options.scss'
 
 import Label from "./label";
+import { Toggle } from './slider';
 
 function Option({
   field,
@@ -9,10 +10,7 @@ function Option({
   onChange
 }) {
   return (
-    <span>
-      <input type='checkbox' checked={value} onChange={onChange} id={field}/>
-      <label className={css.label} htmlFor={field}>{label}</label>
-    </span>
+    <Toggle label={label} value={value} onChange={onChange.bind(null, field)}/>
   )
 }
 
@@ -23,18 +21,18 @@ export default function Options({
   label
 }) {
   const options = Object.keys(value)
-  const onChange = ({ currentTarget: { checked, id }}) => {
+  const onChange = (field, checked) => {
     
     propsOnChange({
       ...value,
-      [id]: checked
+      [field]: checked
     })
   }
 
   return (
     <div>
       <Label>{label}</Label>
-      <div>
+      <div className={css.optionslist}>
         {options.map((o) => (
           <Option onChange={onChange} value={value[o]} label={optionLabels[o] || o} key={o} field={o}/>
         ))}

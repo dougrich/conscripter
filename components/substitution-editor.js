@@ -2,9 +2,10 @@ import css from './substitution-editor.scss'
 import GlyphPreview from "./glyph-preview";
 import DropZone from "./dropzone";
 import Input from './input';
-import Button from './button';
+import Button, { ButtonBar } from './button';
 import Description from './description';
 import Typography from './typography';
+import Slider from './slider';
 
 function surpress(handler) {
   return e => {
@@ -73,9 +74,8 @@ export default class SubstitutionEditor extends React.PureComponent {
             <div>This is case sensitive string that will be replaced with this symbol.</div>
             <div>It must be alphanumeric (A-Z, 0-9) or '.', '-', or '_'.</div>
           </Input>
-          <Input
+          <Slider
             label='Advance Width'
-            type='range'
             min={0}
             max={2000}
             format={v => {
@@ -83,15 +83,13 @@ export default class SubstitutionEditor extends React.PureComponent {
             }}
             value={currentGlyph.advanceWidth}
             onChange={onAdvanceWidthChange}
-          >
-            <div>This is how far the substituted glyph will advance the cursor.</div>
-          </Input>
+          />
         </div>
-        <div className={css.actions}>
+        <ButtonBar>
           {canRemove && <Button variant='danger' onClick={surpress(onRemove)}>Remove</Button>}
           <Button type='submit' variant='success'>Submit</Button>
           <Button type='cancel' onClick={surpress(onCancel)}>Cancel</Button>
-        </div>
+        </ButtonBar>
       </form>
     )
   }

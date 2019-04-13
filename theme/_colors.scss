@@ -6,7 +6,9 @@ $color-white: white;
 $color-offwhite: #e0ddcf;
 
 $theme-colors: (
-  'primary': blue,
+  'primary': $color-blue,
+  'dark-primary': darken($color-blue, 15%),
+  'offwhite': $color-offwhite,
   'alert-default': #f8f8f8,
   'alert-danger': #ffc5b7,
   'button-default': #dedede,

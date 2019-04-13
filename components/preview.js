@@ -2,6 +2,7 @@ import css from './preview.scss'
 import * as cx from 'classnames'
 import Input from './input';
 import Options from './options';
+import Slider from './slider';
 
 export default class Preview extends React.PureComponent {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class Preview extends React.PureComponent {
       }
     }
 
-    this.setFontSize = ({ currentTarget: { value }}) => this.setState({ fontSize: value })
+    this.setFontSize = (fontSize) => this.setState({ fontSize })
     this.setOptions = options => this.setState({ options })
     this.format = v => {
       return ((v / 100) * 16).toFixed(1) + ' pt'
@@ -32,7 +33,15 @@ export default class Preview extends React.PureComponent {
     return (
       <div className={cx(css.background, { [css.inverted]: options.invert })}>
         <div className={css.container}>
-          <Input label='Font Size' type='range' min={100} max={300} format={this.format} value={fontSize} onChange={this.setFontSize}/>
+          <Slider
+            label='Font Size'
+            min={100}
+            value={fontSize}
+            max={300}
+            onChange={this.setFontSize}
+            format={this.format}
+          />
+          
           <Options label='Font Options' value={options} onChange={this.setOptions}/>
           <textarea
             className={css.previewText}

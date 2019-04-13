@@ -1,0 +1,77 @@
+@import 'colors';
+
+
+$thumb-width: 16px;
+$track-width: 4px;
+$transition-timing: 150ms;
+
+.track {
+  height: $track-width;
+  width: 100%;
+  background-color: theme-color('offwhite');
+  position: relative;
+}
+
+.runner {
+  background-color: theme-color('primary');
+  position: absolute;
+  height: 100%;
+  transition: width $transition-timing ease-in-out;
+}
+
+.trackcontainer {
+  height: $track-width;
+  padding: #{$thumb-width / 2} 0;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.thumb {
+  width: $thumb-width;
+  height: $thumb-width;
+  background-color: theme-color('primary');
+  border-radius: 100%;
+  position: relative;
+  top: -$thumb-width / 2 + $track-width / 2;
+  z-index: 0;
+  border: 2px solid theme-color('dark-primary');
+  box-sizing: border-box;
+  transition: left $transition-timing ease-in-out;
+
+  &:after {
+    content: ' '; 
+    width: $thumb-width;
+    height: $thumb-width;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: theme-color('primary');
+    opacity: 0.3;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    transition: transform $transition-timing ease-in-out;
+    z-index: -1;
+  }
+
+  &:hover:after {
+    transform: translate(-50%, -50%) scale(2.0);
+  }
+
+  &.thumbactive:after {
+    transform: translate(-50%, -50%) scale(3.0)!important;
+  }
+}
+
+.toggle {
+  width: $thumb-width * 3;
+  padding-top: 1.5em;
+  margin: 0 0.5em;
+}
+
+.togglecheckbox {
+  display: none;
+}
+
+.togglecontainer {
+  display: flex;
+}
