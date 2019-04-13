@@ -72,3 +72,10 @@
   @extend %menco-light;
   font-size: 1em;
 }
+
+.descriptor {
+  @extend %menco-light;
+  text-align: center;
+  font-size: 0.8em;
+  opacity: 0.6;
+}

@@ -56,6 +56,11 @@ const Typography = {
       {children}
     </div>
   ),
+  Descriptor: ({ className, children }) => (
+    <div className={cx(className, css.descriptor)}>
+      {children}
+    </div>
+  ),
   Input: css.input
 }
 

@@ -6,6 +6,7 @@ import css from './glyph-grid.scss'
 import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
 import Button from './button';
+import Typography from './typography';
 
 export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect, onSubstitutionSwap }) {
   const symbols = []
@@ -105,7 +106,13 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
   
   return (
     <div className={css.grid}>
+      <Typography.Descriptor className={css.textcell}>
+        High Priority
+      </Typography.Descriptor>
       {symbols}
+      <Typography.Descriptor className={css.textcell}>
+        Low Priority
+      </Typography.Descriptor>
     </div>
   )
 }

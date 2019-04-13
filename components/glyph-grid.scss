@@ -64,3 +64,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.textcell {
+  @extend .gridcell;
+  height: 4em;
+  padding-top: 1.5em;
+  box-sizing: border-box;
+}
