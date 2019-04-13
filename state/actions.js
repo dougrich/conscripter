@@ -157,7 +157,7 @@ export function swapSubstitution(a, b) {
 }
 
 export function save({ fonts: { substitutions, fontname }}) {
-  const data = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ substitutions, fontname }))
+  const data = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ version: '0.1.0', substitutions, fontname }))
   const container = document.createElement('a')
   container.setAttribute('href', data)
   container.setAttribute('download', slugify(fontname || 'conscripter-custom-font') + '.json')
