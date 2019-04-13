@@ -6,7 +6,7 @@
   padding: 1em;
   text-align: center;
 
-  @include clickable('button-default');
+  @include clickable-area('btn-default');
 }
 
 .input {

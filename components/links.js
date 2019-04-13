@@ -1,6 +1,6 @@
 import Link from 'next/link'
 const { version } = require('../package.json')
-import * as assert from 'assert'
+import { variant, defaultVariant } from './variant'
 import Typography from './typography';
 import css from './links.scss'
 
@@ -14,16 +14,6 @@ function href(route) {
     return {
       href: route
     }
-  }
-}
-
-const defaultVariant = 'default'
-function variant(cases) {
-  return (props) => {
-    const { variant } = props
-    const component = cases[variant || defaultVariant]
-    assert(!!component, 'Undefined variant: ' + variant)
-    return component(props)
   }
 }
 

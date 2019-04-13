@@ -8,9 +8,19 @@ export default function Button(props) {
     children
   } = props
 
+  let child = (
+    <Typography.Button>{children}</Typography.Button>
+  )
+
+  if (variant === 'action') {
+    child = (
+      <Typography.Icon>{children}</Typography.Icon>
+    )
+  }
+
   return (
     <button className={cx(css.btn, css[variant])} {...props}>
-      <Typography.Button>{children}</Typography.Button>
+      {child}
     </button>
   )
 }

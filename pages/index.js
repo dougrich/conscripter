@@ -131,11 +131,6 @@ export default class Index extends React.Component {
               <div className={css.panel}>
                 <div className={css.internalpanel}>
                   <Label>Substitutions</Label>
-                  <Description>
-                    <p>The glyphs that you want to substitute for text. Add in the order of most specific to least specific, as the first eligible substitution is used.</p>
-                    <p>i.e., if you add `x` and then `xx`, you will see two `x` glyphs. If you add `xx` and then `x`, you will see one `xx` glyph.</p>
-                    <p>If something doesn't make sense, raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new" target="_blank">Github</a> with your SVG to improve the app.</p>
-                  </Description>
                   <ConnectedGlyphGrid>
                     <ConnectedSubstitutionEditor/>
                   </ConnectedGlyphGrid>

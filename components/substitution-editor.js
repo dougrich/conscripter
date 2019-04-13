@@ -4,6 +4,7 @@ import DropZone from "./dropzone";
 import Input from './input';
 import Button from './button';
 import Description from './description';
+import Typography from './typography';
 
 function surpress(handler) {
   return e => {
@@ -41,8 +42,8 @@ export default class SubstitutionEditor extends React.PureComponent {
     return (
       <form ref={this.formRef} className={css.container} onSubmit={surpress(onSubmit)}>
         <div className={css.movement}>
-          {canMoveLeft ? <Button title='Move up in priority' variant='action-left' onClick={surpress(() => onSwap(idx, idx - 1))}>{'<<'}</Button> : <div/>}
-          {canMoveRight ? <Button title='Move down in priority' variant='action-right' onClick={surpress(() => onSwap(idx, idx + 1))}>{'>>'}</Button> : <div/>}
+          {canMoveLeft ? <Button title='Move up in priority' variant='action' onClick={surpress(() => onSwap(idx, idx - 1))}><Typography.Icon>{'<<'}</Typography.Icon></Button> : <div/>}
+          {canMoveRight ? <Button title='Move down in priority' variant='action' onClick={surpress(() => onSwap(idx, idx + 1))}><Typography.Icon>{'<<'}</Typography.Icon></Button> : <div/>}
         </div>
         <div>
           <DropZone onUpload={onUpload}/>

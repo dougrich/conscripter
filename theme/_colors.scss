@@ -76,6 +76,23 @@ $theme-colors: (
       'color': $color-white,
       'border': transparent
     )
+  ),
+  'btn-transparent': (
+    'focus': (
+      'bg': $color-yellow,
+      'color': $color-black,
+      'border': transparent
+    ),
+    'default': (
+      'bg': transparent,
+      'color': $color-black,
+      'border': transparent
+    ),
+    'hover': (
+      'bg': darken(white, 15%),
+      'color': $color-black,
+      'border': transparent
+    )
   )
 );
 

@@ -9,11 +9,15 @@
   text-align: center;
   align-items: flex-start;
   display: block;
-  @include clickable;
+  @include clickable-area('btn-transparent');
 }
 
 .inactive {
   opacity: 0.25;
+}
+
+.disabled {
+  pointer-events: none;
 }
 
 .activecell {
@@ -59,5 +63,5 @@
   display: block;
   width: 100%;
   height: 100%;
-  @include clickable;
+  @include clickable-area('btn-transparent');
 }

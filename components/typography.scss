@@ -28,3 +28,20 @@
   font-size: 0.9rem;
   letter-spacing: 0.02rem;
 }
+
+.icon {
+  width: 3em;
+  pointer-events: none;
+  text-align: center;
+  display: block;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.copyright {
+  @extend %menco-light;
+  margin-bottom: 1em;
+  font-size: 0.9rem;
+}

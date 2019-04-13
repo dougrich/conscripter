@@ -1,10 +1,5 @@
 @import 'colors';
 
-.links {
-  display: flex;
-  justify-content: space-between;
-}
-
 .footer {
   @include text-color(theme-color('alert-default'));
 }
@@ -14,9 +9,4 @@
   max-width: 500px;
   padding: 1em;
   text-align: center;
-  font-size: 0.7em;
-}
-
-.copyright {
-  margin-bottom: 1em;
 }

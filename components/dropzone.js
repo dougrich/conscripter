@@ -1,4 +1,5 @@
 import css from './dropzone.scss'
+import Typography from './typography';
 
 export default class DropZone extends React.Component {
   constructor(props) {
@@ -69,8 +70,7 @@ export default class DropZone extends React.Component {
         onClick={this.onClick}
         tabIndex="0"
       >
-        Drag file or click here to upload
-        {this.renderWarning()}
+        <Typography.Button>Drag file or click here to upload</Typography.Button>
         <input
           className={css.input}
           ref={this.fileInput}

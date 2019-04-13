@@ -24,7 +24,7 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
 
   function Btn({children, isActive, onClick}) {
     return (
-      <button className={cx(css.container, { [css.activecell]: isActive })} disabled={hasActive} onClick={onClick}>
+      <button className={cx(css.container, { [css.activecell]: isActive, [css.disabled]: hasActive })} disabled={hasActive} onClick={onClick}>
         {children}
       </button>
     )

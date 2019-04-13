@@ -19,18 +19,8 @@
   @include clickable-area('btn-danger');
 }
 
-.action-left {
+.action {
   border-radius: 100%;
-  align-self: flex-start;
-  width: 3em;
-  height: 3em;
-  box-sizing: border-box;
-  @include clickable-area('btn-default');
-}
-
-.action-right {
-  border-radius: 100%;
-  align-self: flex-end;
   width: 3em;
   height: 3em;
   box-sizing: border-box;
