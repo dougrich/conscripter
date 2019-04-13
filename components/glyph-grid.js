@@ -35,7 +35,13 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
   }
 
   function onDragStart(e) {
-    e.dataTransfer.setData('number', parseInt(e.currentTarget.attributes['data-index'].value))
+    const index = e.currentTarget.attributes['data-index']
+    if (!index) {
+      e.preventDefault()
+      e.stopPropagation()
+    } else {
+      e.dataTransfer.setData('number', parseInt(index.value))
+    }
   }
 
   function onDragOver(e) {
@@ -45,10 +51,16 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
   }
 
   function onDrop(e) {
-    const self = parseInt(e.currentTarget.attributes['data-index'].value)
-    const other = e.dataTransfer.getData('number')
-    if (self !== other) {
-      onSubstitutionSwap(self, other)
+    const index = e.currentTarget.attributes['data-index']
+    if (!index) {
+      e.preventDefault()
+      e.stopPropagation()
+    } else {
+      const self = parseInt(index.value)
+      const other = e.dataTransfer.getData('number')
+      if (self !== other) {
+        onSubstitutionSwap(self, other)
+      }
     }
   }
 
