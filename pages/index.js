@@ -90,9 +90,9 @@ const ConnectedTopActionSet = connect(
         Make sure to read the <Links.Usage/> to figure out how to use your downloaded font!
       </Description>
       <ButtonBar>
-        <Button variant='success' onClick={onDownload}>Download</Button>
-        <Button title='Save to File' variant='default' onClick={onSave}>Save</Button>
-        <Button title='Load from File' variant='default' onClick={onLoad}>Load</Button>
+        <Button title='Export OTF for use as font' variant='success' onClick={onDownload}>Export<Typography.Small>(.otf)</Typography.Small></Button>
+        <Button title='Save workspace to JSON to use later' variant='default' onClick={onSave}>Save<Typography.Small>(.json)</Typography.Small></Button>
+        <Button title='Load workspace from JSON' variant='default' onClick={onLoad}>Load<Typography.Small>(.json)</Typography.Small></Button>
       </ButtonBar>
       {loadError && (
         <Description variant='danger'>{loadError.message}</Description>
