@@ -2,9 +2,11 @@ const path = require('path')
 const withSass = require('@zeit/next-sass')
 const webpack = require('webpack')
 
+const ISPRODUCTION = process.env.NODE_ENV === 'production'
+
 module.exports = withSass({
   cssModules: true,
-  assetPrefix: process.env.PRODUCTION ? '/conscripter/' : '',
+  assetPrefix: ISPRODUCTION ? '/conscripter/' : '',
   cssLoaderOptions: {
     importLoaders: 1,
     localIdentName: "c[hash:base64:10]"
@@ -18,7 +20,7 @@ module.exports = withSass({
       use: 'raw-loader'
     })
     config.plugins.push(new webpack.DefinePlugin({
-      BASE_LINK: process.env.PRODUCTION ? '"/conscripter"' : '""'
+      BASE_LINK: ISPRODUCTION ? '"/conscripter"' : '""'
     }))
     return config
   }
