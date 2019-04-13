@@ -20,6 +20,7 @@ export default class Slider extends React.PureComponent {
       onChange(this.computeNewValue(e.clientX))
     }
     this.onMouseMove = (e) => {
+      e.preventDefault()
       const newv = this.computeNewValue(e.clientX)
       const { onChange = noop } = this.props
       if (!this.state.isActive) { return }
