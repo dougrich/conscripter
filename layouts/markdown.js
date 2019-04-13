@@ -16,7 +16,7 @@ export default function MarkdownPage({
       <GithubCorner url='https://github.com/dougrich/conscripter'/>
       <Header/>
       <Typography.Markdown className={css.textpanel} role="main">
-        <Markdown source={source}/>
+        <Markdown source={source} transformImageUri={x => BASE_LINK + x}/>
       </Typography.Markdown>
       <Footer/>
     </div>
