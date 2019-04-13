@@ -39,6 +39,7 @@ $font-size: 52pt;
   margin-right: auto;
   display: flex;
   flex-direction: column;
+  page-break-after: always;
 }
 
 .textpanel {
@@ -65,6 +66,12 @@ $font-size: 52pt;
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+@media print {
+  .panel {
+    height: auto;
+  }
 }
 
 @media screen and (min-width: 1000px) {

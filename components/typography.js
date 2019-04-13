@@ -1,5 +1,6 @@
 import css from './typography.scss'
 import Images from './images';
+import Print from './print.scss'
 import * as cx from 'classnames'
 
 const Typography = {
@@ -18,7 +19,7 @@ const Typography = {
   },
   Links: ({ children }) => (
     <div
-      className={css.links}
+      className={cx(css.links, Print.none)}
       role="navigation"
     >
       {children}

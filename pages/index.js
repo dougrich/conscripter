@@ -13,6 +13,7 @@ import Footer from '../components/footer';
 import Typography from '../components/typography';
 import Text from '../components/text';
 import Links from '../components/links';
+import Print from '../components/print.scss'
 
 const store = createStore()
 
@@ -84,7 +85,7 @@ const ConnectedTopActionSet = connect(
   onLoad
 }) {
   return (
-    <div>
+    <div className={Print.none}>
       <Description>
         Make sure to read the <Links.Usage/> to figure out how to use your downloaded font!
       </Description>

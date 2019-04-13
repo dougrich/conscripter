@@ -28,3 +28,9 @@
 .formcontainer {
   margin-bottom: 2em;
 }
+
+@media print {
+  .previewText {
+    min-height: 80vh;
+  }
+}

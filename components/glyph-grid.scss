@@ -72,3 +72,9 @@
   padding-top: 1.5em;
   box-sizing: border-box;
 }
+
+@media print {
+  .grid {
+    height: auto;
+  }
+}

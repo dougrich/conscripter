@@ -1,5 +1,6 @@
 import css from './preview.scss'
 import * as cx from 'classnames'
+import Print from './print.scss'
 import Text from './text'
 import Options from './options';
 import Slider from './slider';
@@ -33,7 +34,7 @@ export default class Preview extends React.PureComponent {
     } = this.state
     return (
       <div className={cx(css.background, { [css.inverted]: options.invert })}>
-        <div className={css.formcontainer}>
+        <div className={cx(css.formcontainer, Print.none)}>
           <Slider
             label='Font Size'
             min={100}

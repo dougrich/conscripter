@@ -7,6 +7,7 @@ import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
 import Button from './button';
 import Typography from './typography';
+import Print from './print.scss'
 
 export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect, onSubstitutionSwap }) {
   const symbols = []
@@ -26,9 +27,9 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     )
   }
 
-  function Btn({children, isActive, onClick}) {
+  function Btn({children, isActive, onClick, className}) {
     return (
-      <button className={cx(css.container, { [css.activecell]: isActive, [css.disabled]: hasActive })} disabled={hasActive} onClick={onClick}>
+      <button className={cx(css.container, className, { [css.activecell]: isActive, [css.disabled]: hasActive })} disabled={hasActive} onClick={onClick}>
         {children}
       </button>
     )
@@ -86,7 +87,7 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
 
   gridcells.push({
     key: 'add',
-    button: (<Btn onClick={() => onSubstitutionSelect()}>+</Btn>),
+    button: (<Btn className={Print.none} onClick={() => onSubstitutionSelect()}>+</Btn>),
     isActive: hasActive && !foundActive
   })
 
@@ -118,11 +119,11 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
   
   return (
     <div className={css.grid}>
-      <Typography.Descriptor className={css.textcell}>
+      <Typography.Descriptor className={cx(css.textcell, Print.none)}>
         High Priority
       </Typography.Descriptor>
       {symbols}
-      <Typography.Descriptor className={css.textcell}>
+      <Typography.Descriptor className={cx(css.textcell, Print.none)}>
         Low Priority
       </Typography.Descriptor>
     </div>
