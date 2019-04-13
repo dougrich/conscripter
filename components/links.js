@@ -48,7 +48,8 @@ const Links ={
   Home,
   About,
   Privacy,
-  Changelog
+  Changelog,
+  Usage: () => (<AnchorLink route='/usage'>How to Use</AnchorLink>)
 }
 
 export default Links

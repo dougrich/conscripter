@@ -10,6 +10,7 @@ export default function Footer() {
         <Typography.Links>
           <Links.Home/>
           <Links.About/>
+          <Links.Usage/>
           <Links.Privacy/>
           <Links.Changelog/>
         </Typography.Links>

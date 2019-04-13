@@ -12,6 +12,7 @@ import Head from '../components/head';
 import Footer from '../components/footer';
 import Typography from '../components/typography';
 import Text from '../components/text';
+import Links from '../components/links';
 
 const store = createStore()
 
@@ -84,6 +85,9 @@ const ConnectedTopActionSet = connect(
 }) {
   return (
     <div>
+      <Description>
+        Make sure to read the <Links.Usage/> to figure out how to use your downloaded font!
+      </Description>
       <ButtonBar>
         <Button variant='success' onClick={onDownload}>Download</Button>
         <Button title='Save to File' variant='default' onClick={onSave}>Save</Button>

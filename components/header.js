@@ -12,6 +12,7 @@ export default function Header({
         <Links.Home variant='header'/>
         <Typography.Links>
           <Links.About/>
+          <Links.Usage/>
           <Links.Privacy/>
           <Links.Changelog variant='versioned'/>
         </Typography.Links>
