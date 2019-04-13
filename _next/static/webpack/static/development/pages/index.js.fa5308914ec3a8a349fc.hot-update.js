@@ -1,0 +1,200 @@
+webpackHotUpdate("static/development/pages/index.js",{
+
+/***/ "./components/typography.js":
+/*!**********************************!*\
+  !*** ./components/typography.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _typography_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./typography.scss */ "./components/typography.scss");
+/* harmony import */ var _typography_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_typography_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _images__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./images */ "./components/images.js");
+/* harmony import */ var _print_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./print.scss */ "./components/print.scss");
+/* harmony import */ var _print_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_print_scss__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
+
+var _jsxFileName = "/git/fonts/conscripter/components/typography.js";
+
+
+
+
+
+var Typography = {
+  Header: {
+    Display: function Display() {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+        className: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.display,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 9
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_images__WEBPACK_IMPORTED_MODULE_3__["default"].Logo, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10
+        },
+        __self: this
+      }), "Conscripter");
+    },
+    Section: function Section(_ref) {
+      var children = _ref.children;
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+        className: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.sectionheader,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15
+        },
+        __self: this
+      }, children);
+    }
+  },
+  Links: function Links(_ref2) {
+    var children = _ref2.children;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5__(_typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.links, _print_scss__WEBPACK_IMPORTED_MODULE_4___default.a.none),
+      role: "navigation",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21
+      },
+      __self: this
+    }, children);
+  },
+  Button: function Button(_ref3) {
+    var children = _ref3.children;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.btn,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 29
+      },
+      __self: this
+    }, children);
+  },
+  Icon: function Icon(_ref4) {
+    var children = _ref4.children;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.icon,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    }, children);
+  },
+  Copyright: function Copyright() {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.copyright,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 43
+      },
+      __self: this
+    }, "Made by Douglas Richardson \xA9 2019.", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 44
+      },
+      __self: this
+    }), "Fonts available through the ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      href: "https://creativecommons.org/share-your-work/public-domain/cc0/",
+      target: "_blank",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 44
+      },
+      __self: this
+    }, "Creative Commons CC0 License"), ".", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 44
+      },
+      __self: this
+    }), "Code available through the ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      href: "https://opensource.org/licenses/MIT",
+      target: "_blank",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 44
+      },
+      __self: this
+    }, "MIT License"), ".");
+  },
+  Small: function Small(_ref5) {
+    var children = _ref5.children;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.small,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 48
+      },
+      __self: this
+    }, ' ', children);
+  },
+  Label: function Label(_ref6) {
+    var children = _ref6.children,
+        htmlFor = _ref6.htmlFor;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.label,
+      htmlFor: htmlFor,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 51
+      },
+      __self: this
+    }, children);
+  },
+  Description: function Description(_ref7) {
+    var children = _ref7.children,
+        className = _ref7.className;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5__(className, _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.description),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 56
+      },
+      __self: this
+    }, children);
+  },
+  Markdown: function Markdown(props) {
+    var children = props.children,
+        className = props.className;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5__(className, _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.markdown),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 63
+      },
+      __self: this
+    }), children);
+  },
+  Descriptor: function Descriptor(_ref8) {
+    var className = _ref8.className,
+        children = _ref8.children;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5__(className, _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.descriptor),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69
+      },
+      __self: this
+    }, children);
+  },
+  Input: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.input,
+  Demofont: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.demofont,
+  BaseDemofont: _typography_scss__WEBPACK_IMPORTED_MODULE_2___default.a.basedemofont
+};
+/* harmony default export */ __webpack_exports__["default"] = (Typography);
+
+/***/ })
+
+})
+//# sourceMappingURL=index.js.fa5308914ec3a8a349fc.hot-update.js.map
