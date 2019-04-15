@@ -2,6 +2,8 @@
 
 All changes will be documented here, with releases being tagged + linked.
 
+## Unreleased - 0.1.1
+
 ## 0.1.0
 
 Initial release.
