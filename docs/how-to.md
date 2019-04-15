@@ -18,7 +18,7 @@ For Microsoft Word, you will need to manually turn on `calt` support. This is do
 
 ![Abugida2 - Phadkoreut](/static/how-to/abugida2/phadkoreut.gif)
 
-Abugidas are tricky to do with a simple font tool, so let's look at how to accomplish this. The files are located [here](https://github.com/dougrich/conscripter/tree/master/tests/abugida2). Before going any further, load [this json, abugida2.json](https://raw.githubusercontent.com/dougrich/conscripter/master/tests/abugida2/abugida2.json) into Conscripter using the Load button. This is the completed font.
+Abugidas can be tricky to do even with a full font-editing tool, so let's look at how to accomplish this. The files are located [here](https://github.com/dougrich/conscripter/tree/master/tests/abugida2). Before going any further, load [this json, abugida2.json](https://raw.githubusercontent.com/dougrich/conscripter/master/tests/abugida2/abugida2.json) into Conscripter using the Load button. This is the completed font.
 
 Abugida2's orthography is really simple.
 
