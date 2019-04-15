@@ -11,15 +11,37 @@ const defaultState = {
   fontname: 'My Custom Font'
 }
 
-export function fonts(state = defaultState, action) {
+export function reassembleDataUri(assembleDataUri, reducer) {
+  return (state, action) => {
+    const newstate = reducer(state, action)
+
+    const needToRebuildDataUri = !!newstate && !!newstate.buffer && (
+      !state ||
+      state.buffer !== newstate.buffer ||
+      state.substitutions !== newstate.substitutions ||
+      state.fontname !== newstate.fontname
+    )
+
+    if (needToRebuildDataUri) {
+      const { buffer, substitutions, fontname } = newstate
+      return {
+        ...newstate,
+        ...assembleDataUri(buffer, substitutions, fontname)
+      }
+    }
+
+    return newstate
+  }
+}
+
+export const fonts = reassembleDataUri(assembleDataUri, (state = defaultState, action) => {
   if (action && action.type === FETCH_FONTS) {
     switch (action.status) {
       case STATUS_OK:
         return {
           ...state,
           status: STATUS_OK,
-          buffer: action.buffer,
-          ...assembleDataUri(action.buffer, state.substitutions, state.fontname)
+          buffer: action.buffer
         }
       case STATUS_ERROR:
         return {
@@ -39,7 +61,7 @@ export function fonts(state = defaultState, action) {
   }
 
   if (action && action.type === ADD_SUBSTITUTION) {
-    const { fontname, buffer, substitutions } = state
+    const { substitutions } = state
     const idx = substitutions.indexOf(action.replace)
     let newsubs
     if (idx >= 0) {
@@ -49,13 +71,12 @@ export function fonts(state = defaultState, action) {
     }
     return {
       ...state,
-      ...assembleDataUri(buffer, newsubs, fontname),
       substitutions: newsubs
     }
   }
 
   if (action && action.type === REMOVE_SUBSTITUTION) {
-    const { fontname, buffer, substitutions } = state
+    const { substitutions } = state
     const idx = substitutions.indexOf(action.substitution)
     let newsubs = substitutions
     if (idx >= 0) {
@@ -64,7 +85,6 @@ export function fonts(state = defaultState, action) {
 
     return {
       ...state,
-      ...assembleDataUri(buffer, newsubs, fontname),
       substitutions: newsubs
     }
   }
@@ -97,10 +117,8 @@ export function fonts(state = defaultState, action) {
 
   if (action && action.type === LOAD) {
     const { substitutions, fontname, error } = action
-    const { buffer } = state
     return {
       ...state,
-      ...assembleDataUri(buffer, substitutions, fontname),
       error,
       substitutions,
       fontname,
@@ -108,4 +126,4 @@ export function fonts(state = defaultState, action) {
   }
 
   return state
-}
+})

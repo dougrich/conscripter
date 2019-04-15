@@ -6,6 +6,7 @@ All changes will be documented here, with releases being tagged + linked.
 
 - #2 - Form editor now correctly pushes other row entries down the grid
 - #4 - Right to left support in the preview
+- #8 - Dragging, changing the fontname + others now correctly updates the preview
 
 ## 0.1.0
 

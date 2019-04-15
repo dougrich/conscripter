@@ -1,2 +1,2 @@
-export * from './fonts'
+export { fonts } from './fonts'
 export * from './substitution'

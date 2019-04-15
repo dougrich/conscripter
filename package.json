@@ -4,7 +4,7 @@
   "description": "Static site that generates functional open type font files for conlang scripts from SVG using substitution",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"./state/**/?(*.)spec.js\"",
+    "test": "mocha --require @babel/register \"./state/**/?(*.)spec.js\"",
     "dev": "next",
     "deploy": "npm run export && touch out/.nojekyll && echo 'Publishing...' && gh-pages -d out -t",
     "export": "next build && next export",
@@ -29,6 +29,8 @@
     "svg-transform-parser": "0.0.1"
   },
   "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/register": "^7.4.0",
     "@zeit/next-sass": "^1.0.1",
     "classnames": "^2.2.6",
     "isomorphic-unfetch": "^3.0.0",
