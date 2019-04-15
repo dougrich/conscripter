@@ -5,6 +5,7 @@ All changes will be documented here, with releases being tagged + linked.
 ## Unreleased - 0.1.1
 
 - #2 - Form editor now correctly pushes other row entries down the grid
+- #4 - Right to left support in the preview
 
 ## 0.1.0
 

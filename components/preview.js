@@ -14,7 +14,8 @@ export default class Preview extends React.PureComponent {
       options: {
         italic: false,
         bold: false,
-        invert: false
+        invert: false,
+        rtl: false
       }
     }
 
@@ -43,14 +44,20 @@ export default class Preview extends React.PureComponent {
             onChange={this.setFontSize}
             format={this.format}
           />
-          <Options label='Font Options' value={options} onChange={this.setOptions}/>
+          <Options
+            label='Font Options'
+            value={options}
+            optionLabels={{ rtl: 'right-to-left' }}
+            onChange={this.setOptions}
+          />
         </div>
         <Text.Area
           className={cx(css.previewText, Typography.Demofont)}
           style={{
             fontSize: (fontSize / 100) + 'em',
             fontStyle: options.italic ? 'italic': 'initial',
-            fontWeight: options.bold ? 'bold' : 'normal'
+            fontWeight: options.bold ? 'bold' : 'normal',
+            direction: options.rtl ? 'rtl' : 'initial'
           }}
           defaultValue={defaultValue}
         />
