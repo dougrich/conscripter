@@ -62,6 +62,27 @@ class PathParser {
   }
 
   createCommand(cmd, i, arr) {
+    if (cmd.code === 'S') {
+      let { x: x0, y: y0, x2: x1, y2: y1 } = arr[i - 1]
+      const { x2, y2, x, y } = cmd
+      if (x1 == y1 && x1 == null) {
+        x1 = x0
+        y1 = y0
+      } else {
+        x1 = (x0 - x1) + x0
+        y1 = (y0 - y1) + y0
+      }
+      cmd = {
+        code: 'C',
+        x1,
+        x2,
+        y1,
+        y2,
+        x,
+        y
+      }
+    }
+
     if (cmd.code === 'C') {
       const { x: x0, y: y0 } = arr[i - 1]
       const { x: x3, y: y3, x1, x2, y1, y2 } = cmd
@@ -84,6 +105,7 @@ class PathParser {
 
       return commands
     }
+
     return {
       type: {
         'H': 'L',
