@@ -10,7 +10,7 @@ $border-thickness: 0.05em;
 }
 
 @mixin section-tab {
-  border: $border-thickness solid theme-color('border');
+  border: $border-thickness*2 solid theme-color('border');
   border-bottom-color: white;
   position: relative;
   z-index: 1;

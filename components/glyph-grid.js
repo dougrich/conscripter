@@ -106,14 +106,14 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
         onDragOver={onDragOver}
       >
         {button}
-        {isActive && (
-          <div className={css.detailsspacer}>
-            <div className={css.details}>
-              {children}
-            </div>
+      </div>,
+      isActive && (
+        <div className={css.detailsspacer} key='editor'>
+          <div className={css.details}>
+            {children}
           </div>
-        )}
-      </div>
+        </div>
+      )
     )
   }
   

@@ -40,6 +40,7 @@ $font-size: 52pt;
   display: flex;
   flex-direction: column;
   page-break-after: always;
+  box-sizing: border-box;
 }
 
 .textpanel {
@@ -81,8 +82,9 @@ $font-size: 52pt;
 
   .panel {
     padding: 1em;
-    width: 100%;
-    max-width: 100%;
+    width: 50%;
+    max-width: 50%;
+    flex-shrink: 0;
     box-sizing: border-box;
   }
 }

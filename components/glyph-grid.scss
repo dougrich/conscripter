@@ -41,9 +41,6 @@
 
 .details {
   display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
   padding: 1em;
   box-sizing: border-box;
   @include section-border;
@@ -51,6 +48,11 @@
 
 .detailsspacer, .details {
   height: auto;
+}
+
+.detailsspacer {
+  float: left;
+  width: 100%;
 }
 
 .gridcell {
