@@ -597,21 +597,22 @@ function GlyphGrid(_ref) {
         lineNumber: 99
       },
       __self: this
-    }, button, isActive && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+    }, button), isActive && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: _glyph_grid_scss__WEBPACK_IMPORTED_MODULE_4___default.a.detailsspacer,
+      key: "editor",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 110
+        lineNumber: 111
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: _glyph_grid_scss__WEBPACK_IMPORTED_MODULE_4___default.a.details,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 111
+        lineNumber: 112
       },
       __self: this
-    }, children))));
+    }, children)));
   }
 
   return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
@@ -1516,7 +1517,8 @@ function (_React$PureComponent) {
       options: {
         italic: false,
         bold: false,
-        invert: false
+        invert: false,
+        rtl: false
       }
     };
 
@@ -1550,14 +1552,14 @@ function (_React$PureComponent) {
         className: classnames__WEBPACK_IMPORTED_MODULE_8__(_preview_scss__WEBPACK_IMPORTED_MODULE_7___default.a.background, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _preview_scss__WEBPACK_IMPORTED_MODULE_7___default.a.inverted, options.invert)),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 37
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
         className: classnames__WEBPACK_IMPORTED_MODULE_8__(_preview_scss__WEBPACK_IMPORTED_MODULE_7___default.a.formcontainer, _print_scss__WEBPACK_IMPORTED_MODULE_9___default.a.none),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 38
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_slider__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -1569,16 +1571,19 @@ function (_React$PureComponent) {
         format: this.format,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 39
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_options__WEBPACK_IMPORTED_MODULE_11__["default"], {
         label: "Font Options",
         value: options,
+        optionLabels: {
+          rtl: 'right-to-left'
+        },
         onChange: this.setOptions,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 47
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_text__WEBPACK_IMPORTED_MODULE_10__["default"].Area, {
@@ -1586,12 +1591,13 @@ function (_React$PureComponent) {
         style: {
           fontSize: fontSize / 100 + 'em',
           fontStyle: options.italic ? 'italic' : 'initial',
-          fontWeight: options.bold ? 'bold' : 'normal'
+          fontWeight: options.bold ? 'bold' : 'normal',
+          direction: options.rtl ? 'rtl' : 'initial'
         },
         defaultValue: defaultValue,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 54
         },
         __self: this
       }));
@@ -46953,7 +46959,7 @@ module.exports = function(module) {
 /*! exports provided: name, version, description, main, scripts, repository, author, license, bugs, homepage, devDependencies, dependencies, default */
 /***/ (function(module) {
 
-module.exports = {"name":"@dougrich/conscripter","version":"0.1.0","description":"Static site that generates functional open type font files for conlang scripts from SVG using substitution","main":"index.js","scripts":{"test":"mocha \"./state/**/?(*.)spec.js\"","dev":"next","deploy":"npm run export && touch out/.nojekyll && echo 'Publishing...' && gh-pages -d out -t","export":"next build && next export","build":"next build","start":"next start","help":"gh-pages --help"},"repository":{"type":"git","url":"git+https://github.com/dougrich/conscripter.git"},"author":"@dougrich","license":"MIT","bugs":{"url":"https://github.com/dougrich/conscripter/issues"},"homepage":"https://github.com/dougrich/conscripter#readme","devDependencies":{"chai":"^4.2.0","gh-pages":"^2.0.1","mocha":"^6.0.2","svg-transform-parser":"0.0.1"},"dependencies":{"@zeit/next-sass":"^1.0.1","classnames":"^2.2.6","isomorphic-unfetch":"^3.0.0","next":"^8.0.3","node-sass":"^4.11.0","opentype.js":"^0.11.0","parse5":"^5.1.0","raw-loader":"^2.0.0","react":"^16.8.6","react-dom":"^16.8.6","react-markdown":"^4.0.6","react-redux":"^6.0.1","redux":"^4.0.1","redux-thunk":"^2.3.0","slugify":"^1.3.4","svg-path-parser":"^1.1.0"}};
+module.exports = {"name":"@dougrich/conscripter","version":"0.1.1","description":"Static site that generates functional open type font files for conlang scripts from SVG using substitution","main":"index.js","scripts":{"test":"NODE_ENV=test mocha --require @babel/register \"./state/**/?(*.)spec.js\"","dev":"next","deploy":"npm run export && touch out/.nojekyll && echo 'Publishing...' && gh-pages -d out -t","export":"next build && next export","build":"next build","start":"next start","help":"gh-pages --help"},"repository":{"type":"git","url":"git+https://github.com/dougrich/conscripter.git"},"author":"@dougrich","license":"MIT","bugs":{"url":"https://github.com/dougrich/conscripter/issues"},"homepage":"https://github.com/dougrich/conscripter#readme","devDependencies":{"chai":"^4.2.0","gh-pages":"^2.0.1","mocha":"^6.0.2","svg-transform-parser":"0.0.1"},"dependencies":{"@babel/core":"^7.4.3","@babel/register":"^7.4.0","@zeit/next-sass":"^1.0.1","classnames":"^2.2.6","isomorphic-unfetch":"^3.0.0","next":"^8.0.3","node-sass":"^4.11.0","opentype.js":"^0.11.0","parse5":"^5.1.0","raw-loader":"^2.0.0","react":"^16.8.6","react-dom":"^16.8.6","react-markdown":"^4.0.6","react-redux":"^6.0.1","redux":"^4.0.1","redux-thunk":"^2.3.0","slugify":"^1.3.4","svg-path-parser":"^1.1.0"}};
 
 /***/ }),
 
@@ -47928,11 +47934,12 @@ module.exports = {
 /*!***************************************!*\
   !*** ./state/reducers/fonts/index.js ***!
   \***************************************/
-/*! exports provided: fonts */
+/*! exports provided: reassembleDataUri, fonts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reassembleDataUri", function() { return reassembleDataUri; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fonts", function() { return fonts; });
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
@@ -47952,7 +47959,22 @@ var defaultState = {
   substitutions: [],
   fontname: 'My Custom Font'
 };
-function fonts() {
+function reassembleDataUri(assembleDataUri, reducer) {
+  return function (state, action) {
+    var newstate = reducer(state, action);
+    var needToRebuildDataUri = !!newstate && !!newstate.buffer && (!state || state.buffer !== newstate.buffer || state.substitutions !== newstate.substitutions || state.fontname !== newstate.fontname);
+
+    if (needToRebuildDataUri) {
+      var buffer = newstate.buffer,
+          substitutions = newstate.substitutions,
+          fontname = newstate.fontname;
+      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, newstate, assembleDataUri(buffer, substitutions, fontname));
+    }
+
+    return newstate;
+  };
+}
+var fonts = reassembleDataUri(_assembleDataUri__WEBPACK_IMPORTED_MODULE_4__["assembleDataUri"], function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
@@ -47962,7 +47984,7 @@ function fonts() {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, {
           status: _status__WEBPACK_IMPORTED_MODULE_3__["STATUS_OK"],
           buffer: action.buffer
-        }, Object(_assembleDataUri__WEBPACK_IMPORTED_MODULE_4__["assembleDataUri"])(action.buffer, state.substitutions, state.fontname));
+        });
 
       case _status__WEBPACK_IMPORTED_MODULE_3__["STATUS_ERROR"]:
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, {
@@ -47981,9 +48003,7 @@ function fonts() {
   }
 
   if (action && action.type === _actionTypes__WEBPACK_IMPORTED_MODULE_2__["ADD_SUBSTITUTION"]) {
-    var fontname = state.fontname,
-        buffer = state.buffer,
-        substitutions = state.substitutions;
+    var substitutions = state.substitutions;
     var idx = substitutions.indexOf(action.replace);
     var newsubs;
 
@@ -47993,15 +48013,13 @@ function fonts() {
       newsubs = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(substitutions), [action.substitution]);
     }
 
-    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, Object(_assembleDataUri__WEBPACK_IMPORTED_MODULE_4__["assembleDataUri"])(buffer, newsubs, fontname), {
+    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, {
       substitutions: newsubs
     });
   }
 
   if (action && action.type === _actionTypes__WEBPACK_IMPORTED_MODULE_2__["REMOVE_SUBSTITUTION"]) {
-    var _fontname = state.fontname,
-        _buffer = state.buffer,
-        _substitutions = state.substitutions;
+    var _substitutions = state.substitutions;
 
     var _idx = _substitutions.indexOf(action.substitution);
 
@@ -48011,16 +48029,16 @@ function fonts() {
       _newsubs = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_substitutions.slice(0, _idx)), Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_substitutions.slice(_idx + 1)));
     }
 
-    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, Object(_assembleDataUri__WEBPACK_IMPORTED_MODULE_4__["assembleDataUri"])(_buffer, _newsubs, _fontname), {
+    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, {
       substitutions: _newsubs
     });
   }
 
   if (action && action.type === _actionTypes__WEBPACK_IMPORTED_MODULE_2__["DOWNLOAD"]) {
-    var _buffer2 = state.buffer,
+    var buffer = state.buffer,
         _substitutions2 = state.substitutions,
-        _fontname2 = state.fontname;
-    Object(_assembleDataUri__WEBPACK_IMPORTED_MODULE_4__["download"])(_buffer2, _substitutions2, _fontname2);
+        fontname = state.fontname;
+    Object(_assembleDataUri__WEBPACK_IMPORTED_MODULE_4__["download"])(buffer, _substitutions2, fontname);
     return state;
   }
 
@@ -48046,18 +48064,17 @@ function fonts() {
 
   if (action && action.type === _actionTypes__WEBPACK_IMPORTED_MODULE_2__["LOAD"]) {
     var _substitutions4 = action.substitutions,
-        _fontname3 = action.fontname,
+        _fontname = action.fontname,
         error = action.error;
-    var _buffer3 = state.buffer;
-    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, Object(_assembleDataUri__WEBPACK_IMPORTED_MODULE_4__["assembleDataUri"])(_buffer3, _substitutions4, _fontname3), {
+    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state, {
       error: error,
       substitutions: _substitutions4,
-      fontname: _fontname3
+      fontname: _fontname
     });
   }
 
   return state;
-}
+});
 
 /***/ }),
 
@@ -48222,16 +48239,48 @@ function () {
   }, {
     key: "createCommand",
     value: function createCommand(cmd, i, arr) {
-      if (cmd.code === 'C') {
+      if (cmd.code === 'S') {
         var _arr = arr[i - 1],
             x0 = _arr.x,
-            y0 = _arr.y;
-        var x3 = cmd.x,
-            y3 = cmd.y,
-            x1 = cmd.x1,
-            x2 = cmd.x2,
-            y1 = cmd.y1,
-            y2 = cmd.y2; // interpolate - note we skip the start as it should be drawn from the previous node
+            y0 = _arr.y,
+            x1 = _arr.x2,
+            y1 = _arr.y2;
+        var _cmd = cmd,
+            x2 = _cmd.x2,
+            y2 = _cmd.y2,
+            x = _cmd.x,
+            y = _cmd.y;
+
+        if (x1 == y1 && x1 == null) {
+          x1 = x0;
+          y1 = y0;
+        } else {
+          x1 = x0 - x1 + x0;
+          y1 = y0 - y1 + y0;
+        }
+
+        cmd = {
+          code: 'C',
+          x1: x1,
+          x2: x2,
+          y1: y1,
+          y2: y2,
+          x: x,
+          y: y
+        };
+      }
+
+      if (cmd.code === 'C') {
+        var _arr2 = arr[i - 1],
+            _x = _arr2.x,
+            _y = _arr2.y;
+        var _cmd2 = cmd,
+            x3 = _cmd2.x,
+            y3 = _cmd2.y,
+            _x2 = _cmd2.x1,
+            _x3 = _cmd2.x2,
+            _y2 = _cmd2.y1,
+            _y3 = _cmd2.y2; // interpolate - note we skip the start as it should be drawn from the previous node
 
         var commands = [];
 
@@ -48239,8 +48288,8 @@ function () {
           var apply = basis(t);
           commands.push({
             type: 'L',
-            x: apply(x0, x1, x2, x3),
-            y: apply(y0, y1, y2, y3)
+            x: apply(_x, _x2, _x3, x3),
+            y: apply(_y, _y2, _y3, y3)
           });
         } // this ensures we end at the exact end point
 
@@ -48488,10 +48537,10 @@ function () {
         scale = unitsPerEm / (0, _parseFloat2.default)(attributes.viewBox.split(' ')[3]);
       }
 
-      var _arr2 = commands;
+      var _arr3 = commands;
 
-      for (var _i = 0; _i < _arr2.length; _i++) {
-        var cmd = _arr2[_i];
+      for (var _i = 0; _i < _arr3.length; _i++) {
+        var cmd = _arr3[_i];
         if (cmd.x) cmd.x = cmd.x * scale;
         if (cmd.y) cmd.y = unitsPerEm - cmd.y * scale + descender;
       }

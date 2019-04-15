@@ -1,0 +1,1 @@
+{"version":3,"file":"static/webpack/static/development/pages/index.js.72ef18446c688911fdcb.hot-update.js","sources":["webpack:///./state/reducers/list.js"],"sourcesContent":["export { fonts } from './fonts'\nexport * from './substitution'"],"mappings":";;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;;;A","sourceRoot":""}
