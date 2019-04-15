@@ -4,7 +4,7 @@
   "description": "Static site that generates functional open type font files for conlang scripts from SVG using substitution",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require @babel/register \"./state/**/?(*.)spec.js\"",
+    "test": "NODE_ENV=test mocha --require @babel/register \"./state/**/?(*.)spec.js\"",
     "dev": "next",
     "deploy": "npm run export && touch out/.nojekyll && echo 'Publishing...' && gh-pages -d out -t",
     "export": "next build && next export",
