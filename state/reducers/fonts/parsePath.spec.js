@@ -240,6 +240,18 @@ describe('PathParser#parse', () => {
     ])
   })
 
+  it('parses transform-scale', () => {
+    const { commands, warnings } = parse('transform-scale.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql([
+      { type: 'M', x: 50, y: 750 },
+      { type: 'L', x: 450, y: 750 },
+      { type: 'L', x: 450, y: 350 },
+      { type: 'L', x: 50, y: 350 },
+      { type: 'Z' }
+    ])
+  })
+
   it('parses viewbox', () => {
     const { commands, warnings } = parse('viewbox.svg')
     expect(warnings).to.be.empty

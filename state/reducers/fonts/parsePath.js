@@ -41,6 +41,15 @@ class PathParser {
           y: b * x + d * y + f
         }
       }
+
+      if (detail.scale) {
+        const { sx, sy = sx} = detail.scale
+        return {
+          type,
+          x: sx * x,
+          y: sy * y
+        }
+      }
     }
   }
 
