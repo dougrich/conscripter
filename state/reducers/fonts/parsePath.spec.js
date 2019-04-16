@@ -330,6 +330,18 @@ describe('PathParser#parse', () => {
     ])
   })
 
+  it('parses transform-chain', () => {
+    const { commands, warnings } = parse('transform-chain.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql([
+      { type: 'M', x: 1000.0002692819508, y: 599.9997307178679 },
+      { type: 'L', x: 999.999730717868, y: -200.00026928195075 },
+      { type: 'L', x: 199.99973071804925, y: -199.99973071786803 },
+      { type: 'L', x: 200.00026928213208, y: 600.0002692819508 },
+      { type: 'Z' }
+    ])
+  })
+
   it('parses viewbox', () => {
     const { commands, warnings } = parse('viewbox.svg')
     expect(warnings).to.be.empty

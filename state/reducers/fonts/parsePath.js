@@ -101,7 +101,8 @@ class PathParser {
   }
 
   applyTransforms(transforms = [], node) {
-    for (const t of transforms) {
+    for (let i = transforms.length - 1; i >= 0; i--) {
+      const t = transforms[i]
       node = t(node)
     }
     return node
