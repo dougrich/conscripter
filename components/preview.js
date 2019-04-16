@@ -5,6 +5,9 @@ import Text from './text'
 import Options from './options';
 import Slider from './slider';
 import Typography from './typography';
+import Badge from './badge';
+import Links from './links'
+import Description from './description'
 
 export default class Preview extends React.PureComponent {
   constructor(props) {
@@ -15,7 +18,8 @@ export default class Preview extends React.PureComponent {
         italic: false,
         bold: false,
         invert: false,
-        rtl: false
+        rtl: false,
+        vertical: false
       }
     }
 
@@ -27,7 +31,8 @@ export default class Preview extends React.PureComponent {
   }
   render() {
     const {
-      defaultValue
+      defaultValue,
+      keep
     } = this.props
     const {
       fontSize,
@@ -47,9 +52,20 @@ export default class Preview extends React.PureComponent {
           <Options
             label='Font Options'
             value={options}
-            optionLabels={{ rtl: 'right-to-left' }}
+            lock={options.vertical ? {rtl: true} : {}}
+            optionLabels={{
+              rtl: 'right-to-left',
+              vertical: (
+                <span><Badge variant='success'>BETA</Badge> vertical</span>
+              )
+            }}
             onChange={this.setOptions}
           />
+          {options.vertical && (
+            <Description className={css.inlinedescription}>
+              Note that there are special steps that need to be taken to get your font vertically in your editor, and not all editors work with vertical fonts. See syllabry1 <Links.Usage/> for details.
+            </Description>
+          )}
         </div>
         <Text.Area
           className={cx(css.previewText, Typography.Demofont)}
@@ -59,7 +75,10 @@ export default class Preview extends React.PureComponent {
             fontWeight: options.bold ? 'bold' : 'normal',
             direction: options.rtl ? 'rtl' : 'initial'
           }}
+          vertical={options.vertical}
+          keep={keep}
           defaultValue={defaultValue}
+          onChange={this.onChange}
         />
       </div>
     )

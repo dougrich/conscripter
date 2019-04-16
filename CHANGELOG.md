@@ -9,6 +9,8 @@ All changes will be documented here, with releases being tagged + linked.
 - Support for arcs in paths
 - Support `rotate` transform option
 - Fixed transformation apply order
+- #3 - BETA - Vertical preview
+- Added syllabry1 tutorial
 
 ## 0.1.1
 

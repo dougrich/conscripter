@@ -11,6 +11,7 @@ $theme-colors: (
   'dark-primary': darken($color-blue, 15%),
   'dark': $color-black,
   'offwhite': $color-offwhite,
+  'dark-offwhite': darken($color-offwhite, 40%),
   'alert-default': $color-coolgrey,
   'alert-danger': lighten($color-red, 40%),
   'border': $color-offwhite,

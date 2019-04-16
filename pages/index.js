@@ -114,6 +114,12 @@ const ConnectedHelmet = connect(
   })
 )(Head)
 
+const ConnectedPreview = connect(
+  state => ({
+    keep: state.fonts.substitutions.map(s => s.replace[0])
+  })
+)(Preview)
+
 export default class Index extends React.Component {
   componentDidMount() {
     store.dispatch(actions.fetchFonts())
@@ -143,7 +149,7 @@ export default class Index extends React.Component {
               </div>
               <div className={css.panel}>
               <Typography.Header.Section>Preview</Typography.Header.Section>
-                <Preview defaultValue={PreviewPlaceholder}/>
+                <ConnectedPreview defaultValue={PreviewPlaceholder}/>
               </div>
             </div>
           </div>

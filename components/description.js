@@ -4,11 +4,12 @@ import Typography from './typography'
 
 export default function Description({
   variant,
+  className,
   children
 }) {
   return (
     <Typography.Description
-      className={cx(css.description, css[variant || 'default'])}
+      className={cx(css.description, className, css[variant || 'default'])}
     >
       {children}
     </Typography.Description>

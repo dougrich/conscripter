@@ -58,7 +58,36 @@ __Finally__, once completed, make sure to __name your font__, and then hit `save
 
 Install the font on your computer (this is operating system dependent, but most will give you an option to install if you double click to run the `.otf`). Close all your editing programs, and re-open them - you should see your font in the list of choices available.
 
+### Use Case: Syllabry
+
+![Syllabry1 - kakonanotato](/static/how-to/syllabry1/kakonanotato.gif)
+
+Syllabries use a single glyph for each syllable. Let's look how to accomplish this. The files are located [here]. Before going any further, load [this json, syllabry1.json] into Conscripter using the Load button. This is the completed font.
+
+Syllabry1's orthography is really simple.
+
+![Syllabry1 - Orthography](/static/how-to/syllabry1/orthography.png)
+
+However, it should be noted that Syllabry1 is traditionally written vertically right-to-left, similar to traditional Japanese.
+
 ---
 
-Made it this far? Have feedback on how to improve this tutorial? [Create an issue on Github](https://github.com/dougrich/conscripter/issues/new/choose) to help improve the app!
+__First__, we need to create a consistent set of glyphs in our SVG. Unlike with Abugida2, these glyphs do not require any fancy positioning as these glyphs are intended to be stacked on top of each other.
 
+---
+
+__Second__, we need to add these into Conscripter. This is much like with Abugida2, however we do not need to modify the advance width. Instead, let's make sure that the preview window contains are latest.
+
+Note that in the BETA only typing at the end of the text is supported: both inline editing and highlighting are not working yet.
+
+---
+
+__Third__, name your font and download it. Install it on your machine.
+
+When typing with your font in an editor, it will behave much like a standard horizontal font. To use it vertically your editor needs to support vertical orientation. Illustrator, for example, does. Selecting `Text > Orientation > Vertical` will turn your text vertically and right to left.
+
+If your editor supports a different way of having vertical fonts, please [Create an issue on Github](https://github.com/dougrich/conscripter/issues/new/choose) with the name of your editor so I can investigate further.
+
+---
+
+Made it this far? Have feedback on how to improve these tutorials? [Create an issue on Github](https://github.com/dougrich/conscripter/issues/new/choose) to help improve the app!

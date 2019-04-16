@@ -7,6 +7,7 @@
   margin-top: -3px;
   margin-bottom: -3px;
   height: calc(100% + 6px)!important;
+  overflow: auto;
 
   &:focus {
     border-top: 3px solid theme-color('primary');
@@ -55,6 +56,7 @@
 
 .textareacontainer {
   height: 100%;
+  max-height: 50vh;
   @extend %common-border;
   @extend %border-bottom;
   @extend %border-top;
@@ -64,4 +66,37 @@
   @extend %common-border;
   @extend %border-bottom;
   margin-bottom: 1em;
+}
+
+.vcell, .vcursor {
+  width: 1em;
+  height: 1em;
+  text-align: center;
+}
+
+@keyframes vcursorblinkanimation {
+  to {
+    opacity: 0;
+  }
+}
+
+.vcursor {
+  display: none;
+  background-color: theme-color('primary');
+  animation: vcursorblinkanimation 0.5s steps(2, start) infinite;
+}
+
+.vline {
+  width: 1em;
+  display: inline-block;
+}
+
+.vcontainer {
+  direction: rtl!important;
+  display: flex!important;
+  justify-content: center;
+  overflow: auto;
+  &:focus .vcursor {
+    display: block;
+  }
 }

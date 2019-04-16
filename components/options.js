@@ -6,17 +6,19 @@ import { Toggle } from './slider';
 function Option({
   field,
   value,
+  disabled,
   label,
   onChange
 }) {
   return (
-    <Toggle label={label} value={value} onChange={onChange.bind(null, field)}/>
+    <Toggle label={label} disabled={disabled} value={value} onChange={onChange.bind(null, field)}/>
   )
 }
 
 export default function Options({
   value,
   optionLabels = {},
+  lock = {},
   onChange: propsOnChange,
   label
 }) {
@@ -34,7 +36,7 @@ export default function Options({
       <Label>{label}</Label>
       <div className={css.optionslist}>
         {options.map((o) => (
-          <Option onChange={onChange} value={value[o]} label={optionLabels[o] || o} key={o} field={o}/>
+          <Option onChange={onChange} value={lock[o] != null ? lock[o] : value[o]} disabled={lock[o] != null} label={optionLabels[o] || o} key={o} field={o}/>
         ))}
       </div>
     </div>

@@ -81,4 +81,17 @@ $transition-timing: 150ms;
 
 .togglecontainer {
   display: flex;
+  transition: opacity $transition-timing ease-in-out;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.25;
+
+  .runner, .thumb {
+    background-color: theme-color('dark-offwhite');
+  }
+  .thumb {
+    border: theme-color('dark-offwhite');
+  }
 }

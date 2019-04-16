@@ -29,6 +29,10 @@
   margin-bottom: 2em;
 }
 
+.inlinedescription {
+  margin-bottom: 0em!important;
+}
+
 @media print {
   .previewText {
     min-height: 80vh;

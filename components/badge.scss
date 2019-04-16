@@ -1,0 +1,19 @@
+@import 'interaction';
+
+.badge {  
+  margin: -0.5em 0em;
+  padding: 0.25em 0.5em;
+  pointer-events: none;
+}
+
+.default {
+  @include clickable-area('btn-default');
+}
+
+.success {
+  @include clickable-area('btn-success');
+}
+
+.danger {
+  @include clickable-area('btn-danger');
+}

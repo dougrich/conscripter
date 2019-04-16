@@ -110,20 +110,23 @@ export class Toggle extends Slider {
     super(props)
     this.defaultId = 't' + Math.random().toString(16).slice(2)
     this.toggle = () => {
-      const { onChange } = this.props
-      onChange(!this.props.value)
+      const { onChange, disabled } = this.props
+      if (!disabled) {
+        onChange(!this.props.value)
+      }
     }
   }
   render() {
     const {
       label,
       id = this.defaultId,
-      value
+      value,
+      disabled
     } = this.props
     const pct = value ? 1 : 0
     return (
-      <div className={css.togglecontainer}>
-        <input type='checkbox' id={id} value={value} className={css.togglecheckbox} onChange={this.toggle}/>
+      <div className={cx(css.togglecontainer, { [css.disabled]: disabled })}>
+        <input type='checkbox' id={id} value={value} disabled={disabled} className={css.togglecheckbox} onChange={this.toggle}/>
         <div
           className={cx(css.trackcontainer, css.toggle)}
           onClick={this.toggle}
