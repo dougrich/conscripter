@@ -7,6 +7,7 @@ All changes will be documented here, with releases being tagged + linked.
 - Support `scale` transform option
 - Support quadratic curves in paths
 - Support for arcs in paths
+- Support `rotate` transform option
 
 ## 0.1.1
 

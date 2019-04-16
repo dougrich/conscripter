@@ -318,6 +318,18 @@ describe('PathParser#parse', () => {
     ])
   })
 
+  it('parses transform-rotate', () => {
+    const { commands, warnings } = parse('transform-rotate.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql([
+      { type: 'M', x: 900.0002692819508, y: 699.9997307178679 },
+      { type: 'L', x: 899.999730717868, y: -100.00026928195075 },
+      { type: 'L', x: 99.99973071804924, y: -99.99973071786803 },
+      { type: 'L', x: 100.0002692821321, y: 700.0002692819508 },
+      { type: 'Z' }
+    ])
+  })
+
   it('parses viewbox', () => {
     const { commands, warnings } = parse('viewbox.svg')
     expect(warnings).to.be.empty

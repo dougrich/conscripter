@@ -1,3 +1,5 @@
+const DEGREES_TO_RADIANS = 0.0174533
+
 function basis(t, count) {
   const w = new Array(count) 
   for (let i = 0; i < count; i++) {
@@ -70,6 +72,20 @@ class PathParser {
           type,
           x: a * x + c * y + e,
           y: b * x + d * y + f
+        }
+      }
+
+      if (detail.rotate) {
+        const { angle, cx = 0, cy = 0 } = detail.rotate
+        const radians = angle * DEGREES_TO_RADIANS
+        const sine = Math.sin(radians)
+        const cosine = Math.cos(radians)
+        const dx = x - cx
+        const dy = y - cy
+        return {
+          type,
+          x: cosine * dx - sine * dy + cx,
+          y: sine * dx + cosine * dy + cy
         }
       }
 
