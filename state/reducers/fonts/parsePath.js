@@ -136,10 +136,15 @@ class PathParser {
         largeArcFlag: largeArc ? 1 : 0,
         sweepFlag: sweep ? 1 : 0
       })
-      return [
-        ...cubicInterpolation(x0, y0, curves[0].x1, curves[0].y1, curves[0].x2, curves[0].y2, curves[0].x, curves[0].y),
-        ...cubicInterpolation(curves[0].x, curves[0].y, curves[1].x1, curves[1].y1, curves[1].x2, curves[1].y2, curves[1].x, curves[1].y)
-      ]
+      const commands = []
+      let xlast = x0, ylast = y0
+      for (let i = 0; i < curves.length; i++) {
+        const { x1, y1, x2, y2, x: x3, y: y3 } = curves[i]
+        commands.push(...cubicInterpolation(xlast, ylast, x1, y1, x2, y2, x3, y3))
+        xlast = x3
+        ylast = y3
+      }
+      return commands
     }
 
     if (cmd.code === 'C') {
