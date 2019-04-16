@@ -15,17 +15,39 @@ function basis(t, count) {
   }
 }
 
+function cubicInterpolation(x0, y0, x1, y1, x2, y2, x3, y3) {
+  const commands = []
+  for (let t = 0.1; t < 1; t += 0.06) {
+    const apply = basis(t, 4)
+    commands.push({
+      type: 'L',
+      x: apply(x0, x1, x2, x3),
+      y: apply(y0, y1, y2, y3)
+    })
+  }
+  // this ensures we end at the exact end point
+  commands.push({
+    type: 'L',
+    x: x3,
+    y: y3
+  })
+
+  return commands
+}
+
 class PathParser {
   constructor (
     config,
     parse5 = require('parse5'),
     svgPathParser = require('svg-path-parser'),
-    svgTransformParser = require('svg-transform-parser')
+    svgTransformParser = require('svg-transform-parser'),
+    arcToBezier = require('svg-arc-to-cubic-bezier')
   ) {
     this.config = config
     this.parse5 = parse5
     this.svgPathParser = svgPathParser
     this.svgTransformParser = svgTransformParser
+    this.arcToBezier = arcToBezier.default || arcToBezier
   }
 
   parseTransform(transform) {
@@ -101,27 +123,30 @@ class PathParser {
       }
     }
 
+    if (cmd.code === 'A') {
+      const { rx, ry, xAxisRotation, largeArc, sweep, x, y, x0, y0 } = cmd
+      const curves = this.arcToBezier({
+        px: x0,
+        py: y0,
+        cx: x,
+        cy: y,
+        rx,
+        ry,
+        xAxisRotation,
+        largeArcFlag: largeArc ? 1 : 0,
+        sweepFlag: sweep ? 1 : 0
+      })
+      return [
+        ...cubicInterpolation(x0, y0, curves[0].x1, curves[0].y1, curves[0].x2, curves[0].y2, curves[0].x, curves[0].y),
+        ...cubicInterpolation(curves[0].x, curves[0].y, curves[1].x1, curves[1].y1, curves[1].x2, curves[1].y2, curves[1].x, curves[1].y)
+      ]
+    }
+
     if (cmd.code === 'C') {
       const { x: x0, y: y0 } = arr[i - 1]
       const { x: x3, y: y3, x1, x2, y1, y2 } = cmd
       // interpolate - note we skip the start as it should be drawn from the previous node
-      const commands = []
-      for (let t = 0.1; t < 1; t += 0.06) {
-        const apply = basis(t, 4)
-        commands.push({
-          type: 'L',
-          x: apply(x0, x1, x2, x3),
-          y: apply(y0, y1, y2, y3)
-        })
-      }
-      // this ensures we end at the exact end point
-      commands.push({
-        type: 'L',
-        x: x3,
-        y: y3
-      })
-
-      return commands
+      return cubicInterpolation(x0, y0, x1, y1, x2, y2, x3, y3)
     }
 
     if (cmd.code === 'Q') {
