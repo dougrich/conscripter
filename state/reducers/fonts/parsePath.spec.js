@@ -186,6 +186,31 @@ describe('PathParser#parse', () => {
     ])
   })
 
+  it('parses quadratic curve', () => {
+    const { commands, warnings } = parse('quadratic-bezier.svg')
+    expect(warnings).to.be.empty
+    expect(commands).to.eql([
+      { type: 'M', x: 100, y: 700 },
+      { type: 'L', x: 180, y: 556 },
+      { type: 'L', x: 227.99999999999997, y: 484.96000000000004 },
+      { type: 'L', x: 276, y: 425.43999999999994 },
+      { type: 'L', x: 324.00000000000006, y: 377.44000000000005 },
+      { type: 'L', x: 371.99999999999994, y: 340.96000000000004 },
+      { type: 'L', x: 420, y: 316 },
+      { type: 'L', x: 468.00000000000006, y: 302.56 },
+      { type: 'L', x: 516, y: 300.64 },
+      { type: 'L', x: 564, y: 310.24 },
+      { type: 'L', x: 612.0000000000002, y: 331.36 },
+      { type: 'L', x: 660.0000000000001, y: 364 },
+      { type: 'L', x: 708.0000000000001, y: 408.1600000000002 },
+      { type: 'L', x: 756.0000000000002, y: 463.84000000000026 },
+      { type: 'L', x: 804.0000000000003, y: 531.0400000000004 },
+      { type: 'L', x: 852.0000000000002, y: 609.7600000000006 },
+      { type: 'L', x: 900, y: 700 },
+      { type: 'Z' }
+    ])
+  })
+
   it('parses curve', () => {
     const { commands, warnings } = parse('curve.svg')
     expect(warnings).to.be.empty

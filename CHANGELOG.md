@@ -5,6 +5,7 @@ All changes will be documented here, with releases being tagged + linked.
 ## Unreleased
 
 - Support `scale` transform option
+- Support quadratic curves in paths
 
 ## 0.1.1
 

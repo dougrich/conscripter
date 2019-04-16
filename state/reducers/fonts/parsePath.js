@@ -1,9 +1,18 @@
-function basis(t) {
-  const w0 = Math.pow((1 - t), 3) * Math.pow(t, 0),
-        w1 = 3 * Math.pow((1 - t), 2) * Math.pow(t, 1),
-        w2 = 3 * Math.pow((1 - t), 1) * Math.pow(t, 2),
-        w3 = Math.pow((1 - t), 0) * Math.pow(t, 3)
-  return (v0, v1, v2, v3) => w0 * v0 + w1 * v1 + w2 * v2 + w3 * v3
+function basis(t, count) {
+  const w = new Array(count) 
+  for (let i = 0; i < count; i++) {
+    const factor = (i === 0 || i === count - 1)
+      ? 1
+      : (count - 1)
+    w[i] =  factor * Math.pow((1 - t), count - 1 - i) * Math.pow(t, i)
+  }
+  return function () {
+    let v = 0
+    for (let i = 0; i < count; i++) {
+      v += arguments[i] * w[i]
+    }
+    return v
+  }
 }
 
 class PathParser {
@@ -98,7 +107,7 @@ class PathParser {
       // interpolate - note we skip the start as it should be drawn from the previous node
       const commands = []
       for (let t = 0.1; t < 1; t += 0.06) {
-        const apply = basis(t)
+        const apply = basis(t, 4)
         commands.push({
           type: 'L',
           x: apply(x0, x1, x2, x3),
@@ -110,6 +119,28 @@ class PathParser {
         type: 'L',
         x: x3,
         y: y3
+      })
+
+      return commands
+    }
+
+    if (cmd.code === 'Q') {
+      const { x0, y0, x1, y1, x, y } = cmd
+      // interpolate - note we skip the start as it should be drawn from the previous node
+      const commands = []
+      for (let t = 0.1; t < 1; t += 0.06) {
+        const apply = basis(t, 3)
+        commands.push({
+          type: 'L',
+          x: apply(x0, x1, x),
+          y: apply(y0, y1, y)
+        })
+      }
+      // this ensures we end at the exact end point
+      commands.push({
+        type: 'L',
+        x,
+        y
       })
 
       return commands
