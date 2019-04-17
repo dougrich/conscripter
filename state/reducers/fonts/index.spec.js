@@ -7,7 +7,7 @@ describe('reassembleDataUri', () => {
   it('does not rebuild if no changes occur', () => {
     const state = { buffer: true, substitutions: [], reassembled: false }
     const reducer = state => state
-    const final = reassembleDataUri(assemble, reducer)
+    const final = reassembleDataUri(assemble)(reducer)
     const result = final(state, {})
     expect(result.reassembled).to.be.false
   })
@@ -15,7 +15,7 @@ describe('reassembleDataUri', () => {
   it('rebuilds if any substitution change occurs', () => {
     const state = { buffer: true, substitutions: [], reassembled: false }
     const reducer = () => ({ buffer: true, substitutions: [], reassembled: false })
-    const final = reassembleDataUri(assemble, reducer)
+    const final = reassembleDataUri(assemble)(reducer)
     const result = final(state, {})
     expect(result.reassembled).to.be.true
   })
