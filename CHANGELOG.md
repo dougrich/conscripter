@@ -7,6 +7,7 @@ All changes will be documented here, with releases being tagged + linked.
 - #12 - local copy stashed in localstorage, updated privacy policy
 - #10 - advance width is preserved when uploading multiple
 - #11 - Added binary encoding, reducing the download size
+- #11 - Added snapping, reducing the download size another 20%
 
 ## 0.2.0
 

@@ -78,7 +78,7 @@ export function updateSubstitutionGlyph(meta,svg) {
     type: UPDATE_SUBSTITUTION,
     field: 'glyph/commands',
     warnings,
-    value: commands
+    value: parser.simplify(commands)
   }
 }
 
@@ -172,7 +172,6 @@ export function save(state) {
   container.setAttribute('href', 'data:octect/stream;base64,' + data.toString('base64'))
   container.setAttribute('download', slugify(state.fonts.fontname || 'conscripter-custom-font') + '.cwk')
   container.click()
-  window.URL.revokeObjectURL(dl)
   return {
     type: SAVE
   }

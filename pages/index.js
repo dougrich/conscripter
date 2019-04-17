@@ -91,9 +91,9 @@ const ConnectedFontActions = connect(
         Make sure to read the <Links.Usage/> to figure out how to use your downloaded font!
       </Description>
       <ButtonBar>
-        <Button title='Export OTF for use as font' variant='success' onClick={onDownload}>Export<Typography.Small>(.otf)</Typography.Small></Button>
-        <Button title='Save workspace to JSON to use later' variant='default' onClick={onSave}>Save<Typography.Small>(.json)</Typography.Small></Button>
-        <Button title='Load workspace from JSON' variant='default' onClick={onLoad}>Load<Typography.Small>(.json)</Typography.Small></Button>
+        <Button title='Export OTF for use as font' variant='success' onClick={onDownload}>Export<br/><Typography.Small>(.otf)</Typography.Small></Button>
+        <Button title='Save workspace to use later' variant='default' onClick={onSave}>Save<br/><Typography.Small>(.cwk)</Typography.Small></Button>
+        <Button title='Load workspace from a save file' variant='default' onClick={onLoad}>Load<br/><Typography.Small>(.cwk/.json)</Typography.Small></Button>
       </ButtonBar>
       {loadError && (
         <Description variant='danger'>{loadError.message}</Description>

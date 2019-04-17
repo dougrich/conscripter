@@ -1,4 +1,5 @@
 const DEGREES_TO_RADIANS = 0.0174533
+const SNAPPING_RATIO = 1 / 400
 
 function basis(t, count) {
   const w = new Array(count) 
@@ -304,6 +305,26 @@ class PathParser {
     }
 
     return null
+  }
+
+  simplify(commands) {
+    const snapTo = this.config.unitsPerEm * SNAPPING_RATIO
+    return commands
+      .map(cmd => ({
+        ...cmd,
+        x: cmd.x ? Math.round(cmd.x / snapTo) : cmd.x,
+        y: cmd.y ? Math.round(cmd.y / snapTo) : cmd.y,
+      }))
+      .filter((cmd, i, arr) => {
+        if (i === 0) return true
+        const previous = arr[i - 1]
+        return previous.x !== cmd.x || previous.y !== cmd.y
+      })
+      .map(cmd => ({
+        ...cmd,
+        x: cmd.x ? cmd.x * snapTo : cmd.x,
+        y: cmd.y ? cmd.y * snapTo : cmd.y,
+      }))
   }
 
   /**
