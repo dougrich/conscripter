@@ -5,6 +5,7 @@ All changes will be documented here, with releases being tagged + linked.
 ## Unreleased
 
 - #12 - local copy stashed in localstorage, updated privacy policy
+- #10 - advance width is preserved when uploading multiple
 
 ## 0.2.0
 

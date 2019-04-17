@@ -5,7 +5,8 @@ const defaultState = {
   active: null,
   currentGlyph: null,
   currentReplace: null,
-  warnings: null
+  warnings: null,
+  lastAdvanceWidth: 1000
 }
 
 export const substitution = clearable(defaultState)((state, action) => {
@@ -13,7 +14,10 @@ export const substitution = clearable(defaultState)((state, action) => {
     return {
       ...state,
       active: action.substitution,
-      currentGlyph: { ...action.substitution.glyph },
+      currentGlyph: {
+        ...action.substitution.glyph,
+        advanceWidth: state.lastAdvanceWidth || 1000
+      },
       currentReplace: action.substitution.replace[0]
     }
   }
@@ -40,7 +44,8 @@ export const substitution = clearable(defaultState)((state, action) => {
           currentGlyph: {
             ...state.currentGlyph,
             advanceWidth: action.value
-          }
+          },
+          lastAdvanceWidth: action.value
         }
       case 'glyph/diacritic':
         return {
@@ -54,7 +59,10 @@ export const substitution = clearable(defaultState)((state, action) => {
   }
 
   if (action && action.type === CANCEL_SUBSTITUTION) {
-    return defaultState
+    return {
+      ...defaultState,
+      lastAdvanceWidth: state.lastAdvanceWidth
+    }
   }
 
   return state

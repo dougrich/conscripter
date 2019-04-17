@@ -50,7 +50,12 @@ function saveLocally(key) {
       if (!state) {
         const previous = localStorage.getItem(key)
         if (previous) {
-          state = JSON.parse(previous)
+          try {
+            state = JSON.parse(previous)
+          } catch (err) {
+            // bad state in local storage
+            localStorage.clear(key)
+          }
         }
       }
       const newstate = reducer(state, action)
@@ -62,7 +67,7 @@ function saveLocally(key) {
   }
 }
 
-export const fonts = saveLocally(KEY_FONTS)(clearable(defaultState)(reassembleDataUri(assembleDataUri)((state, action) => {
+export const fonts = saveLocally(KEY_FONTS)(clearable(defaultState, { only: 'substitutions' })(reassembleDataUri(assembleDataUri)((state, action) => {
   
   // loading from a saved slate
   if (typeof state === 'string') state = JSON.parse(state)
