@@ -2,6 +2,10 @@
 
 All changes will be documented here, with releases being tagged + linked.
 
+## 0.3.1
+
+- #11 - Switched to blob downloads to bypass URL limits on Firefox
+
 ## 0.3.0
 
 - #12 - local copy stashed in localstorage, updated privacy policy

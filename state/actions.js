@@ -168,10 +168,18 @@ export function swapSubstitution(a, b) {
 
 export function save(state) {
   const data = encoder.MSGPACK.encode(state)
+  const blob = new Blob([data])
+  const url = window.URL.createObjectURL(blob)
   const container = document.createElement('a')
-  container.setAttribute('href', 'data:octect/stream;base64,' + data.toString('base64'))
+  container.setAttribute('style', 'display: none;')
+  container.setAttribute('href', url)
   container.setAttribute('download', slugify(state.fonts.fontname || 'conscripter-custom-font') + '.cwk')
+  document.body.appendChild(container)
   container.click()
+  setTimeout(() => {
+    window.URL.revokeObjectURL(url)
+    document.body.removeChild(container)
+  }, 1000)
   return {
     type: SAVE
   }

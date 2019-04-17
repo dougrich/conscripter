@@ -1,6 +1,6 @@
 {
   "name": "@dougrich/conscripter",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Static site that generates functional open type font files for conlang scripts from SVG using substitution",
   "main": "index.js",
   "scripts": {
