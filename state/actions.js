@@ -15,7 +15,8 @@ import {
   SET_FONTNAME,
   SWAP_SUBSTITUTION,
   SAVE,
-  LOAD
+  LOAD,
+  CLEAR
 } from './actionTypes'
 
 import {
@@ -204,5 +205,11 @@ export function load() {
       reader.readAsText(file)
     }
     loader.click()
+  }
+}
+
+export function clear() {
+  return {
+    type: CLEAR
   }
 }

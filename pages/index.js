@@ -15,7 +15,7 @@ import Text from '../components/text';
 import Links from '../components/links';
 import Print from '../components/print.scss'
 
-const store = createStore()
+const store = createStore({})
 
 const PreviewPlaceholder = `the quick brown fox jumps over the lazy red dog
 
@@ -72,7 +72,7 @@ const ConnectedSubstitutionEditor = connect(
 )(SubstitutionEditor)
 
 
-const ConnectedTopActionSet = connect(
+const ConnectedFontActions = connect(
   state => ({ loadError: state.fonts.error }),
   dispatch => ({
     onDownload: () => dispatch(actions.download()),
@@ -99,6 +99,21 @@ const ConnectedTopActionSet = connect(
         <Description variant='danger'>{loadError.message}</Description>
       )}
     </div>
+  )
+})
+
+const ConnectedSubstitutionActions = connect(
+  () => ({}),
+  dispatch => ({
+    onClearWorkspace: () => dispatch(actions.clear()),
+  })
+)(function ({
+  onClearWorkspace
+}) {
+  return (
+    <ButtonBar>
+      <Button title='Clear workspace' variant='danger' onClick={onClearWorkspace}>Clear All</Button>
+    </ButtonBar>
   )
 })
 
@@ -136,13 +151,14 @@ export default class Index extends React.Component {
           <Header/>
           <div className={css.container} role="main">
             <div className={css.topaction}>
-              <ConnectedTopActionSet/>
+              <ConnectedFontActions/>
               <ConnectedFontName label='Font Name' placeholder='Display name for your font'/>
             </div>
             <div className={css.workspace}>
               <div className={css.panel}>
                 <div className={css.internalpanel}>
                   <Typography.Header.Section>Substitutions</Typography.Header.Section>
+                  <ConnectedSubstitutionActions/>
                   <ConnectedGlyphGrid>
                     <ConnectedSubstitutionEditor/>
                   </ConnectedGlyphGrid>

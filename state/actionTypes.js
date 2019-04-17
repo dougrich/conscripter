@@ -9,4 +9,5 @@ export const
   UPDATE_SUBSTITUTION = 'update_substitution',
   CANCEL_SUBSTITUTION = 'cancel_substitution',
   SAVE = 'save',
-  LOAD = 'load'
+  LOAD = 'load',
+  CLEAR = 'clear'

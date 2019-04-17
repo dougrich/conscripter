@@ -1,5 +1,7 @@
 import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD, SET_FONTNAME, SWAP_SUBSTITUTION, SAVE, LOAD } from '../../actionTypes'
 import { STATUS_PENDING, STATUS_OK, STATUS_ERROR } from '../../status'
+import { KEY_FONTS } from '../../keys'
+import clearable from '../clearable'
 
 import { assembleDataUri, download } from './assembleDataUri'
 
@@ -11,30 +13,60 @@ const defaultState = {
   fontname: 'My Custom Font'
 }
 
-export function reassembleDataUri(assembleDataUri, reducer) {
-  return (state, action) => {
-    const newstate = reducer(state, action)
+export function reassembleDataUri(assembleDataUri) {
+  return (reducer) => {
+    return (state, action) => {
+      const newstate = reducer(state, action)
 
-    const needToRebuildDataUri = !!newstate && !!newstate.buffer && (
-      !state ||
-      state.buffer !== newstate.buffer ||
-      state.substitutions !== newstate.substitutions ||
-      state.fontname !== newstate.fontname
-    )
+      const needToRebuildDataUri = !!newstate && !!newstate.buffer && (
+        !state ||
+        state.buffer !== newstate.buffer ||
+        state.substitutions !== newstate.substitutions ||
+        state.fontname !== newstate.fontname
+      )
 
-    if (needToRebuildDataUri) {
-      const { buffer, substitutions, fontname } = newstate
-      return {
-        ...newstate,
-        ...assembleDataUri(buffer, substitutions, fontname)
+      if (needToRebuildDataUri) {
+        const { buffer, substitutions, fontname } = newstate
+        return {
+          ...newstate,
+          ...assembleDataUri(buffer, substitutions, fontname)
+        }
       }
-    }
 
-    return newstate
+      return newstate
+    }
   }
 }
 
-export const fonts = reassembleDataUri(assembleDataUri, (state = defaultState, action) => {
+const hasLocalStorage = typeof localStorage !== 'undefined'
+
+function saveLocally(key) {
+  return (reducer) => {
+    if (!hasLocalStorage) {
+      return reducer
+    }
+
+    return (state, action) => {
+      if (!state) {
+        const previous = localStorage.getItem(key)
+        if (previous) {
+          state = JSON.parse(previous)
+        }
+      }
+      const newstate = reducer(state, action)
+      if (newstate !== state) {
+        localStorage.setItem(key, JSON.stringify(newstate))
+      }
+      return newstate
+    }
+  }
+}
+
+export const fonts = saveLocally(KEY_FONTS)(clearable(defaultState)(reassembleDataUri(assembleDataUri)((state, action) => {
+  
+  // loading from a saved slate
+  if (typeof state === 'string') state = JSON.parse(state)
+
   if (action && action.type === FETCH_FONTS) {
     switch (action.status) {
       case STATUS_OK:
@@ -126,4 +158,4 @@ export const fonts = reassembleDataUri(assembleDataUri, (state = defaultState, a
   }
 
   return state
-})
+})))

@@ -2,6 +2,10 @@
 
 All changes will be documented here, with releases being tagged + linked.
 
+## Unreleased
+
+- #12 - local copy stashed in localstorage, updated privacy policy
+
 ## 0.2.0
 
 - Support `scale` transform option

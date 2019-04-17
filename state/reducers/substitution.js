@@ -1,4 +1,5 @@
 import { SELECT_SUBSTITUTION, UPDATE_SUBSTITUTION, CANCEL_SUBSTITUTION } from '../actionTypes'
+import clearable from './clearable'
 
 const defaultState = {
   active: null,
@@ -7,7 +8,7 @@ const defaultState = {
   warnings: null
 }
 
-export function substitution(state = defaultState, action) {
+export const substitution = clearable(defaultState)((state, action) => {
   if (action && action.type === SELECT_SUBSTITUTION) {
     return {
       ...state,
@@ -57,4 +58,4 @@ export function substitution(state = defaultState, action) {
   }
 
   return state
-}
+})
