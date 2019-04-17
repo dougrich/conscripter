@@ -12,6 +12,7 @@ All changes will be documented here, with releases being tagged + linked.
 - #3 - BETA - Vertical preview
 - Added syllabry1 tutorial
 - #7 - Added explicit diacritic support
+- #6 - Removed preview text + lines in the grid
 
 ## 0.1.1
 

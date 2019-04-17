@@ -2,7 +2,15 @@ import css from './glyph-preview.scss'
 import * as cx from 'classnames'
 import Typography from './typography';
 
-export default function GlyphPreview({ commands, advanceWidth, unitsPerEm, descender, isDiacritic, className }) {
+export default function GlyphPreview({
+  commands,
+  advanceWidth,
+  unitsPerEm,
+  descender,
+  isDiacritic,
+  className,
+  showContext = true
+}) {
   advanceWidth = Math.max(advanceWidth, 100)
   const widthEm = advanceWidth / unitsPerEm
   let transform = `translate(-50%, 0%)`
@@ -25,17 +33,23 @@ export default function GlyphPreview({ commands, advanceWidth, unitsPerEm, desce
   return (
     <div className={cx(css.container, className)}>
       <div className={css.subcontainer} style={{ transform, transformOrigin: 'bottom center' }}>
-        <div className={css.rule} style={{ top: baseline + 'em', background: 'magenta' }}/>
-        <div className={css.rule} style={{ top: topline, background: 'lime' }}/>
+        {showContext && [
+          <div className={css.rule} style={{ top: baseline + 'em', background: 'magenta' }} key='base'/>,
+          <div className={css.rule} style={{ top: topline, background: 'lime' }} key='top'/>
+        ]}
         <div className={css.textcontainer}>
-          <span className={cx(css.faded, Typography.BaseDemofont)} style={{ textAlign: 'right', direction: 'rtl', paddingTop: textCorrection }}>abcdef</span>
+          {showContext && (
+            <span className={cx(css.faded, Typography.BaseDemofont)} style={{ textAlign: 'right', direction: 'rtl', paddingTop: textCorrection }}>abcdef</span>
+          )}
           <svg className={css.glyph} height="1em" width={`${widthEm}em`} viewBox={`0 0 ${advanceWidth} ${unitsPerEm}`} preserveAspectRatio='xMinYMin slice'>
             {isDiacritic && (
               <circle r={200} cx={advanceWidth / 2} cy={620} fill='transparent' stroke='#2b303a' strokeWidth={20} strokeDasharray="35 35"/>
             )}
             <path d={path} fill="black"/>
           </svg>
-          <span className={cx(css.faded, Typography.BaseDemofont)} style={{ textAlign: 'left', paddingTop: textCorrection }}>ghijk</span>
+          {showContext && (
+            <span className={cx(css.faded, Typography.BaseDemofont)} style={{ textAlign: 'left', paddingTop: textCorrection }}>ghijk</span>
+          )}
         </div>
       </div>
       <div className={css.edges}/>

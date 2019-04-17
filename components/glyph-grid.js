@@ -73,7 +73,7 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     const button = (
       <Btn isActive={isActive} onClick={() => onSubstitutionSelect(sub)}>
         <div className={css.label}>{key}</div>
-        <GlyphPreview className={css.preview} {...glyph} {...meta}/>
+        <GlyphPreview className={css.preview} showContext={false} {...glyph} {...meta}/>
       </Btn>
     )
     foundActive = foundActive || isActive
