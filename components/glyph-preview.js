@@ -11,6 +11,7 @@ export default function GlyphPreview({
   className,
   showContext = true
 }) {
+  if (!unitsPerEm) return null
   advanceWidth = Math.max(advanceWidth, 100)
   const widthEm = advanceWidth / unitsPerEm
   let transform = `translate(-50%, 0%)`

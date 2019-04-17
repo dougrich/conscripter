@@ -18,11 +18,11 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
   if (substitutions.length === 0 && !active) {
     return (
       <div className={css.grid}>
-        <div className={css.emptyset}>
+        <span className={css.emptyset} key='emptyset'>
           <Button onClick={() => onSubstitutionSelect()}>
           Click here to get started
           </Button>
-        </div>
+        </span>
       </div>
     )
   }
@@ -119,11 +119,11 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
   
   return (
     <div className={css.grid}>
-      <Typography.Descriptor className={cx(css.textcell, Print.none)}>
+      <Typography.Descriptor key='highpri' className={cx(css.textcell, Print.none)}>
         High Priority
       </Typography.Descriptor>
       {symbols}
-      <Typography.Descriptor className={cx(css.textcell, Print.none)}>
+      <Typography.Descriptor key='lowpri' className={cx(css.textcell, Print.none)}>
         Low Priority
       </Typography.Descriptor>
     </div>
