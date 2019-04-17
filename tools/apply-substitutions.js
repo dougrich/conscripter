@@ -1,4 +1,4 @@
-const { applySubstitutions } = require('../src/state/reducers/fonts/assembleDataUri')
+const { applySubstitutions } = require('../state/reducers/fonts/assembleDataUri')
 const fs = require('fs')
 const opentype = require('opentype.js')
 
