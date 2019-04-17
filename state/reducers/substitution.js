@@ -1,7 +1,10 @@
 import { SELECT_SUBSTITUTION, UPDATE_SUBSTITUTION, CANCEL_SUBSTITUTION } from '../actionTypes'
 
 const defaultState = {
-  active: null
+  active: null,
+  currentGlyph: null,
+  currentReplace: null,
+  warnings: null
 }
 
 export function substitution(state = defaultState, action) {
@@ -36,6 +39,14 @@ export function substitution(state = defaultState, action) {
           currentGlyph: {
             ...state.currentGlyph,
             advanceWidth: action.value
+          }
+        }
+      case 'glyph/diacritic':
+        return {
+          ...state,
+          currentGlyph: {
+            ...state.currentGlyph,
+            isDiacritic: action.value
           }
         }
     }

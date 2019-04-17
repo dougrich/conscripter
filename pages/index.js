@@ -66,7 +66,8 @@ const ConnectedSubstitutionEditor = connect(
     onRemove: () => dispatch(actions.removeSubstitution(store.getState().substitution)),
     onSubmit: () => dispatch(actions.submitSubstitution(store.getState().substitution)),
     onCancel: () => dispatch(actions.cancelSubstitution()),
-    onSwap: (a, b) => dispatch(actions.swapSubstitution(a, b))
+    onSwap: (a, b) => dispatch(actions.swapSubstitution(a, b)),
+    onToggleDiacritic: v => dispatch(actions.updateSubstitutionDiacritic(v))
   })
 )(SubstitutionEditor)
 
@@ -116,7 +117,7 @@ const ConnectedHelmet = connect(
 
 const ConnectedPreview = connect(
   state => ({
-    keep: state.fonts.substitutions.map(s => s.replace[0])
+    keep: state.fonts.substitutions.map(s => ({ value: s.replace[0], fix: s.glyph.isDiacritic ? 'post' : 'in' }))
   })
 )(Preview)
 

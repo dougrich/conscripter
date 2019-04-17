@@ -116,6 +116,14 @@ function makeMultiSubstitutionLookup(font, characters, glyph) {
   }
 }
 
+function translate(x, y, commands) {
+  return commands.map(cmd => ({
+    ...cmd,
+    x: cmd.x != null ? cmd.x + x : cmd.x,
+    y: cmd.y != null ? cmd.y + y : cmd.y
+  }))
+}
+
 function addSubstitution(font, characters, glyph) {
 
   assertBadInput(typeof (characters) === 'string', 'characters argument must be a string')
@@ -134,19 +142,19 @@ function addSubstitution(font, characters, glyph) {
   gsub.features[0].feature.lookupListIndexes.push(gsub.lookups.length - 1)
 }
 
-function addGlyph(font, { advanceWidth, commands }) {
+function addGlyph(font, { isDiacritic, advanceWidth, commands }) {
   const g = new opentype.Glyph({
     index: font.glyphs.length,
-    name: `glyph${font.glyphs.lengt}`
+    name: `glyph${font.glyphs.length}`
   })
-  g.advanceWidth = advanceWidth
+  g.advanceWidth = isDiacritic ? 0 : advanceWidth
   g.path = new opentype.Path({
     fill: 'black',
     stroke: null,
     strokeWidth: 1,
     unitsPerEm: font.unitsPerEm
   })
-  g.path.commands = commands
+  g.path.commands = isDiacritic ? translate(-advanceWidth, 0, commands) : commands
   font.glyphs.push(g.index, g)
   return g
 }

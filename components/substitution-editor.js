@@ -4,7 +4,7 @@ import DropZone from "./dropzone";
 import Button, { ButtonBar } from './button';
 import Description from './description';
 import Typography from './typography';
-import Slider from './slider';
+import Slider, { Toggle } from './slider';
 import Text from './text'
 
 function surpress(handler) {
@@ -19,21 +19,22 @@ export default class SubstitutionEditor extends React.PureComponent {
   render() {
     const {
       active,
-      warnings,
-      currentGlyph,
-      currentReplace,
-      meta,
-      canRemove,
       canMoveLeft,
       canMoveRight,
+      canRemove,
+      currentGlyph,
+      currentReplace,
       idx,
-      onUpload,
-      onReplaceChange,
+      meta,
+      warnings,
       onAdvanceWidthChange,
-      onSubmit,
-      onRemove,
       onCancel,
-      onSwap
+      onRemove,
+      onReplaceChange,
+      onSubmit,
+      onSwap,
+      onToggleDiacritic,
+      onUpload,
     } = this.props
 
     if (!active) {
@@ -64,6 +65,11 @@ export default class SubstitutionEditor extends React.PureComponent {
           ) : null}
         </div>
         <div>
+          <Toggle
+            label='Diacritic'
+            value={currentGlyph.isDiacritic}
+            onChange={onToggleDiacritic}
+          />
           <Text.Field
             label='Replace'
             required

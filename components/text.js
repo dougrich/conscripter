@@ -87,7 +87,7 @@ const Text = {
       }
 
       for (let i = 0; i < keep.length; i++) {
-        const subset = keep[i]
+        const { value: subset, fix } = keep[i]
         all:
         for (let j = 0; j < substituted.length - subset.length + 1; j++) {
           for (let k = 0; k < subset.length; k++) {
@@ -97,9 +97,31 @@ const Text = {
           }
 
           // match found, replace
-          substituted.splice(j, subset.length, subset)
+          substituted.splice(j, subset.length, { [fix]: subset })
         }
       }
+
+      substituted = (({ current, set }) => {
+        if (current) set.push(current)
+        return set
+      })(substituted.reduce(
+        ({ current, set }, segment) => {
+          if (typeof segment === 'string') {
+            if (current) set.push(current)
+            return { current: segment, set }
+          } else {
+            if (segment.in) {
+              if (current) set.push(current)
+              return { current: segment.in, set }
+            } else if (segment.post) {
+              return { current: current + segment.post, set }
+            } else {
+              throw new Error('Unrecognized segment positioning')
+            }
+          }
+        },
+        { current: '', set: [] }
+      ))
 
       for (let i = 0; i < substituted.length; i++) {
         const char = substituted[i]

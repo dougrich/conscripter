@@ -11,6 +11,7 @@ All changes will be documented here, with releases being tagged + linked.
 - Fixed transformation apply order
 - #3 - BETA - Vertical preview
 - Added syllabry1 tutorial
+- #7 - Added explicit diacritic support
 
 ## 0.1.1
 
