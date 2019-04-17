@@ -505,7 +505,8 @@
   font-size: 0.8em; }
 
 .cNlmMWCBYsV {
-  display: flex; }
+  display: flex;
+  justify-content: space-between; }
 
 .c3E11jiNn3Z, .c2dfOts33dQ, .c1pjrAH37nj {
   transition-property: background-color, border-color, color, transform;
