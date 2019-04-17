@@ -2,6 +2,7 @@ import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD, SET_FONTN
 import { STATUS_PENDING, STATUS_OK, STATUS_ERROR } from '../../status'
 import { KEY_FONTS } from '../../keys'
 import clearable from '../clearable'
+import encoders from '../../encoders'
 
 import { assembleDataUri, download } from './assembleDataUri'
 
@@ -51,7 +52,12 @@ function saveLocally(key) {
         const previous = localStorage.getItem(key)
         if (previous) {
           try {
-            state = JSON.parse(previous)
+            const { substitutions, fontname } = encoders.JSON.decode(previous)
+            state = {
+              ...defaultState,
+              substitutions,
+              fontname
+            }
           } catch (err) {
             // bad state in local storage
             localStorage.clear(key)
@@ -60,14 +66,14 @@ function saveLocally(key) {
       }
       const newstate = reducer(state, action)
       if (newstate !== state) {
-        localStorage.setItem(key, JSON.stringify(newstate))
+        localStorage.setItem(key, encoders.JSON.encode({ fonts: newstate }))
       }
       return newstate
     }
   }
 }
 
-export const fonts = saveLocally(KEY_FONTS)(clearable(defaultState, { only: 'substitutions' })(reassembleDataUri(assembleDataUri)((state, action) => {
+export const fonts = saveLocally(KEY_FONTS)(clearable(defaultState, { only: ['substitutions'] })(reassembleDataUri(assembleDataUri)((state, action) => {
   
   // loading from a saved slate
   if (typeof state === 'string') state = JSON.parse(state)

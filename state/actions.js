@@ -2,6 +2,7 @@ import fetch from 'isomorphic-unfetch'
 import * as opentype from 'opentype.js'
 import * as PathParser from './reducers/fonts/parsePath'
 import MultipleError from '../multiple-error'
+import encoder from './encoders'
 
 
 import {
@@ -165,12 +166,13 @@ export function swapSubstitution(a, b) {
   }
 }
 
-export function save({ fonts: { substitutions, fontname }}) {
-  const data = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ version: '0.1.1', substitutions, fontname }))
+export function save(state) {
+  const data = encoder.MSGPACK.encode(state)
   const container = document.createElement('a')
-  container.setAttribute('href', data)
-  container.setAttribute('download', slugify(fontname || 'conscripter-custom-font') + '.json')
+  container.setAttribute('href', 'data:octect/stream;base64,' + data.toString('base64'))
+  container.setAttribute('download', slugify(state.fonts.fontname || 'conscripter-custom-font') + '.cwk')
   container.click()
+  window.URL.revokeObjectURL(dl)
   return {
     type: SAVE
   }
@@ -180,29 +182,32 @@ export function load() {
   return dispatch => {
     const loader = document.createElement('input')
     loader.setAttribute('type', 'file')
-    loader.setAttribute('accept', 'text/json')
     loader.onchange = e => {
       const file = e.target.files[0]
       const reader = new FileReader()
       reader.onload = () => {
         try {
-          const { substitutions = [], fontname = 'My Custom Font' } = JSON.parse(reader.result)
+          let data = { substitutions: [], fontname: 'My Custom Font' }
+          if (file.name.endsWith('.json')) {
+            data = encoder.JSON.decode(Buffer.from(reader.result).toString('utf8'))
+          } else {
+            data = encoder.MSGPACK.decode(Buffer.from(reader.result))
+          }
           dispatch({
             type: LOAD,
             error: null,
-            substitutions,
-            fontname
+            ...data
           })
         } catch (e) {
           dispatch({
             type: LOAD,
-            error: new Error('Unable to parse selected JSON: did it come from Conscripter?'),
+            error: new Error('Unable to parse selected file: did it come from Conscripter?'),
             substitutions: [],
             fontname: 'My Custom Font'
           })
         }
       }
-      reader.readAsText(file)
+      reader.readAsArrayBuffer(file)
     }
     loader.click()
   }
