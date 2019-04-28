@@ -16,7 +16,7 @@ export const substitution = clearable(defaultState)((state, action) => {
       active: action.substitution,
       currentGlyph: {
         ...action.substitution.glyph,
-        advanceWidth: state.lastAdvanceWidth || 1000
+        advanceWidth: action.substitution.glyph.advanceWidth || state.lastAdvanceWidth || 1000
       },
       currentReplace: action.substitution.replace[0]
     }

@@ -140,7 +140,6 @@ export function selectSubstitution(substitution) {
     substitution: substitution || {
       replace: [''],
       glyph: {
-        advanceWidth: 1000,
         commands: []
       }
     }

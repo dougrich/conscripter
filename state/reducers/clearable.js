@@ -7,7 +7,7 @@ const defaultOptions = {
 export default function clearable(defaultState, options = defaultOptions) {
   return reducer => {
     return (state = defaultState, action) => {
-      if (action.type === CLEAR) {
+      if (action && action.type === CLEAR) {
         if (options.only) {
           const next = { ...state }
           for (const field of options.only) {
