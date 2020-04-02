@@ -213,6 +213,17 @@ class PathParser {
 
     if (node.nodeName === 'path') {
       // it is a path: pull out the critical attribute
+      if (attributes['fill-opacity'] != null) {
+        const opacity = parseFloat(attributes['fill-opacity'])
+        if (opacity === 0) {
+          return
+        } else {
+          warnings.push(PathParser.Codes.WarnTranslucentFill)
+          if (Math.round(opacity) === 0) {
+            return
+          }
+        }
+      }
       if (attributes.d) {
         const d = attributes.d
         const subCommands = this.svgPathParser.makeAbsolute(this.svgPathParser.parseSVG(d))
@@ -393,6 +404,10 @@ PathParser.Codes = {
   WarnNonEmptyStroke: {
     code: 'WarnNonEmptyStroke',
     message: 'One or more paths have a non-empty stroke, which can have unexpected results. Ensure all shapes have a solid fill and no stroke.'
+  },
+  WarnTranslucentFill: {
+    code: 'WarnTranslucentFill',
+    message: 'One or more paths have a translucent fill, which will be rounded to either 0 (not included) or 1 (included)'
   }
 }
 
