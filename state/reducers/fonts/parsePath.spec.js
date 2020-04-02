@@ -4,6 +4,24 @@ const path = require('path')
 
 const PathParser = require('./parsePath')
 
+function expectPathMatch(actual, expected) {
+  expect(actual.length).to.eql(expected.length, `Expected paths to have the same number of elements`)
+  for (const i in expected) {
+    expect(actual.type).to.eql(expected.type, `Expected ${i} type to match`)
+    if (expected.x != null) {
+      expect(actual.x).to.be.within(expected.x - 0.1, expected.x + 0.1, `Expected ${i}.x to be +/- 0.1`)
+    } else {
+      expect(actual.x).to.be.undefined
+    }
+
+    if (expected.y != null) {
+      expect(actual.y).to.be.within(expected.y - 0.1, expected.y + 0.1, `Expected ${i}.y to be +/- 0.1`)
+    } else {
+      expect(actual.y).to.be.undefined
+    }
+  }
+}
+
 describe('PathParser#parseTransform', () => {
   const scenarios = [
     [
@@ -64,19 +82,31 @@ describe('PathParser#parse', () => {
   it('parses simple path', () => {
     const { commands, warnings } = parse('simple.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql(simpleCommands)
+    expectPathMatch(commands, simpleCommands)
+  })
+
+  it('does not include 0 opacity elements', () => {
+    const { commands, warnings } = parse('opacity.svg')
+    expect(warnings).to.be.empty
+    expectPathMatch(commands, [
+      { type: 'M', x: 200, y: 600 },
+      { type: 'L', x: 800, y: 600 },
+      { type: 'L', x: 800, y: 0 },
+      { type: 'L', x: 200, y: 0 },
+      { type: 'Z' }
+    ])
   })
 
   it('parses relative', () => {
     const { commands, warnings } = parse('relative.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql(simpleCommands)
+    expectPathMatch(commands, simpleCommands)
   })
 
   it('parses standing-s-curve', () => {
     const { commands, warnings } = parse('standing-s-curve.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 100, y: 700 },
       { type: 'L', x: 111.6, y: 678.4 },
       { type: 'L', x: 129.08159999999998, y: 648.3904 },
@@ -101,7 +131,7 @@ describe('PathParser#parse', () => {
   it('parses curved-s-curve', () => {
     const { commands, warnings } = parse('curved-s-curve.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 100, y: 700 },
       { type: 'L', x: 100.4, y: 618.5999999999999 },
       { type: 'L', x: 101.63839999999999, y: 577.4016 },
@@ -142,19 +172,19 @@ describe('PathParser#parse', () => {
   it('parses around a simple comment', () => {
     const { commands, warnings } = parse('comments.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql(simpleCommands)
+    expectPathMatch(commands, simpleCommands)
   })
 
   it('parses rectangle', () => {
     const { commands, warnings } = parse('rectangle.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql(simpleCommands)
+    expectPathMatch(commands, simpleCommands)
   })
 
   it('parses arc', () => {
     const { commands, warnings } = parse('arc.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 100, y: 300 },
       { type: 'L', x: 105.23931773546481, y: 364.8461403808167 },
       { type: 'L', x: 113.2011431759372, y: 402.2139983263296 },
@@ -195,7 +225,7 @@ describe('PathParser#parse', () => {
   it('parses circle', () => {
     const { commands, warnings } = parse('circle.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 900, y: 300 },
       { type: 'L', x: 888.6526931658696, y: 205.40040119051014 },
       { type: 'L', x: 855.2545795254179, y: 116.16805575140484 },
@@ -230,7 +260,7 @@ describe('PathParser#parse', () => {
   it('parses quadratic curve', () => {
     const { commands, warnings } = parse('quadratic-bezier.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 100, y: 700 },
       { type: 'L', x: 180, y: 556 },
       { type: 'L', x: 227.99999999999997, y: 484.96000000000004 },
@@ -255,7 +285,7 @@ describe('PathParser#parse', () => {
   it('parses curve', () => {
     const { commands, warnings } = parse('curve.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 100, y: 700 },
       { type: 'L', x: 144.00000000000003, y: 484 },
       { type: 'L', x: 182.30399999999997, y: 377.44000000000005 },
@@ -280,19 +310,19 @@ describe('PathParser#parse', () => {
   it('parses two paths', () => {
     const { commands, warnings } = parse('two-parts.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql(twoSquareCommands)
+    expectPathMatch(commands, twoSquareCommands)
   })
 
   it('parses nested paths', () => {
     const { commands, warnings } = parse('nested.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql(twoSquareCommands)
+    expectPathMatch(commands, twoSquareCommands)
   })
 
   it('parses transform', () => {
     const { commands, warnings } = parse('transform.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 400, y: 300 },
       { type: 'L', x: 800, y: 300 },
       { type: 'L', x: 800, y: -100 },
@@ -309,7 +339,7 @@ describe('PathParser#parse', () => {
   it('parses transform-scale', () => {
     const { commands, warnings } = parse('transform-scale.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 50, y: 750 },
       { type: 'L', x: 450, y: 750 },
       { type: 'L', x: 450, y: 350 },
@@ -321,7 +351,7 @@ describe('PathParser#parse', () => {
   it('parses transform-rotate', () => {
     const { commands, warnings } = parse('transform-rotate.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 900.0002692819508, y: 699.9997307178679 },
       { type: 'L', x: 899.999730717868, y: -100.00026928195075 },
       { type: 'L', x: 99.99973071804924, y: -99.99973071786803 },
@@ -333,7 +363,7 @@ describe('PathParser#parse', () => {
   it('parses transform-chain', () => {
     const { commands, warnings } = parse('transform-chain.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql([
+    expectPathMatch(commands, [
       { type: 'M', x: 1000.0002692819508, y: 599.9997307178679 },
       { type: 'L', x: 999.999730717868, y: -200.00026928195075 },
       { type: 'L', x: 199.99973071804925, y: -199.99973071786803 },
@@ -345,30 +375,30 @@ describe('PathParser#parse', () => {
   it('parses viewbox', () => {
     const { commands, warnings } = parse('viewbox.svg')
     expect(warnings).to.be.empty
-    expect(commands).to.eql(twoSquareCommands)
+    expectPathMatch(commands, twoSquareCommands)
   })
 
   it('includes one WarnEmptyFill warning if two empty fill present', () => {
     const { commands, warnings } = parse('warn-once-empty-fill.svg')
     expect(warnings).to.include(PathParser.Codes.WarnEmptyFill)
     expect(warnings.length).to.equal(1)
-    expect(commands).to.eql(twoSquareCommands)
+    expectPathMatch(commands, twoSquareCommands)
   })
 
   it('includes a WarnEmptyFill warning if there is a fill present', () => {
     const { commands, warnings } = parse('warn-empty-fill.svg')
     expect(warnings).to.include(PathParser.Codes.WarnEmptyFill)
-    expect(commands).to.eql(simpleCommands)
+    expectPathMatch(commands, simpleCommands)
   })
   it('includes a WarnComplexFill warning if there is a complex fill present', () => {
     const { commands, warnings } = parse('warn-complex-fill.svg')
     expect(warnings).to.include(PathParser.Codes.WarnComplexFill)
-    expect(commands).to.eql(simpleCommands)
+    expectPathMatch(commands, simpleCommands)
   })
   it('includes a WarnNonEmptyStroke warning if there is a non-empty stroke present', () => {
     const { commands, warnings } = parse('warn-non-empty-stroke.svg')
     expect(warnings).to.include(PathParser.Codes.WarnNonEmptyStroke)
-    expect(commands).to.eql(simpleCommands)
+    expectPathMatch(commands, simpleCommands)
   })
 
   it('errors on missing SVG', () => {
