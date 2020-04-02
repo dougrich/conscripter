@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
 
-var _jsxFileName = "/git/fonts/conscripter/components/badge.js";
+var _jsxFileName = "/git/conscripter/components/badge.js";
 
 
 
@@ -59,7 +59,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./typography */ "./components/typography.js");
 
-var _jsxFileName = "/git/fonts/conscripter/components/button.js";
+var _jsxFileName = "/git/conscripter/components/button.js";
 
 
 
@@ -127,7 +127,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./typography */ "./components/typography.js");
-var _jsxFileName = "/git/fonts/conscripter/components/description.js";
+var _jsxFileName = "/git/conscripter/components/description.js";
 
 
 
@@ -173,7 +173,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/dropzone.js";
+var _jsxFileName = "/git/conscripter/components/dropzone.js";
 
 
 
@@ -317,7 +317,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _print_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_print_scss__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _links__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./links */ "./components/links.js");
 /* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./typography */ "./components/typography.js");
-var _jsxFileName = "/git/fonts/conscripter/components/footer.js";
+var _jsxFileName = "/git/conscripter/components/footer.js";
 
 
 
@@ -399,7 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GithubCorner; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/git/fonts/conscripter/components/github-corner.js";
+var _jsxFileName = "/git/conscripter/components/github-corner.js";
 
 
 // sourced from http://tholman.com/github-corners/
@@ -451,7 +451,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/glyph-grid.js";
+var _jsxFileName = "/git/conscripter/components/glyph-grid.js";
 
 
 /**
@@ -702,7 +702,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./typography */ "./components/typography.js");
-var _jsxFileName = "/git/fonts/conscripter/components/glyph-preview.js";
+var _jsxFileName = "/git/conscripter/components/glyph-preview.js";
 
 
 
@@ -869,7 +869,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_server_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next-server/head */ "./node_modules/next-server/head.js");
 /* harmony import */ var next_server_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_server_head__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "/git/fonts/conscripter/components/head.js";
+var _jsxFileName = "/git/conscripter/components/head.js";
 
 
 
@@ -1128,7 +1128,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _links__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./links */ "./components/links.js");
 /* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./typography */ "./components/typography.js");
 
-var _jsxFileName = "/git/fonts/conscripter/components/header.js";
+var _jsxFileName = "/git/conscripter/components/header.js";
 
  // these are done to avoid a nasty ordering issue in mini-css-extract
 
@@ -1212,7 +1212,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _images_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./images.scss */ "./components/images.scss");
 /* harmony import */ var _images_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_scss__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "/git/fonts/conscripter/components/images.js";
+var _jsxFileName = "/git/conscripter/components/images.js";
 
 
 
@@ -1251,7 +1251,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _typography__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./typography */ "./components/typography.js");
-var _jsxFileName = "/git/fonts/conscripter/components/label.js";
+var _jsxFileName = "/git/conscripter/components/label.js";
 
 
 function Label(props) {
@@ -1291,7 +1291,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/links.js",
+var _jsxFileName = "/git/conscripter/components/links.js",
     _variant,
     _variant2;
 
@@ -1450,7 +1450,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/options.js";
+var _jsxFileName = "/git/conscripter/components/options.js";
 
 
 
@@ -1565,7 +1565,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/preview.js";
+var _jsxFileName = "/git/conscripter/components/preview.js";
 
 
 
@@ -1755,7 +1755,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/slider.js";
+var _jsxFileName = "/git/conscripter/components/slider.js";
 
 
 
@@ -2071,7 +2071,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/substitution-editor.js";
+var _jsxFileName = "/git/conscripter/components/substitution-editor.js";
 
 
 
@@ -2369,7 +2369,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/components/text.js";
+var _jsxFileName = "/git/conscripter/components/text.js";
 
 
 
@@ -2687,7 +2687,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
 
-var _jsxFileName = "/git/fonts/conscripter/components/typography.js";
+var _jsxFileName = "/git/conscripter/components/typography.js";
 
 
 
@@ -15420,10 +15420,10 @@ module.exports = __webpack_require__(/*! ./dist/lib/head */ "./node_modules/next
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fgit%2Ffonts%2Fconscripter%2Fpages%2Findex.js!./":
-/*!************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fgit%2Ffonts%2Fconscripter%2Fpages%2Findex.js ***!
-  \************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fgit%2Fconscripter%2Fpages%2Findex.js!./":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fgit%2Fconscripter%2Fpages%2Findex.js ***!
+  \****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15972,12 +15972,12 @@ module.exports = __webpack_require__(/*! ./dist/client/router */ "./node_modules
 
 /***/ "./node_modules/object-assign/index.js":
 /*!***************************************************************************************************!*\
-  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_6dc2816e14fab51b8269 ***!
+  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_1aef2d0bbc0d334d831c ***!
   \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_6dc2816e14fab51b8269 */ "dll-reference dll_6dc2816e14fab51b8269"))("./node_modules/object-assign/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_1aef2d0bbc0d334d831c */ "dll-reference dll_1aef2d0bbc0d334d831c"))("./node_modules/object-assign/index.js");
 
 /***/ }),
 
@@ -39156,12 +39156,12 @@ module.exports = exports['default'];
 
 /***/ "./node_modules/prop-types/checkPropTypes.js":
 /*!*********************************************************************************************************!*\
-  !*** delegated ./node_modules/prop-types/checkPropTypes.js from dll-reference dll_6dc2816e14fab51b8269 ***!
+  !*** delegated ./node_modules/prop-types/checkPropTypes.js from dll-reference dll_1aef2d0bbc0d334d831c ***!
   \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_6dc2816e14fab51b8269 */ "dll-reference dll_6dc2816e14fab51b8269"))("./node_modules/prop-types/checkPropTypes.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_1aef2d0bbc0d334d831c */ "dll-reference dll_1aef2d0bbc0d334d831c"))("./node_modules/prop-types/checkPropTypes.js");
 
 /***/ }),
 
@@ -39769,12 +39769,12 @@ if (true) {
 
 /***/ "./node_modules/prop-types/lib/ReactPropTypesSecret.js":
 /*!*******************************************************************************************************************!*\
-  !*** delegated ./node_modules/prop-types/lib/ReactPropTypesSecret.js from dll-reference dll_6dc2816e14fab51b8269 ***!
+  !*** delegated ./node_modules/prop-types/lib/ReactPropTypesSecret.js from dll-reference dll_1aef2d0bbc0d334d831c ***!
   \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_6dc2816e14fab51b8269 */ "dll-reference dll_6dc2816e14fab51b8269"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_1aef2d0bbc0d334d831c */ "dll-reference dll_1aef2d0bbc0d334d831c"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
 
 /***/ }),
 
@@ -42949,12 +42949,12 @@ if (false) {} else {
 
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.js from dll-reference dll_6dc2816e14fab51b8269 ***!
+  !*** delegated ./node_modules/react/index.js from dll-reference dll_1aef2d0bbc0d334d831c ***!
   \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_6dc2816e14fab51b8269 */ "dll-reference dll_6dc2816e14fab51b8269"))("./node_modules/react/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_1aef2d0bbc0d334d831c */ "dll-reference dll_1aef2d0bbc0d334d831c"))("./node_modules/react/index.js");
 
 /***/ }),
 
@@ -50240,12 +50240,12 @@ exports.callbackify = callbackify;
 
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!******************************************************************************************************!*\
-  !*** delegated ./node_modules/webpack/buildin/global.js from dll-reference dll_6dc2816e14fab51b8269 ***!
+  !*** delegated ./node_modules/webpack/buildin/global.js from dll-reference dll_1aef2d0bbc0d334d831c ***!
   \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_6dc2816e14fab51b8269 */ "dll-reference dll_6dc2816e14fab51b8269"))("./node_modules/webpack/buildin/global.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_1aef2d0bbc0d334d831c */ "dll-reference dll_1aef2d0bbc0d334d831c"))("./node_modules/webpack/buildin/global.js");
 
 /***/ }),
 
@@ -50324,7 +50324,7 @@ module.exports = function(module) {
 /*! exports provided: name, version, description, main, scripts, repository, author, license, bugs, homepage, devDependencies, dependencies, default */
 /***/ (function(module) {
 
-module.exports = {"name":"@dougrich/conscripter","version":"0.3.1","description":"Static site that generates functional open type font files for conlang scripts from SVG using substitution","main":"index.js","scripts":{"test":"NODE_ENV=test mocha --require @babel/register \"./state/**/?(*.)spec.js\"","dev":"next","deploy":"npm run export && touch out/.nojekyll && echo 'Publishing...' && gh-pages -d out -t","export":"next build && next export","build":"next build","start":"next start","help":"gh-pages --help"},"repository":{"type":"git","url":"git+https://github.com/dougrich/conscripter.git"},"author":"@dougrich","license":"MIT","bugs":{"url":"https://github.com/dougrich/conscripter/issues"},"homepage":"https://github.com/dougrich/conscripter#readme","devDependencies":{"chai":"^4.2.0","gh-pages":"^2.0.1","mocha":"^6.0.2","svg-transform-parser":"0.0.1"},"dependencies":{"@babel/core":"^7.4.3","@babel/register":"^7.4.0","@zeit/next-sass":"^1.0.1","classnames":"^2.2.6","isomorphic-unfetch":"^3.0.0","msgpack-lite":"^0.1.26","next":"^8.0.3","node-sass":"^4.11.0","opentype.js":"^0.11.0","parse5":"^5.1.0","raw-loader":"^2.0.0","react":"^16.8.6","react-dom":"^16.8.6","react-markdown":"^4.0.6","react-redux":"^6.0.1","redux":"^4.0.1","redux-thunk":"^2.3.0","slugify":"^1.3.4","svg-arc-to-cubic-bezier":"^3.1.3","svg-path-parser":"^1.1.0"}};
+module.exports = {"name":"@dougrich/conscripter","version":"0.3.1","description":"Static site that generates functional open type font files for conlang scripts from SVG using substitution","main":"index.js","scripts":{"test":"NODE_ENV=test mocha --require @babel/register \"./state/**/?(*.)spec.js\"","dev":"next","deploy":"npm run export && touch out/.nojekyll && echo 'Publishing...' && gh-pages -d out -t","export":"next build && next export","build":"next build","start":"next start","help":"gh-pages --help"},"repository":{"type":"git","url":"git+https://github.com/dougrich/conscripter.git"},"author":"@dougrich","license":"MIT","bugs":{"url":"https://github.com/dougrich/conscripter/issues"},"homepage":"https://github.com/dougrich/conscripter#readme","devDependencies":{"chai":"^4.2.0","gh-pages":"^2.0.1","mocha":"^6.2.1","svg-transform-parser":"0.0.1"},"dependencies":{"@babel/core":"^7.4.3","@babel/register":"^7.4.0","@zeit/next-sass":"^1.0.1","classnames":"^2.2.6","isomorphic-unfetch":"^3.0.0","msgpack-lite":"^0.1.26","next":"^8.0.3","node-sass":"^4.12.0","opentype.js":"^0.11.0","parse5":"^5.1.0","raw-loader":"^2.0.0","react":"^16.8.6","react-dom":"^16.8.6","react-markdown":"^4.0.6","react-redux":"^6.0.1","redux":"^4.0.1","redux-thunk":"^2.3.0","slugify":"^1.3.4","svg-arc-to-cubic-bezier":"^3.1.3","svg-path-parser":"^1.1.0"}};
 
 /***/ }),
 
@@ -50370,7 +50370,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/git/fonts/conscripter/pages/index.js";
+var _jsxFileName = "/git/conscripter/pages/index.js";
 
 
 
@@ -51004,7 +51004,6 @@ function selectSubstitution(substitution) {
     substitution: substitution || {
       replace: [''],
       glyph: {
-        advanceWidth: 1000,
         commands: []
       }
     }
@@ -51329,7 +51328,7 @@ function clearable(defaultState) {
       var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
       var action = arguments.length > 1 ? arguments[1] : undefined;
 
-      if (action.type === _actionTypes__WEBPACK_IMPORTED_MODULE_2__["CLEAR"]) {
+      if (action && action.type === _actionTypes__WEBPACK_IMPORTED_MODULE_2__["CLEAR"]) {
         if (options.only) {
           var next = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state);
 
@@ -51871,9 +51870,9 @@ var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/ru
 
 var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js"));
 
-var _parseFloat2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-float */ "./node_modules/@babel/runtime-corejs2/core-js/parse-float.js"));
-
 var _isArray = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/array/is-array */ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js"));
+
+var _parseFloat2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-float */ "./node_modules/@babel/runtime-corejs2/core-js/parse-float.js"));
 
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js"));
 
@@ -52202,6 +52201,20 @@ function () {
 
       if (node.nodeName === 'path') {
         // it is a path: pull out the critical attribute
+        if (attributes['fill-opacity'] != null) {
+          var opacity = (0, _parseFloat2.default)(attributes['fill-opacity']);
+
+          if (opacity === 0) {
+            return;
+          } else {
+            warnings.push(PathParser.Codes.WarnTranslucentFill);
+
+            if (Math.round(opacity) === 0) {
+              return;
+            }
+          }
+        }
+
         if (attributes.d) {
           var d = attributes.d;
           var subCommands = this.svgPathParser.makeAbsolute(this.svgPathParser.parseSVG(d));
@@ -52482,6 +52495,10 @@ PathParser.Codes = {
   WarnNonEmptyStroke: {
     code: 'WarnNonEmptyStroke',
     message: 'One or more paths have a non-empty stroke, which can have unexpected results. Ensure all shapes have a solid fill and no stroke.'
+  },
+  WarnTranslucentFill: {
+    code: 'WarnTranslucentFill',
+    message: 'One or more paths have a translucent fill, which will be rounded to either 0 (not included) or 1 (included)'
   }
 };
 module.exports = PathParser;
@@ -52536,7 +52553,7 @@ var substitution = Object(_clearable__WEBPACK_IMPORTED_MODULE_2__["default"])(de
     return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
       active: action.substitution,
       currentGlyph: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, action.substitution.glyph, {
-        advanceWidth: state.lastAdvanceWidth || 1000
+        advanceWidth: action.substitution.glyph.advanceWidth || state.lastAdvanceWidth || 1000
       }),
       currentReplace: action.substitution.replace[0]
     });
@@ -52625,13 +52642,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 1:
-/*!****************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fgit%2Ffonts%2Fconscripter%2Fpages%2Findex.js ***!
-  \****************************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fgit%2Fconscripter%2Fpages%2Findex.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2Fgit%2Ffonts%2Fconscripter%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fgit%2Ffonts%2Fconscripter%2Fpages%2Findex.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2Fgit%2Fconscripter%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fgit%2Fconscripter%2Fpages%2Findex.js!./");
 
 
 /***/ }),
@@ -52647,14 +52664,14 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absol
 
 /***/ }),
 
-/***/ "dll-reference dll_6dc2816e14fab51b8269":
+/***/ "dll-reference dll_1aef2d0bbc0d334d831c":
 /*!*******************************************!*\
-  !*** external "dll_6dc2816e14fab51b8269" ***!
+  !*** external "dll_1aef2d0bbc0d334d831c" ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = dll_6dc2816e14fab51b8269;
+module.exports = dll_1aef2d0bbc0d334d831c;
 
 /***/ })
 
