@@ -4,17 +4,19 @@ const path = require('path')
 
 const PathParser = require('./parsePath')
 
-function expectPathMatch(actual, expected) {
-  expect(actual.length).to.eql(expected.length, `Expected paths to have the same number of elements`)
-  for (const i in expected) {
+function expectPathMatch(actualPoints, expectedPoints) {
+  expect(actualPoints.length).to.eql(expectedPoints.length, `Expected paths to have the same number of elements`)
+  for (const i in expectedPoints) {
+    const expected = expectedPoints[i]
+    const actual = actualPoints[i]
     expect(actual.type).to.eql(expected.type, `Expected ${i} type to match`)
-    if (expected.x != null) {
+    if (expected.x !== undefined) {
       expect(actual.x).to.be.within(expected.x - 0.1, expected.x + 0.1, `Expected ${i}.x to be +/- 0.1`)
     } else {
       expect(actual.x).to.be.undefined
     }
 
-    if (expected.y != null) {
+    if (expected.y !== undefined) {
       expect(actual.y).to.be.within(expected.y - 0.1, expected.y + 0.1, `Expected ${i}.y to be +/- 0.1`)
     } else {
       expect(actual.y).to.be.undefined
@@ -368,6 +370,18 @@ describe('PathParser#parse', () => {
       { type: 'L', x: 999.999730717868, y: -200.00026928195075 },
       { type: 'L', x: 199.99973071804925, y: -199.99973071786803 },
       { type: 'L', x: 200.00026928213208, y: 600.0002692819508 },
+      { type: 'Z' }
+    ])
+  })
+
+  it('handles exactly zero value xy coordinates correctly', () => {
+    const { commands, warnings } = parse('zero-xy.svg')
+    expect(warnings).to.be.empty
+    expectPathMatch(commands, [
+      { type: 'M', x: 0, y: 800 },
+      { type: 'L', x: 100, y: 800 },
+      { type: 'L', x: 100, y: -200 },
+      { type: 'L', x: 0, y: -200 },
       { type: 'Z' }
     ])
   })

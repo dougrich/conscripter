@@ -41,7 +41,7 @@ const Typography = {
   ),
   Copyright: () => (
     <div className={css.copyright}>
-      Made by Douglas Richardson © 2019.<br/>Fonts available through the <a href="https://creativecommons.org/share-your-work/public-domain/cc0/" target="_blank">Creative Commons CC0 License</a>.<br/>Code available through the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.
+      Made by Douglas Richardson © 2020.<br/>Fonts available through the <a href="https://creativecommons.org/share-your-work/public-domain/cc0/" target="_blank">Creative Commons CC0 License</a>.<br/>Code available through the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.
     </div>
   ),
   Small: ({ children }) => (
