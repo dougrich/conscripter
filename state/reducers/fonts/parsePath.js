@@ -376,8 +376,8 @@ class PathParser {
     }
 
     for (const cmd of commands) {
-      if (cmd.x) cmd.x = cmd.x * scale
-      if (cmd.y) cmd.y = (unitsPerEm - cmd.y * scale) + descender
+      if (cmd.x != null) cmd.x = cmd.x * scale
+      if (cmd.y != null) cmd.y = (unitsPerEm - cmd.y * scale) + descender
     }
 
     warnings = warnings.filter((x, i, arr) => arr.indexOf(x) === i)
