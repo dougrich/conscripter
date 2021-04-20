@@ -13,58 +13,58 @@ const fontPrototype = Object.getPrototypeOf(new opentype.Font({
 }))
 
 const defaultGsub = {
-  "version": 1,
-  "scripts": [
+  version: 1,
+  scripts: [
     {
-      "tag": "DFLT",
-      "script": {
-        "defaultLangSys": {
-          "reserved": 0,
-          "reqFeatureIndex": 65535,
-          "featureIndexes": [
+      tag: 'DFLT',
+      script: {
+        defaultLangSys: {
+          reserved: 0,
+          reqFeatureIndex: 65535,
+          featureIndexes: [
             0
           ]
         },
-        "langSysRecords": []
+        langSysRecords: []
       }
     },
     {
-      "tag": "latn",
-      "script": {
-        "defaultLangSys": {
-          "reserved": 0,
-          "reqFeatureIndex": 65535,
-          "featureIndexes": [
+      tag: 'latn',
+      script: {
+        defaultLangSys: {
+          reserved: 0,
+          reqFeatureIndex: 65535,
+          featureIndexes: [
             0
           ]
         },
-        "langSysRecords": []
+        langSysRecords: []
       }
     }
   ],
-  "features": [
+  features: [
     {
-      "tag": "calt",
-      "feature": {
-        "featureParams": 0,
-        "lookupListIndexes": []
+      tag: 'calt',
+      feature: {
+        featureParams: 0,
+        lookupListIndexes: []
       }
     }
   ],
   lookups: []
 }
 
-function arrayBufferToBase64( buffer ) {
-  var binary = '';
-  var bytes = new Uint8Array( buffer );
-  var len = bytes.byteLength;
-  for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode( bytes[ i ] );
+function arrayBufferToBase64 (buffer) {
+  let binary = ''
+  const bytes = new Uint8Array(buffer)
+  const len = bytes.byteLength
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i])
   }
-  return window.btoa( binary );
+  return window.btoa(binary)
 }
 
-function assertBadInput(truthy, message) {
+function assertBadInput (truthy, message) {
   if (!truthy) {
     const error = new Error(message)
     error.status = 400
@@ -72,10 +72,9 @@ function assertBadInput(truthy, message) {
   }
 }
 
-function makeSingleSubstitutionLookup(font, character, glyph) {
+function makeSingleSubstitutionLookup (font, character, glyph) {
+  const leadingGlyph = font.charToGlyphIndex(character)
 
-  let leadingGlyph = font.charToGlyphIndex(character)
-    
   const subtable = {
     substFormat: 1,
     coverage: {
@@ -92,14 +91,13 @@ function makeSingleSubstitutionLookup(font, character, glyph) {
   }
 }
 
-function makeMultiSubstitutionLookup(font, characters, glyph) {
-
+function makeMultiSubstitutionLookup (font, characters, glyph) {
   const components = new Array(characters.length - 1)
   for (let i = 1; i < characters.length; i++) {
     components[i - 1] = font.charToGlyphIndex(characters[i])
   }
-  let leadingGlyph = font.charToGlyphIndex(characters[0])
-    
+  const leadingGlyph = font.charToGlyphIndex(characters[0])
+
   const subtable = {
     substFormat: 1,
     coverage: {
@@ -116,7 +114,7 @@ function makeMultiSubstitutionLookup(font, characters, glyph) {
   }
 }
 
-function translate(x, y, commands) {
+function translate (x, y, commands) {
   return commands.map(cmd => ({
     ...cmd,
     x: cmd.x != null ? cmd.x + x : cmd.x,
@@ -124,8 +122,7 @@ function translate(x, y, commands) {
   }))
 }
 
-function addSubstitution(font, characters, glyph) {
-
+function addSubstitution (font, characters, glyph) {
   assertBadInput(typeof (characters) === 'string', 'characters argument must be a string')
   assertBadInput(characters.length >= 1, 'characters argument must be a string >= 1')
   assertBadInput(typeof (glyph) === 'number', 'glyph argument must be a glyph code')
@@ -142,7 +139,7 @@ function addSubstitution(font, characters, glyph) {
   gsub.features[0].feature.lookupListIndexes.push(gsub.lookups.length - 1)
 }
 
-function addGlyph(font, { isDiacritic, advanceWidth, commands }) {
+function addGlyph (font, { isDiacritic, advanceWidth, commands }) {
   const g = new opentype.Glyph({
     index: font.glyphs.length,
     name: `glyph${font.glyphs.length}`
@@ -159,7 +156,7 @@ function addGlyph(font, { isDiacritic, advanceWidth, commands }) {
   return g
 }
 
-function applySubstitutions(font, substitutions, fontname = defaultFontName) {
+function applySubstitutions (font, substitutions, fontname = defaultFontName) {
   for (const { replace, glyph } of substitutions) {
     const glyphId = addGlyph(font, glyph)
     for (const text of replace) {
@@ -169,7 +166,7 @@ function applySubstitutions(font, substitutions, fontname = defaultFontName) {
 
   font.names = {
     copyright: {
-      en: 'Made by Conscripter, a tool for building conlang scripts\n\nLicence: CC0 1.0\n\nBase glyphs are derived from AVHershey Simplex, created in 2016 by Stewart C. Russel (scruss.com), which is in turn dervied from the character stroke coordinates publshed by Allen V. Hershey in \"Calligraphy for Computers\". Additional glyphs included through use of the app may have a different licence.'
+      en: 'Made by Conscripter, a tool for building conlang scripts\n\nLicence: CC0 1.0\n\nBase glyphs are derived from AVHershey Simplex, created in 2016 by Stewart C. Russel (scruss.com), which is in turn dervied from the character stroke coordinates publshed by Allen V. Hershey in "Calligraphy for Computers". Additional glyphs included through use of the app may have a different licence.'
     },
     fontFamily: {
       en: fontname
@@ -189,7 +186,7 @@ function applySubstitutions(font, substitutions, fontname = defaultFontName) {
   }
 }
 
-function assembleDataUri(buffer, substitutions, fontname) {
+function assembleDataUri (buffer, substitutions, fontname) {
   const font = opentype.parse(buffer)
   applySubstitutions(font, substitutions, fontname)
 
@@ -202,7 +199,7 @@ function assembleDataUri(buffer, substitutions, fontname) {
   }
 }
 
-function download(buffer, substitutions, fontname = defaultFontName) {
+function download (buffer, substitutions, fontname = defaultFontName) {
   const font = opentype.parse(buffer)
   applySubstitutions(font, substitutions, fontname)
   const downloadname = slugify(fontname || defaultFontName) + '.otf'

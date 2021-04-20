@@ -1,10 +1,10 @@
-import { CLEAR } from "../actionTypes";
+import { CLEAR } from '../actionTypes'
 
 const defaultOptions = {
   only: null
 }
 
-export default function clearable(defaultState, options = defaultOptions) {
+export default function clearable (defaultState, options = defaultOptions) {
   return reducer => {
     return (state = defaultState, action) => {
       if (action && action.type === CLEAR) {

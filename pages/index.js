@@ -3,16 +3,16 @@ import { createStore, actions } from '../state'
 import { connect, Provider } from 'react-redux'
 import SubstitutionEditor from '../components/substitution-editor'
 import GlyphGrid from '../components/glyph-grid'
-import Preview from '../components/preview';
-import Button, { ButtonBar } from '../components/button';
+import Preview from '../components/preview'
+import Button, { ButtonBar } from '../components/button'
 import GithubCorner from '../components/github-corner'
-import Description from '../components/description';
-import Header from '../components/header';
-import Head from '../components/head';
-import Footer from '../components/footer';
-import Typography from '../components/typography';
-import Text from '../components/text';
-import Links from '../components/links';
+import Description from '../components/description'
+import Header from '../components/header'
+import Head from '../components/head'
+import Footer from '../components/footer'
+import Typography from '../components/typography'
+import Text from '../components/text'
+import Links from '../components/links'
 import Print from '../components/print.module.scss'
 
 const store = createStore({})
@@ -26,7 +26,7 @@ const FontStyle = connect(
 )(function ({ data }) {
   if (!data) return null
   return (
-    <style id='test' dangerouslySetInnerHTML={{__html:'@font-face { font-family: demofont; src: url(\'' + data + '\');} @font-face { font-family: base-demofont; src: url(' + BASE_LINK + '/static/AVHersheySimplexMedium.otf' + ');}'}}></style>
+    <style id='test' dangerouslySetInnerHTML={{ __html: '@font-face { font-family: demofont; src: url(\'' + data + '\');} @font-face { font-family: base-demofont; src: url(' + BASE_LINK + '/static/AVHersheySimplexMedium.otf' + ');}' }} />
   )
 })
 
@@ -49,7 +49,7 @@ const ConnectedSubstitutionEditor = connect(
     const canRemove = idx >= 0
     const canMoveLeft = idx > 0
     const canMoveRight = idx < fonts.substitutions.length - 1 && idx >= 0
-    
+
     return ({
       ...fonts,
       ...substitution,
@@ -71,7 +71,6 @@ const ConnectedSubstitutionEditor = connect(
   })
 )(SubstitutionEditor)
 
-
 const ConnectedFontActions = connect(
   state => ({ loadError: state.fonts.error }),
   dispatch => ({
@@ -88,12 +87,12 @@ const ConnectedFontActions = connect(
   return (
     <div className={Print.none}>
       <Description>
-        Make sure to read the <Links.Usage/> to figure out how to use your downloaded font!
+        Make sure to read the <Links.Usage /> to figure out how to use your downloaded font!
       </Description>
       <ButtonBar>
-        <Button title='Export OTF for use as font' variant='success' onClick={onDownload}>Export<br/><Typography.Small>(.otf)</Typography.Small></Button>
-        <Button title='Save workspace to use later' variant='default' onClick={onSave}>Save<br/><Typography.Small>(.cwk)</Typography.Small></Button>
-        <Button title='Load workspace from a save file' variant='default' onClick={onLoad}>Load<br/><Typography.Small>(.cwk/.json)</Typography.Small></Button>
+        <Button title='Export OTF for use as font' variant='success' onClick={onDownload}>Export<br /><Typography.Small>(.otf)</Typography.Small></Button>
+        <Button title='Save workspace to use later' variant='default' onClick={onSave}>Save<br /><Typography.Small>(.cwk)</Typography.Small></Button>
+        <Button title='Load workspace from a save file' variant='default' onClick={onLoad}>Load<br /><Typography.Small>(.cwk/.json)</Typography.Small></Button>
       </ButtonBar>
       {loadError && (
         <Description variant='danger'>{loadError.message}</Description>
@@ -105,7 +104,7 @@ const ConnectedFontActions = connect(
 const ConnectedSubstitutionActions = connect(
   () => ({}),
   dispatch => ({
-    onClearWorkspace: () => dispatch(actions.clear()),
+    onClearWorkspace: () => dispatch(actions.clear())
   })
 )(function ({
   onClearWorkspace
@@ -137,40 +136,40 @@ const ConnectedPreview = connect(
 )(Preview)
 
 export default class Index extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     store.dispatch(actions.fetchFonts())
   }
 
-  render() {
+  render () {
     return (
       <Provider store={store}>
         <div className={css.root}>
-          <ConnectedHelmet/>
-          <GithubCorner url='https://github.com/dougrich/conscripter'/>
+          <ConnectedHelmet />
+          <GithubCorner url='https://github.com/dougrich/conscripter' />
           <FontStyle />
-          <Header/>
-          <div className={css.container} role="main">
+          <Header />
+          <div className={css.container} role='main'>
             <div className={css.topaction}>
-              <ConnectedFontActions/>
-              <ConnectedFontName label='Font Name' placeholder='Display name for your font'/>
+              <ConnectedFontActions />
+              <ConnectedFontName label='Font Name' placeholder='Display name for your font' />
             </div>
             <div className={css.workspace}>
               <div className={css.panel}>
                 <div className={css.internalpanel}>
                   <Typography.Header.Section>Substitutions</Typography.Header.Section>
-                  <ConnectedSubstitutionActions/>
+                  <ConnectedSubstitutionActions />
                   <ConnectedGlyphGrid>
-                    <ConnectedSubstitutionEditor/>
+                    <ConnectedSubstitutionEditor />
                   </ConnectedGlyphGrid>
                 </div>
               </div>
               <div className={css.panel}>
-              <Typography.Header.Section>Preview</Typography.Header.Section>
-                <ConnectedPreview defaultValue={PreviewPlaceholder}/>
+                <Typography.Header.Section>Preview</Typography.Header.Section>
+                <ConnectedPreview defaultValue={PreviewPlaceholder} />
               </div>
             </div>
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </Provider>
     )

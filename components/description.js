@@ -2,7 +2,7 @@ import css from './description.module.scss'
 import * as cx from 'classnames'
 import Typography from './typography'
 
-export default function Description({
+export default function Description ({
   variant,
   className,
   children

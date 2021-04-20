@@ -1,13 +1,13 @@
 import css from './substitution-editor.module.scss'
-import GlyphPreview from "./glyph-preview";
-import DropZone from "./dropzone";
-import Button, { ButtonBar } from './button';
-import Description from './description';
-import Typography from './typography';
-import Slider, { Toggle } from './slider';
+import GlyphPreview from './glyph-preview'
+import DropZone from './dropzone'
+import Button, { ButtonBar } from './button'
+import Description from './description'
+import Typography from './typography'
+import Slider, { Toggle } from './slider'
 import Text from './text'
 
-function surpress(handler) {
+function surpress (handler) {
   return e => {
     e.preventDefault()
     e.stopPropagation()
@@ -16,7 +16,7 @@ function surpress(handler) {
 }
 
 export default class SubstitutionEditor extends React.PureComponent {
-  render() {
+  render () {
     const {
       active,
       canMoveLeft,
@@ -34,35 +34,41 @@ export default class SubstitutionEditor extends React.PureComponent {
       onSubmit,
       onSwap,
       onToggleDiacritic,
-      onUpload,
+      onUpload
     } = this.props
 
     if (!active) {
       return null
     }
-  
+
     return (
       <form ref={this.formRef} className={css.container} onSubmit={surpress(onSubmit)}>
         <div className={css.movement}>
-          {canMoveLeft ? <Button title='Move up in priority' variant='action' onClick={surpress(() => onSwap(idx, idx - 1))}><Typography.Icon>{'<<'}</Typography.Icon></Button> : <div/>}
-          {canMoveRight ? <Button title='Move down in priority' variant='action' onClick={surpress(() => onSwap(idx, idx + 1))}><Typography.Icon>{'>>'}</Typography.Icon></Button> : <div/>}
+          {canMoveLeft
+            ? <Button title='Move up in priority' variant='action' onClick={surpress(() => onSwap(idx, idx - 1))}><Typography.Icon>{'<<'}</Typography.Icon></Button>
+            : <div />}
+          {canMoveRight
+            ? <Button title='Move down in priority' variant='action' onClick={surpress(() => onSwap(idx, idx + 1))}><Typography.Icon>{'>>'}</Typography.Icon></Button>
+            : <div />}
         </div>
         <div>
-          <DropZone onUpload={onUpload}/>
-          <GlyphPreview className={css.preview} {...currentGlyph} {...meta}/>
+          <DropZone onUpload={onUpload} />
+          <GlyphPreview className={css.preview} {...currentGlyph} {...meta} />
           <Description>
-            Doesn't look like what you expected? Raise an issue on <a href="https://github.com/dougrich/conscripter/issues/new/choose" target="_blank">Github</a> with your SVG to help improve this app.
+            Doesn't look like what you expected? Raise an issue on <a href='https://github.com/dougrich/conscripter/issues/new/choose' target='_blank' rel='noreferrer'>Github</a> with your SVG to help improve this app.
           </Description>
-          {warnings && warnings.length ? (
-            <Description variant='danger'>
-              <div>Warning!</div>
-              <ul>
-                {warnings.map((x, i) => (
-                  <li key={i}>{x.message}</li>
-                ))}
-              </ul>
-            </Description>
-          ) : null}
+          {warnings && warnings.length
+            ? (
+              <Description variant='danger'>
+                <div>Warning!</div>
+                <ul>
+                  {warnings.map((x, i) => (
+                    <li key={i}>{x.message}</li>
+                  ))}
+                </ul>
+              </Description>
+              )
+            : null}
         </div>
         <div>
           <Toggle

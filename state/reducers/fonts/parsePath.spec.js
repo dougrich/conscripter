@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-expressions */
+
 const { expect } = require('chai')
 const fs = require('fs')
 const path = require('path')
 
 const PathParser = require('./parsePath')
 
-function expectPathMatch(actualPoints, expectedPoints) {
-  expect(actualPoints.length).to.eql(expectedPoints.length, `Expected paths to have the same number of elements`)
+function expectPathMatch (actualPoints, expectedPoints) {
+  expect(actualPoints.length).to.eql(expectedPoints.length, 'Expected paths to have the same number of elements')
   for (const i in expectedPoints) {
     const expected = expectedPoints[i]
     const actual = actualPoints[i]
@@ -34,7 +36,7 @@ describe('PathParser#parseTransform', () => {
     ]
   ]
 
-  const createScenario = ([ name, transform, initial, expected ]) => {
+  const createScenario = ([name, transform, initial, expected]) => {
     it(name, () => {
       const parser = new PathParser()
 
@@ -49,7 +51,7 @@ describe('PathParser#parseTransform', () => {
 })
 
 describe('PathParser#parse', () => {
-  function parse(file) {
+  function parse (file) {
     const filename = path.resolve(__dirname, '../../../tests/parsePath', file)
     const data = fs.readFileSync(filename, 'utf8')
     const parser = new PathParser({
@@ -419,3 +421,5 @@ describe('PathParser#parse', () => {
     expect(() => parse('error-no-root.svg')).to.throw(PathParser.Codes.ErrorNoSVGNode)
   })
 })
+
+/* eslint-enable no-unused-expressions */

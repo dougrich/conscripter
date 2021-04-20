@@ -33,7 +33,7 @@ export default {
   match: (data) => {
     return data[0] === 131
   },
-  encode: ({ fonts: { substitutions, fontname }}) => {
+  encode: ({ fonts: { substitutions, fontname } }) => {
     substitutions = substitutions.map(s => ({
       ...s,
       glyph: {

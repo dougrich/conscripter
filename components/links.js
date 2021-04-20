@@ -1,10 +1,10 @@
 import Link from 'next/link'
-const { version } = require('../package.json')
 import { variant, defaultVariant } from './variant'
-import Typography from './typography';
+import Typography from './typography'
 import css from './links.module.scss'
+const { version } = require('../package.json')
 
-function href(route) {
+function href (route) {
   if (route[0] === '/') {
     return {
       href: route,
@@ -17,7 +17,7 @@ function href(route) {
   }
 }
 
-function AnchorLink({
+function AnchorLink ({
   route,
   className,
   children
@@ -31,8 +31,8 @@ const Home = variant({
   [defaultVariant]: () => (
     <AnchorLink route='/'>App</AnchorLink>
   ),
-  'header': () => (
-    <AnchorLink route='/' className={css.block}><Typography.Header.Display/></AnchorLink>
+  header: () => (
+    <AnchorLink route='/' className={css.block}><Typography.Header.Display /></AnchorLink>
   )
 })
 
@@ -41,10 +41,10 @@ const Privacy = () => (<AnchorLink route='/privacy'>Privacy</AnchorLink>)
 const changelogLink = 'https://github.com/dougrich/conscripter/blob/master/CHANGELOG.md'
 const Changelog = variant({
   [defaultVariant]: () => (<AnchorLink route={changelogLink}>Changelog</AnchorLink>),
-  'versioned': () => (<AnchorLink route={changelogLink}>New in {version}</AnchorLink>)
+  versioned: () => (<AnchorLink route={changelogLink}>New in {version}</AnchorLink>)
 })
 
-const Links ={
+const Links = {
   Home,
   About,
   Privacy,

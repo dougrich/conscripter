@@ -8,7 +8,7 @@ module.exports = {
   assetPrefix: ISPRODUCTION ? '/conscripter/' : '',
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: "c[hash:base64:10]"
+    localIdentName: 'c[hash:base64:10]'
   },
   sassLoaderOptions: {
     includePaths: [path.resolve(__dirname, 'theme')]

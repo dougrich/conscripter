@@ -1,10 +1,10 @@
 import css from './images.module.scss'
 
-function Image(
+function Image (
   src,
   className,
   alt
- ) {
+) {
   return () => (
     <img
       className={className}
