@@ -1,13 +1,13 @@
-import css from './typography.scss'
-import Images from './images';
-import Print from './print.scss'
+import css from './typography.module.scss'
+import Images from './images'
+import Print from './print.module.scss'
 import * as cx from 'classnames'
 
 const Typography = {
   Header: {
     Display: () => (
       <h1 className={css.display}>
-        <Images.Logo/>
+        <Images.Logo />
         Conscripter
       </h1>
     ),
@@ -20,7 +20,7 @@ const Typography = {
   Links: ({ children }) => (
     <div
       className={cx(css.links, Print.none)}
-      role="navigation"
+      role='navigation'
     >
       {children}
     </div>
@@ -41,7 +41,7 @@ const Typography = {
   ),
   Copyright: () => (
     <div className={css.copyright}>
-      Made by Douglas Richardson © 2020.<br/>Fonts available through the <a href="https://creativecommons.org/share-your-work/public-domain/cc0/" target="_blank">Creative Commons CC0 License</a>.<br/>Code available through the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.
+      Made by Douglas Richardson © 2020.<br />Fonts available through the <a href='https://creativecommons.org/share-your-work/public-domain/cc0/' target='_blank' rel='noreferrer'>Creative Commons CC0 License</a>.<br />Code available through the <a href='https://opensource.org/licenses/MIT' target='_blank' rel='noreferrer'>MIT License</a>.
     </div>
   ),
   Small: ({ children }) => (

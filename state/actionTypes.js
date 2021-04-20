@@ -1,13 +1,12 @@
-export const
-  FETCH_FONTS = 'fetch_font',
-  DOWNLOAD = 'download',
-  SET_FONTNAME = 'set_fontname',
-  ADD_SUBSTITUTION = 'add_substitution',
-  SWAP_SUBSTITUTION = 'swap_substitution',
-  REMOVE_SUBSTITUTION = 'remove_substitution',
-  SELECT_SUBSTITUTION = 'select_substitution',
-  UPDATE_SUBSTITUTION = 'update_substitution',
-  CANCEL_SUBSTITUTION = 'cancel_substitution',
-  SAVE = 'save',
-  LOAD = 'load',
-  CLEAR = 'clear'
+export const FETCH_FONTS = 'fetch_font'
+export const DOWNLOAD = 'download'
+export const SET_FONTNAME = 'set_fontname'
+export const ADD_SUBSTITUTION = 'add_substitution'
+export const SWAP_SUBSTITUTION = 'swap_substitution'
+export const REMOVE_SUBSTITUTION = 'remove_substitution'
+export const SELECT_SUBSTITUTION = 'select_substitution'
+export const UPDATE_SUBSTITUTION = 'update_substitution'
+export const CANCEL_SUBSTITUTION = 'cancel_substitution'
+export const SAVE = 'save'
+export const LOAD = 'load'
+export const CLEAR = 'clear'

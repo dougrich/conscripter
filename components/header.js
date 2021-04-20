@@ -1,25 +1,17 @@
-import '../pages/index.scss' // these are done to avoid a nasty ordering issue in mini-css-extract
-import './typography.scss'
-import './images.scss'
-import './print.scss'
-import './links.scss'
-
-import css from './header.scss'
+import css from './header.module.scss'
 import Links from './links'
-import Typography from './typography';
+import Typography from './typography'
 
-export default function Header({
-
-}) {
+export default function Header () {
   return (
-    <header role="banner">
+    <header role='banner'>
       <div className={css.container}>
-        <Links.Home variant='header'/>
+        <Links.Home variant='header' />
         <Typography.Links>
-          <Links.About/>
-          <Links.Usage/>
-          <Links.Privacy/>
-          <Links.Changelog variant='versioned'/>
+          <Links.About />
+          <Links.Usage />
+          <Links.Privacy />
+          <Links.Changelog variant='versioned' />
         </Typography.Links>
       </div>
     </header>

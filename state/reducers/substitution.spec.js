@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { substitution as reducer } from './substitution'
-import { SELECT_SUBSTITUTION } from '../actionTypes';
+import { SELECT_SUBSTITUTION } from '../actionTypes'
 
 describe('substitution', () => {
   it('uses last advance width manually set if no advance width is set', () => {

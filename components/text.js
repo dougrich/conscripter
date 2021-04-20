@@ -1,7 +1,7 @@
-import css from './text.scss'
+import css from './text.module.scss'
 import * as cx from 'classnames'
-import Label from './label';
-import Typography from './typography';
+import Label from './label'
+import Typography from './typography'
 
 const KEYCODE = {
   BACKSPACE: 8,
@@ -11,7 +11,7 @@ const KEYCODE = {
 
 const Text = {
   Field: class extends React.PureComponent {
-    render() {
+    render () {
       const {
         label,
         required,
@@ -27,7 +27,7 @@ const Text = {
             required={required}
             pattern={pattern}
             value={value}
-            onChange={({ currentTarget: { value }}) => onChange(value)}
+            onChange={({ currentTarget: { value } }) => onChange(value)}
             placeholder={placeholder}
             className={cx(css.textfield, Typography.Input)}
           />
@@ -36,23 +36,23 @@ const Text = {
     }
   },
   Area: class extends React.PureComponent {
-    constructor(props) {
+    constructor (props) {
       super(props)
       this.state = { value: props.defaultValue }
       this.cursorRef = React.createRef()
-      this.onChange = ({ currentTarget: { value }}) => this.setState({ value })
+      this.onChange = ({ currentTarget: { value } }) => this.setState({ value })
       this.onKeyDown = (e) => {
         const { value } = this.state
         this.cursorRef.current.scrollIntoViewIfNeeded()
         switch (e.keyCode) {
           case KEYCODE.BACKSPACE:
-            this.setState({ value: value.slice(0, value.length - 1)})
-            return;
+            this.setState({ value: value.slice(0, value.length - 1) })
+            return
           case KEYCODE.ENTER:
             this.setState({ value: value + '\n' })
-            return;
+            return
           case KEYCODE.SHIFT:
-            return;
+            return
         }
         if (!e.ctrlKey && !e.altKey && e.key.length === 1) {
           this.setState({ value: value + e.key })
@@ -60,7 +60,7 @@ const Text = {
       }
     }
 
-    renderVertical() {
+    renderVertical () {
       const {
         className,
         style,
@@ -88,12 +88,16 @@ const Text = {
 
       for (let i = 0; i < keep.length; i++) {
         const { value: subset, fix } = keep[i]
-        all:
         for (let j = 0; j < substituted.length - subset.length + 1; j++) {
+          let matchFound = true
           for (let k = 0; k < subset.length; k++) {
             if (substituted[j + k] !== subset[k]) {
-              continue all;
+              matchFound = false
+              break
             }
+          }
+          if (!matchFound) {
+            continue
           }
 
           // match found, replace
@@ -137,16 +141,17 @@ const Text = {
         )
       }
       current.push(
-        <div key='cursor' className={css.vcursor} ref={this.cursorRef}/>
+        <div key='cursor' className={css.vcursor} ref={this.cursorRef} />
       )
       newline()
+      const handleKeyDown = this.onKeyDown
       return (
         <div className={css.textareacontainer}>
           <div
             className={cx(className, css.textarea, css.vcontainer)}
             style={style}
             tabIndex={0}
-            onKeyDown={this.onKeyDown}
+            onKeyDown={handleKeyDown}
           >
             {lines}
           </div>
@@ -154,7 +159,7 @@ const Text = {
       )
     }
 
-    render() {
+    render () {
       const {
         className,
         style,
@@ -167,13 +172,14 @@ const Text = {
         return this.renderVertical()
       }
 
+      const handleChange = this.onChange
       return (
         <div className={css.textareacontainer}>
           <textarea
             className={cx(className, css.textarea)}
             style={style}
             value={value}
-            onChange={this.onChange}
+            onChange={handleChange}
           />
         </div>
       )

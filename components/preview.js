@@ -1,16 +1,16 @@
-import css from './preview.scss'
+import css from './preview.module.scss'
 import * as cx from 'classnames'
-import Print from './print.scss'
+import Print from './print.module.scss'
 import Text from './text'
-import Options from './options';
-import Slider from './slider';
-import Typography from './typography';
-import Badge from './badge';
+import Options from './options'
+import Slider from './slider'
+import Typography from './typography'
+import Badge from './badge'
 import Links from './links'
 import Description from './description'
 
 export default class Preview extends React.PureComponent {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       fontSize: 200,
@@ -29,7 +29,8 @@ export default class Preview extends React.PureComponent {
       return ((v / 100) * 16).toFixed(1) + ' pt'
     }
   }
-  render() {
+
+  render () {
     const {
       defaultValue,
       keep
@@ -38,6 +39,9 @@ export default class Preview extends React.PureComponent {
       fontSize,
       options
     } = this.state
+    const handleFontSizeChange = this.setFontSize
+    const handleOptionsChange = this.setOptions
+    const handlePreviewTextChange = this.onChange
     return (
       <div className={cx(css.background, { [css.inverted]: options.invert })}>
         <div className={cx(css.formcontainer, Print.none)}>
@@ -46,24 +50,24 @@ export default class Preview extends React.PureComponent {
             min={100}
             value={fontSize}
             max={300}
-            onChange={this.setFontSize}
+            onChange={handleFontSizeChange}
             format={this.format}
           />
           <Options
             label='Font Options'
             value={options}
-            lock={options.vertical ? {rtl: true} : {}}
+            lock={options.vertical ? { rtl: true } : {}}
             optionLabels={{
               rtl: 'right-to-left',
               vertical: (
                 <span><Badge variant='success'>BETA</Badge> vertical</span>
               )
             }}
-            onChange={this.setOptions}
+            onChange={handleOptionsChange}
           />
           {options.vertical && (
             <Description className={css.inlinedescription}>
-              Note that there are special steps that need to be taken to get your font vertically in your editor, and not all editors work with vertical fonts. See syllabry1 <Links.Usage/> for details.
+              Note that there are special steps that need to be taken to get your font vertically in your editor, and not all editors work with vertical fonts. See syllabry1 <Links.Usage /> for details.
             </Description>
           )}
         </div>
@@ -71,14 +75,14 @@ export default class Preview extends React.PureComponent {
           className={cx(css.previewText, Typography.Demofont)}
           style={{
             fontSize: (fontSize / 100) + 'em',
-            fontStyle: options.italic ? 'italic': 'initial',
+            fontStyle: options.italic ? 'italic' : 'initial',
             fontWeight: options.bold ? 'bold' : 'normal',
             direction: options.rtl ? 'rtl' : 'initial'
           }}
           vertical={options.vertical}
           keep={keep}
           defaultValue={defaultValue}
-          onChange={this.onChange}
+          onChange={handlePreviewTextChange}
         />
       </div>
     )

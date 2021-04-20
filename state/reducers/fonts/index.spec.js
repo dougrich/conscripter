@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import { expect } from 'chai'
 import { reassembleDataUri } from './index'
 
@@ -20,3 +22,5 @@ describe('reassembleDataUri', () => {
     expect(result.reassembled).to.be.true
   })
 })
+
+/* eslint-enable no-unused-expressions */

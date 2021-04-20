@@ -1,8 +1,8 @@
-import css from './button.scss'
+import css from './button.module.scss'
 import * as cx from 'classnames'
-import Typography from './typography';
+import Typography from './typography'
 
-export default function Button(props) {
+export default function Button (props) {
   const {
     variant = 'default',
     className,
@@ -20,13 +20,13 @@ export default function Button(props) {
   }
 
   return (
-    <button  {...props} className={cx(css.btn, className, css[variant])}>
+    <button {...props} className={cx(css.btn, className, css[variant])}>
       {child}
     </button>
   )
 }
 
-export function ButtonBar({ children }){
+export function ButtonBar ({ children }) {
   return (
     <div className={cx(css.bar)}>
       {children}

@@ -1,16 +1,16 @@
-import Label from "./label";
-import Typography from "./typography";
-import css from './slider-toggle.scss'
+import Label from './label'
+import Typography from './typography'
+import css from './slider-toggle.module.scss'
 import * as cx from 'classnames'
 
 const noopFormat = v => v
 const noop = () => {}
 
 export default class Slider extends React.PureComponent {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      isActive: false,
+      isActive: false
     }
 
     this.track = React.createRef()
@@ -37,7 +37,8 @@ export default class Slider extends React.PureComponent {
       document.removeEventListener('mouseup', this.onThumbUp)
     }
   }
-  computeNewValue(clientX) {
+
+  computeNewValue (clientX) {
     const rect = this.track.current.getBoundingClientRect()
     const newpct = (clientX - rect.left) / rect.width
     const {
@@ -50,19 +51,22 @@ export default class Slider extends React.PureComponent {
     const boundvalue = Math.max(min, Math.min(max, steppedvalue))
     return boundvalue
   }
-  computeRunnerStyle(pct) {
+
+  computeRunnerStyle (pct) {
     return {
-      width: `${(pct*100).toFixed(2)}%`
+      width: `${(pct * 100).toFixed(2)}%`
     }
   }
-  computeThumbStyle(pct) {
-    const percentage = `${(pct*100).toFixed(2)}%`
+
+  computeThumbStyle (pct) {
+    const percentage = `${(pct * 100).toFixed(2)}%`
     const offset = (pct * 16).toFixed(2) + 'px'
     return {
       left: `calc(${percentage} - ${offset})`
     }
   }
-  render() {
+
+  render () {
     const {
       label,
       format = noopFormat,
@@ -77,7 +81,8 @@ export default class Slider extends React.PureComponent {
 
     const pct = (Math.round(value / step) * step - min) / (max - min)
 
-
+    const handleClick = this.setAbsolute
+    const handleMouseDown = this.onThumbDown
     return (
       <div>
         <Label>
@@ -86,7 +91,7 @@ export default class Slider extends React.PureComponent {
         </Label>
         <div
           className={css.trackcontainer}
-          onClick={this.setAbsolute}
+          onClick={handleClick}
         >
           <div className={css.track} ref={this.track}>
             <div
@@ -95,7 +100,7 @@ export default class Slider extends React.PureComponent {
             />
             <div
               className={cx(css.thumb, { [css.thumbactive]: isActive })}
-              onMouseDown={this.onThumbDown}
+              onMouseDown={handleMouseDown}
               style={this.computeThumbStyle(pct)}
             />
           </div>
@@ -106,7 +111,7 @@ export default class Slider extends React.PureComponent {
 }
 
 export class Toggle extends Slider {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.defaultId = 't' + Math.random().toString(16).slice(2)
     this.toggle = () => {
@@ -116,7 +121,8 @@ export class Toggle extends Slider {
       }
     }
   }
-  render() {
+
+  render () {
     const {
       label,
       id = this.defaultId,
@@ -124,12 +130,13 @@ export class Toggle extends Slider {
       disabled
     } = this.props
     const pct = value ? 1 : 0
+    const handleToggle = this.toggle
     return (
       <div className={cx(css.togglecontainer, { [css.disabled]: disabled })}>
-        <input type='checkbox' id={id} value={value} disabled={disabled} className={css.togglecheckbox} onChange={this.toggle}/>
+        <input type='checkbox' id={id} value={value} disabled={disabled} className={css.togglecheckbox} onChange={handleToggle} />
         <div
           className={cx(css.trackcontainer, css.toggle)}
-          onClick={this.toggle}
+          onClick={handleToggle}
         >
           <div className={css.track} ref={this.track}>
             <div
@@ -138,7 +145,7 @@ export class Toggle extends Slider {
             />
             <div
               className={css.thumb}
-              onClick={this.toggle}
+              onClick={handleToggle}
               style={this.computeThumbStyle(pct)}
             />
           </div>

@@ -1,4 +1,4 @@
-import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD, SET_FONTNAME, SWAP_SUBSTITUTION, SAVE, LOAD } from '../../actionTypes'
+import { FETCH_FONTS, ADD_SUBSTITUTION, REMOVE_SUBSTITUTION, DOWNLOAD, SET_FONTNAME, SWAP_SUBSTITUTION, LOAD } from '../../actionTypes'
 import { STATUS_PENDING, STATUS_OK, STATUS_ERROR } from '../../status'
 import { KEY_FONTS } from '../../keys'
 import clearable from '../clearable'
@@ -14,7 +14,7 @@ const defaultState = {
   fontname: 'My Custom Font'
 }
 
-export function reassembleDataUri(assembleDataUri) {
+export function reassembleDataUri (assembleDataUri) {
   return (reducer) => {
     return (state, action) => {
       const newstate = reducer(state, action)
@@ -41,7 +41,7 @@ export function reassembleDataUri(assembleDataUri) {
 
 const hasLocalStorage = typeof localStorage !== 'undefined'
 
-function saveLocally(key) {
+function saveLocally (key) {
   return (reducer) => {
     if (!hasLocalStorage) {
       return reducer
@@ -74,7 +74,6 @@ function saveLocally(key) {
 }
 
 export const fonts = saveLocally(KEY_FONTS)(clearable(defaultState, { only: ['substitutions'] })(reassembleDataUri(assembleDataUri)((state, action) => {
-  
   // loading from a saved slate
   if (typeof state === 'string') state = JSON.parse(state)
 
@@ -164,7 +163,7 @@ export const fonts = saveLocally(KEY_FONTS)(clearable(defaultState, { only: ['su
       ...state,
       error,
       substitutions,
-      fontname,
+      fontname
     }
   }
 

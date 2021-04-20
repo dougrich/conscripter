@@ -1,8 +1,9 @@
-import css from './dropzone.scss'
-import Typography from './typography';
+import css from './dropzone.module.scss'
+import Typography from './typography'
+import React from 'react'
 
 export default class DropZone extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       warning: '',
@@ -27,7 +28,7 @@ export default class DropZone extends React.Component {
           warning: null,
           loading: true
         })
-        const filereader = new FileReader()
+        const filereader = new window.FileReader()
         filereader.onload = () => {
           let error
           try {
@@ -49,7 +50,7 @@ export default class DropZone extends React.Component {
     }
   }
 
-  renderWarning() {
+  renderWarning () {
     const {
       warning
     } = this.state
@@ -62,22 +63,24 @@ export default class DropZone extends React.Component {
     )
   }
 
-  render() {
-    const hasWarning = !!this.state.warning
+  render () {
+    const handleOnClick = this.onClick
+    const handleOnFileAdded = this.onFileAdded
     return (
       <div
         className={css.container}
-        onClick={this.onClick}
-        tabIndex="0"
+        onClick={handleOnClick}
+        tabIndex='0'
       >
         <Typography.Button>Drag file or click here to upload</Typography.Button>
         <input
           className={css.input}
           ref={this.fileInput}
-          onChange={this.onFileAdded}
-          accept="image/svg+xml"
-          type="file"
+          onChange={handleOnFileAdded}
+          accept='image/svg+xml'
+          type='file'
         />
+        {this.renderWarning()}
       </div>
     )
   }

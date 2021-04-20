@@ -1,6 +1,6 @@
-import Typography from "./typography";
+import Typography from './typography'
 
-export default function Label(props) {
+export default function Label (props) {
   const {
     children,
     htmlFor

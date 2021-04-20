@@ -2,32 +2,32 @@
  * Grid of glyphs, displaying each with the relevant substitutions
  */
 
-import css from './glyph-grid.scss'
+import css from './glyph-grid.module.scss'
 import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
-import Button from './button';
-import Typography from './typography';
-import Print from './print.scss'
+import Button from './button'
+import Typography from './typography'
+import Print from './print.module.scss'
 
-export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect, onSubstitutionSwap }) {
+export default function GlyphGrid ({ substitutions, meta, active, children, onSubstitutionSelect, onSubstitutionSwap }) {
   const symbols = []
   const gridcells = []
   let foundActive = false
-  let hasActive = active != null
+  const hasActive = active != null
 
   if (substitutions.length === 0 && !active) {
     return (
       <div className={css.grid}>
         <span className={css.emptyset} key='emptyset'>
           <Button onClick={() => onSubstitutionSelect()}>
-          Click here to get started
+            Click here to get started
           </Button>
         </span>
       </div>
     )
   }
 
-  function Btn({children, isActive, onClick, className}) {
+  function Btn ({ children, isActive, onClick, className }) {
     return (
       <button className={cx(css.container, className, { [css.activecell]: isActive, [css.disabled]: hasActive })} disabled={hasActive} onClick={onClick}>
         {children}
@@ -35,7 +35,7 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     )
   }
 
-  function onDragStart(e) {
+  function onDragStart (e) {
     const index = e.currentTarget.attributes['data-index']
     if (!index) {
       e.preventDefault()
@@ -45,13 +45,13 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     }
   }
 
-  function onDragOver(e) {
+  function onDragOver (e) {
     if (e.currentTarget.attributes['data-index'].value) {
       e.preventDefault()
     }
   }
 
-  function onDrop(e) {
+  function onDrop (e) {
     const index = e.currentTarget.attributes['data-index']
     if (!index) {
       e.preventDefault()
@@ -73,7 +73,7 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
     const button = (
       <Btn isActive={isActive} onClick={() => onSubstitutionSelect(sub)}>
         <div className={css.label}>{key}</div>
-        <GlyphPreview className={css.preview} showContext={false} {...glyph} {...meta}/>
+        <GlyphPreview className={css.preview} showContext={false} {...glyph} {...meta} />
       </Btn>
     )
     foundActive = foundActive || isActive
@@ -116,7 +116,7 @@ export default function GlyphGrid({ substitutions, meta, active, children, onSub
       )
     )
   }
-  
+
   return (
     <div className={css.grid}>
       <Typography.Descriptor key='highpri' className={cx(css.textcell, Print.none)}>

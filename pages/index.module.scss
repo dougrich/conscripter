@@ -45,6 +45,7 @@ $font-size: 52pt;
 
 .textpanel {
   height: 100%;
+  width: 100%;
 }
 
 .container {
@@ -87,13 +88,4 @@ $font-size: 52pt;
     flex-shrink: 0;
     box-sizing: border-box;
   }
-}
-
-html, body {
-  height: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-size: 16pt;
-  min-width: 350px;
 }

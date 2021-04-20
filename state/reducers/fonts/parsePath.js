@@ -1,13 +1,13 @@
 const DEGREES_TO_RADIANS = 0.0174533
 const SNAPPING_RATIO = 1 / 400
 
-function basis(t, count) {
-  const w = new Array(count) 
+function basis (t, count) {
+  const w = new Array(count)
   for (let i = 0; i < count; i++) {
     const factor = (i === 0 || i === count - 1)
       ? 1
       : (count - 1)
-    w[i] =  factor * Math.pow((1 - t), count - 1 - i) * Math.pow(t, i)
+    w[i] = factor * Math.pow((1 - t), count - 1 - i) * Math.pow(t, i)
   }
   return function () {
     let v = 0
@@ -18,7 +18,7 @@ function basis(t, count) {
   }
 }
 
-function cubicInterpolation(x0, y0, x1, y1, x2, y2, x3, y3) {
+function cubicInterpolation (x0, y0, x1, y1, x2, y2, x3, y3) {
   const commands = []
   for (let t = 0.1; t < 1; t += 0.06) {
     const apply = basis(t, 4)
@@ -53,13 +53,13 @@ class PathParser {
     this.arcToBezier = arcToBezier.default || arcToBezier
   }
 
-  parseTransform(transform) {
+  parseTransform (transform) {
     const detail = this.svgTransformParser.parse(transform)
 
     return (node) => {
       const { type, x, y } = node
       if (detail.translate) {
-        const { tx = 0, ty = 0} = detail.translate
+        const { tx = 0, ty = 0 } = detail.translate
         return {
           type,
           x: tx + x,
@@ -91,7 +91,7 @@ class PathParser {
       }
 
       if (detail.scale) {
-        const { sx, sy = sx} = detail.scale
+        const { sx, sy = sx } = detail.scale
         return {
           type,
           x: sx * x,
@@ -101,7 +101,7 @@ class PathParser {
     }
   }
 
-  applyTransforms(transforms = [], node) {
+  applyTransforms (transforms = [], node) {
     for (let i = transforms.length - 1; i >= 0; i--) {
       const t = transforms[i]
       node = t(node)
@@ -109,7 +109,7 @@ class PathParser {
     return node
   }
 
-  attributes(node) {
+  attributes (node) {
     const attributes = {}
     if (node.attrs) {
       for (const attr of node.attrs) {
@@ -119,11 +119,11 @@ class PathParser {
     return attributes
   }
 
-  createCommand(cmd, i, arr) {
+  createCommand (cmd, i, arr) {
     if (cmd.code === 'S') {
       let { x: x0, y: y0, x2: x1, y2: y1 } = arr[i - 1]
       const { x2, y2, x, y } = cmd
-      if (x1 == y1 && x1 == null) {
+      if (x1 === y1 && x1 == null) {
         x1 = x0
         y1 = y0
       } else {
@@ -155,7 +155,7 @@ class PathParser {
         sweepFlag: sweep ? 1 : 0
       })
       const commands = []
-      let xlast = x0, ylast = y0
+      let xlast = x0; let ylast = y0
       for (let i = 0; i < curves.length; i++) {
         const { x1, y1, x2, y2, x: x3, y: y3 } = curves[i]
         commands.push(...cubicInterpolation(xlast, ylast, x1, y1, x2, y2, x3, y3))
@@ -196,15 +196,15 @@ class PathParser {
 
     return {
       type: {
-        'H': 'L',
-        'V': 'L'
+        H: 'L',
+        V: 'L'
       }[cmd.code] || cmd.code,
       x: cmd.x,
       y: cmd.y
     }
   }
 
-  parseChild(node, commands, warnings, transforms = []) {
+  parseChild (node, commands, warnings, transforms = []) {
     const attributes = this.attributes(node)
 
     if (attributes.transform) {
@@ -301,11 +301,11 @@ class PathParser {
     }
   }
 
-  findSvgNode(tree) {
+  findSvgNode (tree) {
     if (tree.nodeName === 'svg') {
       return tree
     }
-    
+
     if (!tree.childNodes) {
       return null
     }
@@ -318,13 +318,13 @@ class PathParser {
     return null
   }
 
-  simplify(commands) {
+  simplify (commands) {
     const snapTo = this.config.unitsPerEm * SNAPPING_RATIO
     return commands
       .map(cmd => ({
         ...cmd,
         x: cmd.x ? Math.round(cmd.x / snapTo) : cmd.x,
-        y: cmd.y ? Math.round(cmd.y / snapTo) : cmd.y,
+        y: cmd.y ? Math.round(cmd.y / snapTo) : cmd.y
       }))
       .filter((cmd, i, arr) => {
         if (i === 0) return true
@@ -334,7 +334,7 @@ class PathParser {
       .map(cmd => ({
         ...cmd,
         x: cmd.x ? cmd.x * snapTo : cmd.x,
-        y: cmd.y ? cmd.y * snapTo : cmd.y,
+        y: cmd.y ? cmd.y * snapTo : cmd.y
       }))
   }
 
@@ -343,7 +343,7 @@ class PathParser {
    * @param {string} svg contents to be parse
    * @returns {{ commands: opentype.PathCommand[]; warnings: { code: string; message: string; }[] }} commands for open type and a list of warning codes: see PathParser.Codes
    */
-  parse(svg) {
+  parse (svg) {
     const tree = this.parse5.parse(svg)
     const svgNode = this.findSvgNode(tree)
 
@@ -351,7 +351,7 @@ class PathParser {
       throw new PathParser.Codes.ErrorNoSVGNode()
     }
 
-    let commands = []
+    const commands = []
     let warnings = []
 
     for (const childNode of svgNode.childNodes) {
@@ -388,9 +388,9 @@ class PathParser {
 
 PathParser.Codes = {
   ErrorNoSVGNode: class extends Error {
-    constructor() {
+    constructor () {
       super('Could not find the root SVG node - is this a well-formated SVG document?')
-      this.code === 'ErrorNoSVGNode'
+      this.code = 'ErrorNoSVGNode'
     }
   },
   WarnEmptyFill: {
