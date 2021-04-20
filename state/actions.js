@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-unfetch'
+import fetch from 'cross-fetch'
 import * as PathParser from './reducers/fonts/parsePath'
 import encoder from './encoders'
 

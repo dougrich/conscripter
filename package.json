@@ -25,6 +25,7 @@
   "homepage": "https://github.com/dougrich/conscripter#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "cross-fetch": "^3.0.5",
     "gh-pages": "^2.0.1",
     "mocha": "^6.2.1",
     "standard": "^16.0.3",
@@ -34,9 +35,8 @@
     "@babel/core": "^7.4.3",
     "@babel/register": "^7.4.0",
     "classnames": "^2.2.6",
-    "isomorphic-unfetch": "^3.0.0",
     "msgpack-lite": "^0.1.26",
-    "next": "^9.3.2",
+    "next": "^10.1.3",
     "node-sass": "^4.12.0",
     "opentype.js": "^0.11.0",
     "parse5": "^5.1.0",
@@ -52,7 +52,13 @@
     "svg-path-parser": "^1.1.0"
   },
   "standard": {
-    "globals": ["BASE_LINK", "React", "localStorage"],
-    "env": ["mocha"]
+    "globals": [
+      "BASE_LINK",
+      "React",
+      "localStorage"
+    ],
+    "env": [
+      "mocha"
+    ]
   }
 }
