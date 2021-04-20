@@ -1,10 +1,9 @@
 const path = require('path')
-const withSass = require('@zeit/next-sass')
 const webpack = require('webpack')
 
 const ISPRODUCTION = process.env.NODE_ENV === 'production'
 
-module.exports = withSass({
+module.exports = {
   cssModules: true,
   assetPrefix: ISPRODUCTION ? '/conscripter/' : '',
   cssLoaderOptions: {
@@ -24,4 +23,4 @@ module.exports = withSass({
     }))
     return config
   }
-})
+}

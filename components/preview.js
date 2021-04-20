@@ -1,6 +1,6 @@
-import css from './preview.scss'
+import css from './preview.module.scss'
 import * as cx from 'classnames'
-import Print from './print.scss'
+import Print from './print.module.scss'
 import Text from './text'
 import Options from './options';
 import Slider from './slider';

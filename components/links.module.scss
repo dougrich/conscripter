@@ -1,10 +1,7 @@
-@import 'interaction';
+@import '../theme/_interaction';
 
 .block {
   display: block;
-}
-
-a {
   text-decoration: none;
   outline: none;
   display: inline-block;

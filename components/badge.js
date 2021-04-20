@@ -1,4 +1,4 @@
-import css from './badge.scss'
+import css from './badge.module.scss'
 import * as cx from 'classnames'
 
 export default function Badge(props) {

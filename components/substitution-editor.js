@@ -1,4 +1,4 @@
-import css from './substitution-editor.scss'
+import css from './substitution-editor.module.scss'
 import GlyphPreview from "./glyph-preview";
 import DropZone from "./dropzone";
 import Button, { ButtonBar } from './button';

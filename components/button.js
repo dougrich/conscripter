@@ -1,4 +1,4 @@
-import css from './button.scss'
+import css from './button.module.scss'
 import * as cx from 'classnames'
 import Typography from './typography';
 

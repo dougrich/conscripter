@@ -1,4 +1,4 @@
-import css from './description.scss'
+import css from './description.module.scss'
 import * as cx from 'classnames'
 import Typography from './typography'
 

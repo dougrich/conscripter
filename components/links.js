@@ -2,7 +2,7 @@ import Link from 'next/link'
 const { version } = require('../package.json')
 import { variant, defaultVariant } from './variant'
 import Typography from './typography';
-import css from './links.scss'
+import css from './links.module.scss'
 
 function href(route) {
   if (route[0] === '/') {

@@ -1,4 +1,4 @@
-import css from './options.scss'
+import css from './options.module.scss'
 
 import Label from "./label";
 import { Toggle } from './slider';

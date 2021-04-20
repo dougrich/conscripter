@@ -1,6 +1,6 @@
 import Label from "./label";
 import Typography from "./typography";
-import css from './slider-toggle.scss'
+import css from './slider-toggle.module.scss'
 import * as cx from 'classnames'
 
 const noopFormat = v => v

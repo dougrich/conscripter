@@ -1,9 +1,9 @@
 import Head from '../components/head'
 import Header from '../components/header';
-import css from '../pages/index.scss'
+import css from '../pages/index.module.scss'
 import Footer from '../components/footer';
 import GithubCorner from '../components/github-corner'
-import css2 from './error.scss'
+import css2 from './error.module.scss'
 import * as cx from 'classnames'
 
 export default function ErrorPage({

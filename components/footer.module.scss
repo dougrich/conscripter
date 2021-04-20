@@ -1,4 +1,4 @@
-@import 'colors';
+@import '../theme/_colors';
 
 .footer {
   @include text-color(theme-color('alert-default'));

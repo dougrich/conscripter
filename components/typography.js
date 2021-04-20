@@ -1,6 +1,6 @@
-import css from './typography.scss'
+import css from './typography.module.scss'
 import Images from './images';
-import Print from './print.scss'
+import Print from './print.module.scss'
 import * as cx from 'classnames'
 
 const Typography = {

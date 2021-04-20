@@ -1,4 +1,4 @@
-import css from './images.scss'
+import css from './images.module.scss'
 
 function Image(
   src,

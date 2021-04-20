@@ -1,4 +1,4 @@
-import css from './glyph-preview.scss'
+import css from './glyph-preview.module.scss'
 import * as cx from 'classnames'
 import Typography from './typography';
 

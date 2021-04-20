@@ -2,12 +2,12 @@
  * Grid of glyphs, displaying each with the relevant substitutions
  */
 
-import css from './glyph-grid.scss'
+import css from './glyph-grid.module.scss'
 import GlyphPreview from './glyph-preview'
 import * as cx from 'classnames'
 import Button from './button';
 import Typography from './typography';
-import Print from './print.scss'
+import Print from './print.module.scss'
 
 export default function GlyphGrid({ substitutions, meta, active, children, onSubstitutionSelect, onSubstitutionSwap }) {
   const symbols = []

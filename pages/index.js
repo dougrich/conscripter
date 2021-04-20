@@ -1,4 +1,4 @@
-import css from './index.scss'
+import css from './index.module.scss'
 import { createStore, actions } from '../state'
 import { connect, Provider } from 'react-redux'
 import SubstitutionEditor from '../components/substitution-editor'
@@ -13,7 +13,7 @@ import Footer from '../components/footer';
 import Typography from '../components/typography';
 import Text from '../components/text';
 import Links from '../components/links';
-import Print from '../components/print.scss'
+import Print from '../components/print.module.scss'
 
 const store = createStore({})
 

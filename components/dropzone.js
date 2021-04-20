@@ -1,4 +1,4 @@
-import css from './dropzone.scss'
+import css from './dropzone.module.scss'
 import Typography from './typography';
 
 export default class DropZone extends React.Component {

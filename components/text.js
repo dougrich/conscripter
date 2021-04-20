@@ -1,4 +1,4 @@
-import css from './text.scss'
+import css from './text.module.scss'
 import * as cx from 'classnames'
 import Label from './label';
 import Typography from './typography';
